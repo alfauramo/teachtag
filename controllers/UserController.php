@@ -5,14 +5,13 @@ namespace app\controllers;
 use Yii;
 use app\models\User;
 use app\models\UserSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
  * UserController implements the CRUD actions for User model.
  */
-class UserController extends Controller
+class UserController extends BaseController
 {
     /**
      * {@inheritdoc}
@@ -26,8 +25,25 @@ class UserController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'access' => [
+                'class' => \yii\filters\AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'matchCallback' => function ($rule, $action) {
+                           return $this->isAdminUser();
+                        }
+                    ],
+                    [
+                        'allow' => false,
+                        'roles' => ['*']
+                    ],
+                ],
+            ],
         ];
     }
+
+    
 
     /**
      * Lists all User models.
@@ -67,7 +83,12 @@ class UserController extends Controller
         $model = new User();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            if($model->save()){
+                Yii::$app->session->setFlash('success', "Usuario creado correctamente.");
+            } else {
+                Yii::$app->session->setFlash('error', "Usuario NO creado.");
+            }
+            return $this->redirect(['index', 'id' => $model->id]);
         }
 
         return $this->render('create', [
@@ -87,13 +108,17 @@ class UserController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
+            if($model->save()){
+                Yii::$app->session->setFlash('success', "Usuario modificado correctamente.");
+            } else {
+                Yii::$app->session->setFlash('error', "Usuario NO modificado.");
+            }
+            return $this->redirect(['index', 'id' => $model->id]);
 
         return $this->render('update', [
             'model' => $model,
         ]);
-    }
+    }}
 
     /**
      * Deletes an existing User model.
@@ -105,7 +130,6 @@ class UserController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-
         return $this->redirect(['index']);
     }
 

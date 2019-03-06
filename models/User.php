@@ -1,8 +1,9 @@
 <?php
 
 namespace app\models;
-use IdentityInterface;
+
 use Yii;
+use yii\web\IdentityInterface;
 
 /**
  * This is the model class for table "user".
@@ -10,54 +11,97 @@ use Yii;
  * @property int $id
  * @property string $username
  * @property string $password
+ * @property int $rol
+ * @property Tiempo[] $tiempos 
  */
-class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
+class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
     public $authKey;
-    public $accessToken;
     /**
      * {@inheritdoc}
      */
-
-    public static function findIdentity($users)
+    public static function tableName()
     {
-        return isset(self::$users['id']) ? new static(self::$users['id']) : null;
+        return 'user';
     }
 
-    public static function findIdentityByAccessToken($token, $type = null)
+    /**
+     * {@inheritdoc}
+     */
+    public function rules()
     {
-        
-        foreach (self::$users as $user) {
-            if ($user['accessToken'] === $token) {
-                return new static($user);
-            }
-        }
+        return [
+            ['rol', 'integer'],
+            [['username', 'password'], 'required'],
+            [['username', 'password'], 'string', 'max' => 25],
+        ];
+    }
 
-        return null;
+    /**
+     * Creo unas constantes, las cuales identificarán el rol.
+     */
+    const ROL_USUARIO = 0;
+    const ROL_ADMINISTRADOR = 1;
+
+    static $rolUser = [
+        self::ROL_USUARIO => 'Usuario',
+        self::ROL_ADMINISTRADOR => 'Administrador',
+    ];
+
+    public function getRolToString() {
+        return self::$rolUser[$this->rol];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'username' => 'Usuario',
+            'password' => 'Contraseña',
+            'rol' => 'Rol',
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     * @return UserQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new UserQuery(get_called_class());
     }
 
     public static function findByUsername($username)
     {
-        $users = User::find()->all();
+        $users = self::find()->all();
         foreach ($users as $user) {
-            var_dump($user['username']);
-            if (strcasecmp($user['username'], $username) === 0) {
-                var_dump($user);
+            if (strcasecmp($user->username, $username) === 0) {
                 return new static($user);
             }
         }
 
+        
         return null;
     }
+        
+    public function validatePassword($password)
+    {
+        return $this->password === $password;
+    }
 
-    public function getId()
+    public static function findIdentity($id)
+    {
+        return self::findOne($id);
+    }
+
+     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getAuthKey()
     {
         return $this->authKey;
@@ -72,50 +116,16 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     }
 
     /**
-     * Validates password
-     *
-     * @param string $password password to validate
-     * @return bool if password provided is valid for current user
-     */
-    public function validatePassword($password)
-    {
-        return $this->password === $password;
-    }
-
-    public static function tableName()
-    {
-        return 'user';
-    }
-
-    /**
      * {@inheritdoc}
      */
-    public function rules()
+    public static function findIdentityByAccessToken($token, $type = null)
     {
-        return [
-            [['username', 'password'], 'required'],
-            [['username', 'password'], 'string', 'max' => 25],
-        ];
-    }
+        foreach (self::$users as $user) {
+            if ($user['accessToken'] === $token) {
+                return new static($user);
+            }
+        }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function attributeLabels()
-    {
-        return [
-            'id' => 'ID',
-            'username' => 'Username',
-            'password' => 'Password',
-        ];
-    }
-
-    /**
-     * {@inheritdoc}
-     * @return UserQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new UserQuery(get_called_class());
+        return null;
     }
 }
