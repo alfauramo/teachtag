@@ -11,29 +11,17 @@ use yii\base\Model;
  * @property User|null $user This property is read-only.
  *
  */
-class LoginForm extends Model
+class RegisterForm extends Model
 {
     public $username;
     public $password;
-    public $rememberMe = true;
+    public $nombre;
+    public $apellidos;
+    public $email;
+    public $telefono;
+    public $centerCode;
+    public $mailCode;
 
-    private $_user = false;
-
-
-    /**
-     * @return array the validation rules.
-     */
-    public function rules()
-    {
-        return [
-            // username and password are both required
-            [['username', 'password'], 'required'],
-            // rememberMe must be a boolean value
-            ['rememberMe', 'boolean'],
-            // password is validated by validatePassword()
-            ['password', 'validatePassword'],
-        ];
-    }
 
     /**
      * Validates the password.

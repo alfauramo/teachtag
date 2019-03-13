@@ -7,6 +7,7 @@ use app\models\User;
 use app\models\UserSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\RegisterForm;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -19,14 +20,9 @@ class UserController extends BaseController
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
             'access' => [
                 'class' => \yii\filters\AccessControl::className(),
+                'only' => ['signup'],
                 'rules' => [
                     [
                         'allow' => true,
@@ -133,6 +129,7 @@ class UserController extends BaseController
         return $this->redirect(['index']);
     }
 
+
     /**
      * Finds the User model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
@@ -147,5 +144,19 @@ class UserController extends BaseController
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    /**
+     * Crea un objeto de formulario de registro y muestra la vista del 
+     * registro. S
+     *  
+     *
+     */
+    public function actionRegistro(){
+        $model = new RegisterForm();
+
+        return $this->render('signup',[
+            'model' => $model,
+        ]);
     }
 }
