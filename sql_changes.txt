@@ -1,3 +1,0 @@
-ALTER TABLE `user` ADD `rol` INT NOT NULL AFTER `password`;
-
-UPDATE `user` SET `rol` = '1' WHERE `user`.`id` = 100;

@@ -12,7 +12,12 @@ use yii\web\IdentityInterface;
  * @property string $username
  * @property string $password
  * @property int $rol
- * @property Tiempo[] $tiempos 
+ * @property string $name
+ * @property string $email
+ * @property string $birthday
+ * @property string $centerCode
+ * @property string $mailCode
+ * @property string $descripcion
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
@@ -31,9 +36,13 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            ['rol', 'integer'],
-            [['username', 'password'], 'required'],
+            [['username', 'password', 'rol'], 'required'],
+            [['rol'], 'integer'],
+            [['birthday'], 'safe'],
             [['username', 'password'], 'string', 'max' => 25],
+            [['name'], 'string', 'max' => 75], 
+            [['email', 'descripcion'], 'string', 'max' => 100], 
+            [['centerCode', 'mailCode'], 'string', 'max' => 15],
         ];
     }
 
@@ -62,6 +71,12 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'username' => 'Usuario',
             'password' => 'Contraseña',
             'rol' => 'Rol',
+            'name' => 'Nombre', 
+            'email' => 'Correo electrónico', 
+            'birthday' => 'Fecha de nacimiento', 
+            'centerCode' => 'Código del centro', 
+            'mailCode' => 'Código de verificación', 
+            'descripcion' => 'Descripción'
         ];
     }
 

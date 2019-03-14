@@ -10,64 +10,52 @@ use yii\widgets\ActiveForm;
 
 <div class="reg-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+        'action' => ['/user/create']
+    ]); ?>
 
     <?= $form->field($model, 'username',['inputOptions' => [
-    	'id' => 'alias',
-        'class' => 'form-control',
-    	'placeholder' => 'Alias',
+        'id' => 'alias',
+        'placeholder' => 'Alias',
     ]])->label(false) ?>
 
     <?= $form->field($model, 'password',['inputOptions' => [
-    	'id' => 'psswd1',
-        'class' => 'form-control',
-    	'placeholder' => 'Contraseña'
+        'id' => 'psswd1',
+        'placeholder' => 'Contraseña'
     ]])->label(false) ?>
 
     <?= $form->field($model, 'password',['inputOptions' => [
-    	'id' => 'psswd2',
-        'class' => 'form-control',
-    	'placeholder' => 'Repite contraseña'
+        'id' => 'psswd2',
+        'placeholder' => 'Repite contraseña'
     ]])->label(false) ?>
 
-    <?= $form->field($model, 'nombre', ['inputOptions' => [
-    	'id' => 'nombre',
-        'class' => 'form-control',
-    	'placeholder' => 'Nombre'
-    ]])->label(false) ?>
-
-    <?= $form->field($model, 'apellidos', ['inputOptions' => [
-    	'id' => 'apellidos',
-        'class' => 'form-control',
-    	'placeholder' => 'Apellidos',
+    <?= $form->field($model, 'name', ['inputOptions' => [
+        'id' => 'nombre',
+        'placeholder' => 'Nombre'
     ]])->label(false) ?>
 
     <?= $form->field($model, 'email',['inputOptions' => [
-    	'id' => 'mail',
-        'class' => 'form-control',
-    	'placeholder' => 'Correo electrónico'
+        'id' => 'mail',
+        'placeholder' => 'Correo electrónico'
     ]])->label(false) ?>
 
-    <?= $form->field($model, 'telefono',['inputOptions' => [
-    	'id' => 'tlfn',
-        'class' => 'form-control',
-    	'placeholder' => 'Móvil'
+    <?= $form->field($model, 'birthday',['inputOptions' => [
+        'id' => 'brthd',
+        'placeholder' => 'Fecha de nacimiento'
     ]])->label(false) ?>
 
     <?= $form->field($model, 'centerCode',['inputOptions' => [
-    	'id' => 'centerCode',
-        'class' => 'form-control',
-    	'placeholder' => 'Center code'
+        'id' => 'centerCode',
+        'placeholder' => 'Center code'
     ]])->label(false) ?>
 
     <?= $form->field($model, 'mailCode',['inputOptions' => [
-    	'id' => 'mailCode',
-        'class' => 'form-control',
-    	'placeholder' => 'Código de verificación'
+        'id' => 'mailCode',
+        'placeholder' => 'Código de verificación'
     ]])->label(false) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('PRUEBA',  ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

@@ -74,22 +74,22 @@ class UserController extends BaseController
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
-        $model = new User();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            if($model->save()){
-                Yii::$app->session->setFlash('success', "Usuario creado correctamente.");
-            } else {
-                Yii::$app->session->setFlash('error', "Usuario NO creado.");
-            }
-            return $this->redirect(['index', 'id' => $model->id]);
+     public function actionCreate() {
+        //Capto los parámetros introducidos en el registerForm.
+        $model = new User(Yii::$app->request->post()['RegisterForm']);
+        $model->rol = User::ROL_USUARIO;
+        
+        //TODAVÍA QUEDA CREAR LA VALIDACIÓN
+        
+        //Si todo es correcto, se crea el usuario.
+        if ($model->save()) {
+            Yii::$app->session->setFlash('success', "Usuario creado correctamente.");
+        } else {
+            Yii::$app->session->setFlash('error', "Usuario NO creado.");
         }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+    
+        return $this->redirect(['index', 'id' => $model->id]);
+        
     }
 
     /**
@@ -148,9 +148,8 @@ class UserController extends BaseController
 
     /**
      * Crea un objeto de formulario de registro y muestra la vista del 
-     * registro. S
-     *  
-     *
+     * registro. Éste manda los datos de vuelta, al actionController, para realizar un registro del usuario si todo ha sido correcto.
+
      */
     public function actionRegistro(){
         $model = new RegisterForm();
