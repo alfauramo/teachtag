@@ -76,13 +76,13 @@ class UserController extends BaseController
      */
      public function actionCreate() {
         //Capto los parámetros introducidos en el registerForm.
-        $model = new User(Yii::$app->request->post()['RegisterForm']);
+        $model = new User();
         $model->rol = User::ROL_USUARIO;
         
         //TODAVÍA QUEDA CREAR LA VALIDACIÓN
         
         //Si todo es correcto, se crea el usuario.
-        if ($model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', "Usuario creado correctamente.");
         } else {
             Yii::$app->session->setFlash('error', "Usuario NO creado.");
@@ -152,7 +152,7 @@ class UserController extends BaseController
 
      */
     public function actionRegistro(){
-        $model = new RegisterForm();
+        $model = new User();
 
         return $this->render('signup',[
             'model' => $model,
