@@ -25,9 +25,14 @@ $(document).ready(function(){
 	/**
 	 * PARTE DEL ALIAS. Tiene que ser único.
 	 */
-	var alias;
 	$("#alias").on("blur",function(){
-		alias = $(this).val();
+		let alias = $(this).val();
+		if(alias == "" || alias == " "){
+			return false;
+		} else {
+			//comprobar por ajax la disponibilidad del alias
+			return true;
+		}
 	})
 	$("#alias").keypress(function(e, solicitar){
 		//-----------------------
@@ -115,6 +120,7 @@ $(document).ready(function(){
 			let correo = $(this).val();
 			var emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 	        if (emailRegex.test(correo)){
+	        	//comprobar por ajax la disponibilidad del correo
 	            return true;
 	        } else if(correo == ""){
 	            return false;
