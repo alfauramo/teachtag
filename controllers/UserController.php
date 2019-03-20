@@ -126,7 +126,7 @@ class UserController extends BaseController
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-        return $this->redirect(['index']);
+        return $this->goBack();
     }
 
 
