@@ -33,7 +33,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    /*public function rules()
     {
         return [
             [['username', 'password', 'rol'], 'required'],
@@ -44,7 +44,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             [['email', 'descripcion'], 'string', 'max' => 100], 
             [['centerCode', 'mailCode'], 'string', 'max' => 15],
         ];
-    }
+    }*/
 
     /**
      * Creo unas constantes, las cuales identificarán el rol.

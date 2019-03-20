@@ -9,6 +9,12 @@ use yii\bootstrap\ActiveForm;
 
 $this->title = 'Registro';
 $this->params['breadcrumbs'][] = $this->title;
+
+$this->registerJsFile("@web/js/ValidarRegistro.js",[
+    'depends' => [
+        \yii\web\JqueryAsset::className()
+    ]
+]);
 ?>
 <div class="site-login">
     <h1><?= Html::encode($this->title) ?></h1>

@@ -79,7 +79,7 @@ class UserController extends BaseController
         $model = new User();
         $model->rol = User::ROL_USUARIO;
         
-        //TODAVÍA QUEDA CREAR LA VALIDACIÓN
+        //TODAVÍA QUEDA CREAR LA VALIDACIÓN POR LA PARTE DE LA VISTA
         
         //Si todo es correcto, se crea el usuario.
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -88,7 +88,7 @@ class UserController extends BaseController
             Yii::$app->session->setFlash('error', "Usuario NO creado.");
         }
     
-        return $this->redirect(['index', 'id' => $model->id]);
+        return $this->goHome();
         
     }
 
