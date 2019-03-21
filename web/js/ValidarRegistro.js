@@ -25,13 +25,22 @@ $(document).ready(function(){
 	/**
 	 * PARTE DEL ALIAS. Tiene que ser único.
 	 */
-	$("#alias").on("blur",function(){
+	var res_alias = $("#alias").on("blur",function(){
 		let alias = $(this).val();
 		if(alias == "" || alias == " "){
 			return false;
 		} else {
 			//comprobar por ajax la disponibilidad del alias
-			return true;
+			$.get("http://teachtag.loc/index.php?r=user/comprobar-alias",{
+				alias: alias,
+			}, "JSON")
+
+			.done(function(data){
+				//Devuelve true si no hay ninguna coincidencia.
+				return data;
+
+			})
+
 		}
 	})
 	$("#alias").keypress(function(e, solicitar){
@@ -117,11 +126,19 @@ $(document).ready(function(){
 	 */
 	var email = $("#mail").on("blur",
 		function(){
-			let correo = $(this).val();
+			var correo = $(this).val();
 			var emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 	        if (emailRegex.test(correo)){
 	        	//comprobar por ajax la disponibilidad del correo
-	            return true;
+	            $.get("http://teachtag.loc/index.php?r=user/comprobar-correo",{
+					correo: correo,
+				}, "JSON")
+
+				.done(function(data){
+					//Devuelve true si no hay ninguna coincidencia.
+					return data;
+
+				})
 	        } else if(correo == ""){
 	            return false;
 	        } else {

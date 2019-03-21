@@ -158,4 +158,36 @@ class UserController extends BaseController
             'model' => $model,
         ]);
     }
+
+    /**
+     * Método que se comunica con el validarRegistro.js
+     * Devuelve true si encuentra una coincidencia o false si no
+     */
+    public function actionComprobarAlias($alias){
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        $user = User::find()->where(['username'=> $alias])->all();
+
+        if(count($user)>0){
+            return false;
+        }
+        return true;
+        
+    }
+
+     /**
+     * Método que se comunica con el validarRegistro.js
+     * Devuelve true si encuentra una coincidencia o false si no
+     */
+    public function actionComprobarCorreo($correo){
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        $user = User::find()->where(['email'=> $correo])->all();
+
+        if(count($user)>0){
+            return false;
+        }
+        return true;
+        
+    }
 }
