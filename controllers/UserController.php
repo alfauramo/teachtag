@@ -48,6 +48,7 @@ class UserController extends BaseController
     public function actionIndex()
     {
         $searchModel = new UserSearch();
+        $searchModel->rol = User::ROL_USUARIO;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -110,11 +111,12 @@ class UserController extends BaseController
                 Yii::$app->session->setFlash('error', "Usuario NO modificado.");
             }
             return $this->redirect(['index', 'id' => $model->id]);
+        }
 
         return $this->render('update', [
             'model' => $model,
         ]);
-    }}
+    }
 
     /**
      * Deletes an existing User model.

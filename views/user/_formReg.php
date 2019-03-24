@@ -55,7 +55,7 @@ use yii\widgets\ActiveForm;
     ]])->label(false) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('PRUEBA',  ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Registrar',  ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
