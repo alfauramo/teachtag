@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\CenterSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Centers';
+$this->title = 'Centros';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="center-index">
@@ -16,16 +16,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Center', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Añadir centro', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
             'nombre',
             'poblacion',
             'provincia',
