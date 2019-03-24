@@ -18,7 +18,7 @@ class CenterSearch extends Center
     {
         return [
             [['id'], 'integer'],
-            [['nombre', 'direccion', 'poblacion', 'provincia', 'centerCode'], 'safe'],
+            [['nombre', 'poblacion', 'provincia', 'centerCode'], 'safe'],
         ];
     }
 
@@ -62,7 +62,6 @@ class CenterSearch extends Center
         ]);
 
         $query->andFilterWhere(['like', 'nombre', $this->nombre])
-            ->andFilterWhere(['like', 'direccion', $this->direccion])
             ->andFilterWhere(['like', 'poblacion', $this->poblacion])
             ->andFilterWhere(['like', 'provincia', $this->provincia])
             ->andFilterWhere(['like', 'centerCode', $this->centerCode]);

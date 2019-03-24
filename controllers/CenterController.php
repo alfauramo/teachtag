@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 /**
  * CenterController implements the CRUD actions for Center model.
  */
-class CenterController extends Controller
+class CenterController extends BaseController
 {
     /**
      * {@inheritdoc}
@@ -25,6 +25,34 @@ class CenterController extends Controller
                 'actions' => [
                     'delete' => ['POST'],
                 ],
+            ],
+            'access' => [
+                'class' => \yii\filters\AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'actions' => ['perfil'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'actions' => ['resumen'],
+                    ],
+                    [
+                        'allow' => true,
+                        'matchCallback' => function ($rule, $action) {
+                           return $this->isAdminUser();
+                        }
+                    ],
+                    [
+                        'allow' => false,
+                        'roles' => ['*']
+                    ],
+                ],
+            'denyCallback' => function () {
+                return Yii::$app->response->redirect(['site/index']);
+            },
             ],
         ];
     }

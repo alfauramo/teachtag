@@ -14,8 +14,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'direccion')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'poblacion')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'provincia')->textInput(['maxlength' => true]) ?>

@@ -9,7 +9,6 @@ use Yii;
  *
  * @property int $id
  * @property string $nombre
- * @property string $direccion
  * @property string $poblacion
  * @property string $provincia
  * @property string $centerCode
@@ -30,9 +29,8 @@ class Center extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombre', 'direccion', 'poblacion', 'provincia', 'centerCode'], 'required'],
+            [['nombre', 'poblacion', 'provincia', 'centerCode'], 'required'],
             [['nombre'], 'string', 'max' => 100],
-            [['direccion'], 'string', 'max' => 200],
             [['poblacion', 'provincia'], 'string', 'max' => 50],
             [['centerCode'], 'string', 'max' => 10],
         ];
@@ -46,7 +44,6 @@ class Center extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'nombre' => 'Nombre',
-            'direccion' => 'Direccion',
             'poblacion' => 'Poblacion',
             'provincia' => 'Provincia',
             'centerCode' => 'Center Code',
