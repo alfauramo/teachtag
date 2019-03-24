@@ -9,6 +9,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use app\models\User;
 
 AppAsset::register($this);
 ?>
@@ -49,7 +50,19 @@ AppAsset::register($this);
             'label' => 'Signup', 
             'url' => ['/user/registro']
         ];
-    }else {
+    }
+
+    if(!Yii::$app->user->isGuest) {
+        if(Yii::$app->user->identity->rol == User::ROL_ADMINISTRADOR){
+            $menuItems[] = [
+                'label' => 'Usuarios',['class'=>'btn btn-link users']   ,
+                'url' => ['/user/index'], 
+            ];
+            $menuItems[] = [
+                'label' => 'Centros',['class'=>'btn btn-link center']   ,
+                'url' => ['/center/index'], 
+            ];
+        }
         $menuItems[] = [
             'label' => 'Logout (' . Yii::$app->user->identity->username . ')',['class'=>'btn btn-link logout']   ,
             'url' => ['/site/logout'], 
