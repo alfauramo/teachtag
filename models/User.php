@@ -18,6 +18,8 @@ use yii\web\IdentityInterface;
  * @property string $centerCode
  * @property string $mailCode
  * @property string $descripcion
+ *
+ * @property Center $centro 
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
@@ -43,6 +45,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             [['name'], 'string', 'max' => 75], 
             [['email', 'descripcion'], 'string', 'max' => 100], 
             [['centerCode', 'mailCode'], 'string', 'max' => 15],
+            [['centerCode'], 'exist', 'skipOnError' => true, 'targetClass' => Center::className(), 'targetAttribute' => ['centerCode' => 'id']],
         ];
     }*/
 
@@ -61,6 +64,14 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return self::$rolUser[$this->rol];
     }
 
+    /** 
+    * @return \yii\db\ActiveQuery 
+    */ 
+    public function getCenterCode0() 
+    { 
+        return $this->hasOne(Center::className(), ['id' => 'centerCode']); 
+    }
+    
     /**
      * {@inheritdoc}
      */

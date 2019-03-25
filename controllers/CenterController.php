@@ -31,16 +31,6 @@ class CenterController extends BaseController
                 'rules' => [
                     [
                         'allow' => true,
-                        'roles' => ['@'],
-                        'actions' => ['perfil'],
-                    ],
-                    [
-                        'allow' => true,
-                        'roles' => ['@'],
-                        'actions' => ['resumen'],
-                    ],
-                    [
-                        'allow' => true,
                         'matchCallback' => function ($rule, $action) {
                            return $this->isAdminUser();
                         }
@@ -74,7 +64,7 @@ class CenterController extends BaseController
 
     /**
      * Displays a single Center model.
-     * @param integer $id
+     * @param string $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -106,7 +96,7 @@ class CenterController extends BaseController
     /**
      * Updates an existing Center model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param string $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -126,7 +116,7 @@ class CenterController extends BaseController
     /**
      * Deletes an existing Center model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * @param string $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */

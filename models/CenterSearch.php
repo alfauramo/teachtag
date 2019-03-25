@@ -17,7 +17,6 @@ class CenterSearch extends Center
     public function rules()
     {
         return [
-            [['id'], 'integer'],
             [['nombre', 'poblacion', 'provincia', 'centerCode'], 'safe'],
         ];
     }
@@ -65,7 +64,7 @@ class CenterSearch extends Center
             ->andFilterWhere(['like', 'poblacion', $this->poblacion])
             ->andFilterWhere(['like', 'provincia', $this->provincia])
             ->andFilterWhere(['like', 'centerCode', $this->centerCode]);
-
+            
         return $dataProvider;
     }
 }

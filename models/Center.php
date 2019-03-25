@@ -12,6 +12,8 @@ use Yii;
  * @property string $poblacion
  * @property string $provincia
  * @property string $centerCode
+ *
+ * @property User[] $users
  */
 class Center extends \yii\db\ActiveRecord
 {
@@ -32,7 +34,6 @@ class Center extends \yii\db\ActiveRecord
             [['nombre', 'poblacion', 'provincia', 'centerCode'], 'required'],
             [['nombre'], 'string', 'max' => 100],
             [['poblacion', 'provincia'], 'string', 'max' => 50],
-            [['centerCode'], 'string', 'max' => 10],
         ];
     }
 
@@ -42,11 +43,11 @@ class Center extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
+            'id' => 'id',
             'nombre' => 'Nombre',
-            'poblacion' => 'Poblacion',
+            'poblacion' => 'Población',
             'provincia' => 'Provincia',
-            'centerCode' => 'Center Code',
+            'centerCode' => 'Código'
         ];
     }
 
@@ -57,5 +58,13 @@ class Center extends \yii\db\ActiveRecord
     public static function find()
     {
         return new CenterQuery(get_called_class());
+    }
+
+    /** 
+    * @return \yii\db\ActiveQuery 
+    */ 
+    public function getUsers() 
+    { 
+        return $this->hasMany(User::className(), ['centerCode' => 'id']); 
     }
 }
