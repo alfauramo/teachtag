@@ -49,11 +49,6 @@ use yii\widgets\ActiveForm;
         'placeholder' => 'Center code'
     ]])->label(false) ?>
 
-    <?= $form->field($model, 'mailCode',['inputOptions' => [
-        'id' => 'mailCode',
-        'placeholder' => 'Código de verificación'
-    ]])->label(false) ?>
-
     <div class="form-group">
         <?= Html::submitButton('Registrar',  ['class' => 'btn btn-success']) ?>
     </div>

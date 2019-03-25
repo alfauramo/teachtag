@@ -152,9 +152,23 @@ $(document).ready(function(){
 	$("#brthd").on("blur",function(){
 		birthday = $(this).val();
 	})
-	var centerCode;
-	$("#centerCode").on("blur",function(){
-		centerCode = $(this).val();
+	var centerCode = $("#centerCode").on("blur",function(){
+		let centerCode = $(this).val();
+		if(centerCode.length == 0 && centerCode == ' ') {
+			return false;
+		} else {
+			$.get("http://teachtag.loc/index.php?r=center/comprobar-codigo",{
+					codigo: centerCode,
+				}, "JSON")
+
+			.done(function(data){
+				//Devuelve true si hay existe alguna coincidencia.
+				console.log(data);
+				return data;
+
+			})
+		}
+
 	})
 	var verificationCode;
 	$("#mailCode").on("blur",function(){

@@ -20,14 +20,9 @@ class CenterController extends BaseController
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
             'access' => [
                 'class' => \yii\filters\AccessControl::className(),
+                'only' => ['signup'],
                 'rules' => [
                     [
                         'allow' => true,
@@ -40,9 +35,6 @@ class CenterController extends BaseController
                         'roles' => ['*']
                     ],
                 ],
-            'denyCallback' => function () {
-                return Yii::$app->response->redirect(['site/index']);
-            },
             ],
         ];
     }
@@ -141,5 +133,21 @@ class CenterController extends BaseController
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    /**
+     * Comprueba el código introducido en el registro, si existe, manda true.
+     * @param string $code
+     * @return mixed
+     */
+    public function actionComprobarCodigo($codigo){
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        $centro = Center::find()->where(['centerCode'=> $codigo])->one();
+
+        if ($centro !== NULL)
+            return true;
+        
+        return false;
     }
 }

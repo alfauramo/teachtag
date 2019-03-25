@@ -16,7 +16,6 @@ use yii\web\IdentityInterface;
  * @property string $email
  * @property string $birthday
  * @property string $centerCode
- * @property string $mailCode
  * @property string $descripcion
  *
  * @property Center $centro 
@@ -35,7 +34,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     /**
      * {@inheritdoc}
      */
-    /*public function rules()
+    public function rules()
     {
         return [
             [['username', 'password', 'rol'], 'required'],
@@ -47,7 +46,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             [['centerCode', 'mailCode'], 'string', 'max' => 15],
             [['centerCode'], 'exist', 'skipOnError' => true, 'targetClass' => Center::className(), 'targetAttribute' => ['centerCode' => 'id']],
         ];
-    }*/
+    }
 
     /**
      * Creo unas constantes, las cuales identificarán el rol.
@@ -86,7 +85,6 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'email' => 'Correo electrónico', 
             'birthday' => 'Fecha de nacimiento', 
             'centerCode' => 'Código del centro', 
-            'mailCode' => 'Código de verificación', 
             'descripcion' => 'Descripción'
         ];
     }
