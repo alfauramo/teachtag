@@ -1,5 +1,11 @@
-function validarPasswd(p1, p2){
+var res_alias;
+var res_pass;
+var res_nombre = "";
+var res_fecha = "";
+function validarPasswd(){
     //COMPROBAR LAS CONTRASEÑAS
+    p1 = $("#psswd1").val();
+    p2 = $("#psswd2").val();
     var espacios = false;
     var cont = 0;
     var exp_reg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
@@ -21,106 +27,69 @@ function validarPasswd(p1, p2){
 	}
 }
 
-$(document).ready(function(){
-	/**
-	 * PARTE DEL ALIAS. Tiene que ser único.
-	 */
-	var res_alias = $("#alias").on("blur",function(){
-		let alias = $(this).val();
-		if(alias == "" || alias == " "){
+function comprobarAlias(){
+	//COMPROBAR ALIAS
+	var alias = $("#alias").val();
+	//comprobar por ajax la disponibilidad del alias
+	if(alias !== "" || alias !== " "){
+		$.get("http://teachtag.loc/index.php?r=user/comprobar-alias", { alias: alias } )
+		  .done(function( data ) {
+		    if(data == true){
+		    	res_alias = true;
+		    }else {
+		    	$("#subp1").attr("disabled", "disabled");
+		    }
+		  }, "JSON");
+	} else {
+		$("#subp1").attr("disabled", "disabled");
+	}
+
+	return res_alias;
+}
+
+function comprobarNombre(){
+	//COMPROBAR NOMBRE
+	let nombre = $("#nombre").val();
+	//Comprueba que el nombre no esté vacío
+	if(nombre == "" || nombre == " "){
+		res_nombre = false;
+		$("#subp2").attr("disabled", "disabled");
+	}else {
+		res_nombre = true;
+	}
+	
+	return res_nombre;
+}
+
+function comprobarFecha(){
+	let birthday = $("#user-birthday").val();
+	if(birthday == "" || birthday == " "){
+		res_fecha = false;
+		$("#subp2").attr("disabled", "disabled");
+	}else {
+		res_fecha = true;
+	}
+	
+	return res_fecha;
+}
+	var centerCode = $("#centerCode").on("blur",function(){
+		let centerCode = $(this).val();
+		if(centerCode.length == 0 && centerCode == ' ') {
 			return false;
 		} else {
-			//comprobar por ajax la disponibilidad del alias
-			$.get("http://teachtag.loc/index.php?r=user/comprobar-alias",{
-				alias: alias,
-			}, "JSON")
+			$.get("http://teachtag.loc/index.php?r=center/comprobar-codigo",{
+					codigo: centerCode,
+				}, "JSON")
 
 			.done(function(data){
-				//Devuelve true si no hay ninguna coincidencia.
+				//Devuelve true si hay existe alguna coincidencia.
+				console.log(data);
 				return data;
 
 			})
-
 		}
-	})
-	$("#alias").keypress(function(e, solicitar){
-		//-----------------------
-        //CAMBIAR LA PRIMERA LETRA A MAYÚSCULA
-        //Leo la tecla que estoy pulsando
-        var e;
-        tecla = (document.all) ? e.keyCode : e.which;
-        if (tecla==8) return true;
-        console.log(solicitar);
-        //Expresión regular para decir que la
-        //primera letra sea mayúscula
-        patron =/[\D\s]/;
-        te = String.fromCharCode(tecla);
-        //Comprueba si la palabra empieza en mayúscula
-        //Si no lo está, la cambia.
-        //Además, comprueba que no tenga ningún espacio
-        if (!patron.test(te)) return false;
-        txt = $(this).val();
-        if(txt.length==0 && te==' ') return false;
-        if (txt.length==0 || txt.substr(txt.length-1,1)==' ') {
-            $(this).val(txt+te.toUpperCase());
-            return false;
-    	}
-    })
-	/*-----------------*/
 
-	/**
-	 * PARTE DEL PASSWORD. Tienen que ser iguales.
-	 */
-	//Más adelante recibe true o false dependiendo del regex 
-	//y las condiciones del validarPasswd()
-	var res_pass;
-	var pass1;
-	$("#psswd1").on("blur",function(){
-		pass1 = $(this).val();
-		res_pass = validarPasswd();
 	})
-	var pass2;
-	$("#psswd2").on("blur",function(){
-		pass2 = $(this).val();
-		res_pass = validarPasswd(pass1, pass2);
-	})
-    /*---------------*/
-
-    /**
-     * PARTE DEL NOMBRE. Puede haber más de un nombre igual, 
-     * así que solamente se comprueba que no sea vacío
-     */
-	var nombre = $("#nombre").on("blur",function(){
-		let nombre = $(this).val();
-		if(nombre == "" || nombre == " "){
-			return false;
-		}
-		return true;
-	})
-	$("#nombre").keypress(function(e, solicitar){
-		//-----------------------
-        //CAMBIAR LA PRIMERA LETRA A MAYÚSCULA
-        //Leo la tecla que estoy pulsando
-        var e;
-        tecla = (document.all) ? e.keyCode : e.which;
-        if (tecla==8) return true;
-        console.log(solicitar);
-        //Expresión regular para decir que la
-        //primera letra sea mayúscula
-        patron =/[\D\s]/;
-        te = String.fromCharCode(tecla);
-        //Comprueba si la palabra empieza en mayúscula
-        //Si no lo está, la cambia.
-        //Además, comprueba que no tenga ningún espacio
-        if (!patron.test(te)) return false;
-        txt = $(this).val();
-        if(txt.length==0 && te==' ') return false;
-        if (txt.length==0 || txt.substr(txt.length-1,1)==' ') {
-            $(this).val(txt+te.toUpperCase());
-            return false;
-    	}
-    })
-
 	/**
 	 * Parte del email. El email tiene que ser único
 	 */
@@ -148,32 +117,41 @@ $(document).ready(function(){
 	)
 
 	/*---------------*/
-	var birthday;
-	$("#brthd").on("blur",function(){
-		birthday = $(this).val();
-	})
-	var centerCode = $("#centerCode").on("blur",function(){
-		let centerCode = $(this).val();
-		if(centerCode.length == 0 && centerCode == ' ') {
-			return false;
-		} else {
-			$.get("http://teachtag.loc/index.php?r=center/comprobar-codigo",{
-					codigo: centerCode,
-				}, "JSON")
-
-			.done(function(data){
-				//Devuelve true si hay existe alguna coincidencia.
-				console.log(data);
-				return data;
-
-			})
-		}
-
-	})
+	
 	var verificationCode;
 	$("#mailCode").on("blur",function(){
 		verificationCode = $(this).val();
 	})
 
+$(document).ready(function(){
+	
+	$("#p1").change(function(){
+		res_alias = comprobarAlias();
+		res_pass = validarPasswd();
+		if(res_alias && res_pass){
+			$("#subp1").removeAttr("disabled");
+		} else if(!res_alias || !res_pass) {
+			$("#subp1").attr("disabled", "disabled");
+		}
+	})
 
+	$("#subp1").on('click',function(){
+		$("#p1").css("display","none");
+		$("#p2").css("display","block");
+	})
+	
+	$("#registro").change(function(){
+		res_nombre = comprobarNombre();
+		res_fecha = comprobarFecha();
+		if(res_nombre && res_fecha){
+			$("#subp2").removeAttr("disabled");
+		} else {
+			$("#subp2").attr("disabled", "disabled");
+		}
+	})
+
+	$("#subp2").on('click',function(){
+		$("#p2").css("display","none");
+		$("#p3").css("display","block");
+	})
 });

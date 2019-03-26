@@ -43,7 +43,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             [['username', 'password'], 'string', 'max' => 25],
             [['name'], 'string', 'max' => 75], 
             [['email', 'descripcion'], 'string', 'max' => 100], 
-            [['centerCode', 'mailCode'], 'string', 'max' => 15],
+            [['centerCode'], 'string', 'max' => 15],
             [['centerCode'], 'exist', 'skipOnError' => true, 'targetClass' => Center::className(), 'targetAttribute' => ['centerCode' => 'id']],
         ];
     }
@@ -78,7 +78,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return [
             'id' => 'ID',
-            'username' => 'Usuario',
+            'username' => 'Alias',
             'password' => 'Contraseña',
             'rol' => 'Rol',
             'name' => 'Nombre', 

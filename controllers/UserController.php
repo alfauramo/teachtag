@@ -170,7 +170,7 @@ class UserController extends BaseController
     public function actionComprobarAlias($alias){
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
-        $user = User::find()->where(['username'=> $alias])->all();
+        $user = User::find()->where(['username' => $alias])->all();
 
         if(count($user)>0){
             return false;
