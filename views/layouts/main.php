@@ -9,6 +9,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use app\models\User;
 
 AppAsset::register($this);
 ?>
@@ -35,9 +36,42 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
+    $menuItems = [];
+    $menuItems[] = [
+        'label' => 'Home', 
+        'url' => ['/site/index']
+    ];
+    if(Yii::$app->user->isGuest){
+        $menuItems[] = [
+            'label' => 'Signin', 
+            'url' => ['/site/login']
+        ];
+        $menuItems[] = [
+            'label' => 'Signup', 
+            'url' => ['/user/registro']
+        ];
+    }
+
+    if(!Yii::$app->user->isGuest) {
+        if(Yii::$app->user->identity->rol == User::ROL_ADMINISTRADOR){
+            $menuItems[] = [
+                'label' => 'Usuarios',['class'=>'btn btn-link users']   ,
+                'url' => ['/user/index'], 
+            ];
+            $menuItems[] = [
+                'label' => 'Centros',['class'=>'btn btn-link center']   ,
+                'url' => ['/center/index'], 
+            ];
+        }
+        $menuItems[] = [
+            'label' => 'Logout (' . Yii::$app->user->identity->username . ')',['class'=>'btn btn-link logout']   ,
+            'url' => ['/site/logout'], 
+            'linkOptions' =>  ['data-method' =>'post'],
+        ];
+    }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
+        'items' => $menuItems/*[
             ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
@@ -53,7 +87,7 @@ AppAsset::register($this);
                 . Html::endForm()
                 . '</li>'
             )
-        ],
+        ],*/
     ]);
     NavBar::end();
     ?>

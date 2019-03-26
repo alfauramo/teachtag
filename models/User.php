@@ -12,7 +12,13 @@ use yii\web\IdentityInterface;
  * @property string $username
  * @property string $password
  * @property int $rol
- * @property Tiempo[] $tiempos 
+ * @property string $name
+ * @property string $email
+ * @property string $birthday
+ * @property string $centerCode
+ * @property string $descripcion
+ *
+ * @property Center $centro 
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
@@ -31,9 +37,14 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            ['rol', 'integer'],
-            [['username', 'password'], 'required'],
+            [['username', 'password', 'rol'], 'required'],
+            [['rol'], 'integer'],
+            [['birthday'], 'safe'],
             [['username', 'password'], 'string', 'max' => 25],
+            [['name'], 'string', 'max' => 75], 
+            [['email', 'descripcion'], 'string', 'max' => 100], 
+            [['centerCode'], 'string', 'max' => 15],
+            [['centerCode'], 'exist', 'skipOnError' => true, 'targetClass' => Center::className(), 'targetAttribute' => ['centerCode' => 'id']],
         ];
     }
 
@@ -52,6 +63,14 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return self::$rolUser[$this->rol];
     }
 
+    /** 
+    * @return \yii\db\ActiveQuery 
+    */ 
+    public function getCenterCode0() 
+    { 
+        return $this->hasOne(Center::className(), ['id' => 'centerCode']); 
+    }
+    
     /**
      * {@inheritdoc}
      */
@@ -59,9 +78,14 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return [
             'id' => 'ID',
-            'username' => 'Usuario',
+            'username' => 'Alias',
             'password' => 'Contraseña',
             'rol' => 'Rol',
+            'name' => 'Nombre', 
+            'email' => 'Correo electrónico', 
+            'birthday' => 'Fecha de nacimiento', 
+            'centerCode' => 'Código del centro', 
+            'descripcion' => 'Descripción'
         ];
     }
 
@@ -127,5 +151,16 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         }
 
         return null;
+    }
+
+    public function beforeSave($insert)
+    {
+        var_dump($this->centerCode);
+        die();
+        if (!parent::beforeSave($insert)) {
+            return false;
+        }
+
+        return true;
     }
 }

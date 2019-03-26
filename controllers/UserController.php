@@ -7,6 +7,7 @@ use app\models\User;
 use app\models\UserSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\RegisterForm;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -19,24 +20,19 @@ class UserController extends BaseController
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
             'access' => [
                 'class' => \yii\filters\AccessControl::className(),
+                'only' => ['signup'],
                 'rules' => [
                     [
                         'allow' => true,
-                        'matchCallback' => function ($rule, $action) {
-                           return $this->isAdminUser();
-                        }
+                        'roles' => ['@'],
+                        // 'matchCallback' => function ($rule, $action) {
+                        //    return $this->isAdminUser();
+                        // }
                     ],
                     [
                         'allow' => false,
-                        'roles' => ['*']
                     ],
                 ],
             ],
@@ -52,6 +48,7 @@ class UserController extends BaseController
     public function actionIndex()
     {
         $searchModel = new UserSearch();
+        $searchModel->rol = User::ROL_USUARIO;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -78,22 +75,22 @@ class UserController extends BaseController
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
+     public function actionCreate() {
+        //Capto los parámetros introducidos en el registerForm.
         $model = new User();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            if($model->save()){
+        
+        //TODAVÍA QUEDA CREAR LA VALIDACIÓN POR LA PARTE DE LA VISTA
+        
+        //Si todo es correcto, se crea el usuario.
+        if ($model->load(Yii::$app->request->post())) {
+            if($model->save())
                 Yii::$app->session->setFlash('success', "Usuario creado correctamente.");
-            } else {
+            else 
                 Yii::$app->session->setFlash('error', "Usuario NO creado.");
-            }
-            return $this->redirect(['index', 'id' => $model->id]);
         }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+    
+        return $this->goHome();
+        
     }
 
     /**
@@ -114,11 +111,12 @@ class UserController extends BaseController
                 Yii::$app->session->setFlash('error', "Usuario NO modificado.");
             }
             return $this->redirect(['index', 'id' => $model->id]);
+        }
 
         return $this->render('update', [
             'model' => $model,
         ]);
-    }}
+    }
 
     /**
      * Deletes an existing User model.
@@ -130,8 +128,9 @@ class UserController extends BaseController
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-        return $this->redirect(['index']);
+        return $this->goBack();
     }
+
 
     /**
      * Finds the User model based on its primary key value.
@@ -147,5 +146,50 @@ class UserController extends BaseController
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    /**
+     * Crea un objeto de formulario de registro y muestra la vista del 
+     * registro. Éste manda los datos de vuelta, al actionController, para realizar un registro del usuario si todo ha sido correcto.
+
+     */
+    public function actionRegistro(){
+        $model = new User();
+
+        return $this->render('signup',[
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Método que se comunica con el validarRegistro.js
+     * Devuelve true si encuentra una coincidencia o false si no
+     */
+    public function actionComprobarAlias($alias){
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        $user = User::find()->where(['username' => $alias])->all();
+
+        if(count($user)>0){
+            return false;
+        }
+        return true;
+        
+    }
+
+     /**
+     * Método que se comunica con el validarRegistro.js
+     * Devuelve true si encuentra una coincidencia o false si no
+     */
+    public function actionComprobarCorreo($correo){
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        $user = User::find()->where(['email'=> $correo])->all();
+
+        if(count($user)>0){
+            return false;
+        }
+        return true;
+        
     }
 }

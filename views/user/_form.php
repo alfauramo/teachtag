@@ -16,8 +16,28 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'name', ['inputOptions' => [
+        'id' => 'nombre',
+        'placeholder' => 'Nombre'
+    ]])->label(false) ?>
+
+    <?= $form->field($model, 'email',['inputOptions' => [
+        'id' => 'mail',
+        'placeholder' => 'Correo electrónico'
+    ]])->label(false) ?>
+
+    <?= $form->field($model, 'birthday',['inputOptions' => [
+        'id' => 'brthd',
+        'placeholder' => 'Fecha de nacimiento'
+    ]])->label(false) ?>
+
+    <?= $form->field($model, 'centerCode',['inputOptions' => [
+        'id' => 'centerCode',
+        'placeholder' => 'Center code'
+    ]])->label(false) ?>
+
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
