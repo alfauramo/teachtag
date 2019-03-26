@@ -152,4 +152,15 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 
         return null;
     }
+
+    public function beforeSave($insert)
+    {
+        var_dump($this->centerCode);
+        die();
+        if (!parent::beforeSave($insert)) {
+            return false;
+        }
+
+        return true;
+    }
 }

@@ -77,8 +77,6 @@ use kartik\date\DatePicker;
         </div>
     </div>
         
-    
-        
 
     <div id='p3' class='row' style="display:none;">
         <div class='col-sm-6 col-md-6'>
@@ -97,7 +95,7 @@ use kartik\date\DatePicker;
             ]])->label(false) ?>
         </div>
         <div class="col-sm-12">
-            <?= Html::submitButton('Registrar',  ['class' => 'btn btn-success', 'disabled' => 'disabled']) ?>
+            <?= Html::submitButton('Registrar',  ['class' => 'btn btn-success', 'id' => 'registrar']) ?>
         </div>
     </div>
 

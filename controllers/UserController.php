@@ -26,13 +26,13 @@ class UserController extends BaseController
                 'rules' => [
                     [
                         'allow' => true,
-                        'matchCallback' => function ($rule, $action) {
-                           return $this->isAdminUser();
-                        }
+                        'roles' => ['@'],
+                        // 'matchCallback' => function ($rule, $action) {
+                        //    return $this->isAdminUser();
+                        // }
                     ],
                     [
                         'allow' => false,
-                        'roles' => ['*']
                     ],
                 ],
             ],
@@ -83,8 +83,6 @@ class UserController extends BaseController
         
         //Si todo es correcto, se crea el usuario.
         if ($model->load(Yii::$app->request->post())) {
-            var_dump($model->save());
-            die();
             if($model->save())
                 Yii::$app->session->setFlash('success', "Usuario creado correctamente.");
             else 
