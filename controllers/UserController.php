@@ -8,6 +8,7 @@ use app\models\UserSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\RegisterForm;
+use Date;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -27,9 +28,9 @@ class UserController extends BaseController
                     [
                         'allow' => true,
                         'roles' => ['@'],
-                        // 'matchCallback' => function ($rule, $action) {
-                        //    return $this->isAdminUser();
-                        // }
+                        'matchCallback' => function ($rule, $action) {
+                            return $this->isAdminUser();
+                        }
                     ],
                     [
                         'allow' => false,
@@ -78,11 +79,12 @@ class UserController extends BaseController
      public function actionCreate() {
         //Capto los parámetros introducidos en el registerForm.
         $model = new User();
-        
-        //TODAVÍA QUEDA CREAR LA VALIDACIÓN POR LA PARTE DE LA VISTA
-        
+
         //Si todo es correcto, se crea el usuario.
         if ($model->load(Yii::$app->request->post())) {
+            //Queda adaptar la parte con el registro con el token y validación del usuario + recuperar password.
+            var_dump($model);
+            die();
             if($model->save())
                 Yii::$app->session->setFlash('success', "Usuario creado correctamente.");
             else 
