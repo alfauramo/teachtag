@@ -4,7 +4,7 @@ namespace app\models;
 
 use Yii;
 use yii\web\IdentityInterface;
-
+use app\models\Center;
 /**
  * This is the model class for table "user".
  *
@@ -22,7 +22,12 @@ use yii\web\IdentityInterface;
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
-    public $authKey;
+
+    public static function getDb()
+    {
+        return Yii::$app->db;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -31,22 +36,21 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return 'user';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function rules()
     {
-        return [
-            [['username', 'password', 'rol', 'name', 'email','centerCode'], 'required'],
-            [['rol'], 'integer'],
-            [['birthday'], 'safe'],
-            [['username', 'password'], 'string', 'max' => 25],
-            [['name'], 'string', 'max' => 75], 
-            [['email', 'descripcion'], 'string', 'max' => 100], 
-            [['centerCode'], 'string', 'max' => 15],
-            [['centerCode'], 'exist', 'skipOnError' => true, 'targetClass' => Center::className(), 'targetAttribute' => ['centerCode' => 'id']],
-        ];
-    }
+         return [
+             [['username', 'password', 'rol', 'name', 'email', 'birthday'], 'required'],
+             [['rol','activate'], 'integer'],
+             [['birthday'], 'safe'],
+             [['username','email'], 'unique'],
+             [['username', 'password'], 'string', 'max' => 25],
+             [['name'], 'string', 'max' => 75],
+             [['email', 'descripcion'], 'string', 'max' => 100],
+             [['authKey', 'accessToken'], 'string', 'max' => 250],
+             [['centerCode'], 'exist', 'skipOnError' => true, 'targetClass' => Center::className(), 'targetAttribute' => ['centerCode' => 'id']],
+         ];
+     }
+
 
     /**
      * Creo unas constantes, las cuales identificarán el rol.
@@ -100,20 +104,33 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 
     public static function findByUsername($username)
     {
-        $users = self::find()->all();
+        $users = User::find()
+                ->where("activate=:activate", ["activate" => 1])
+                ->andWhere("username=:username", [":username" => $username])
+                ->all();
+        
         foreach ($users as $user) {
             if (strcasecmp($user->username, $username) === 0) {
                 return new static($user);
             }
         }
 
-        
         return null;
     }
-        
+
+
+    /**
+     * Validates password
+     *
+     * @param  string  $password password to validate
+     * @return boolean if password provided is valid for current user
+     */
     public function validatePassword($password)
     {
-        return $this->password === $password;
+        /* Valida el password */
+        if (crypt($password, $this->password) == $this->password){
+            return $password === $password;
+        }
     }
 
     public static function findIdentity($id)
@@ -121,7 +138,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return self::findOne($id);
     }
 
-     public function getId()
+    public function getId()
     {
         return $this->id;
     }
@@ -144,8 +161,13 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        foreach (self::$users as $user) {
-            if ($user['accessToken'] === $token) {
+        $users = User::find()
+            ->where("activate=:activate", [":activate" => 1])
+            ->andWhere("accessToken=:accessToken", [":accessToken" => $token])
+            ->all();
+        
+        foreach ($users as $user) {
+            if ($user->accessToken === $token) {
                 return new static($user);
             }
         }
@@ -155,12 +177,19 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 
     public function beforeSave($insert)
     {
-        var_dump($this->centerCode);
-        die();
         if (!parent::beforeSave($insert)) {
             return false;
         }
 
         return true;
+    }
+
+    public function asignarCentro(){
+
+        $codigo = Center::find()->select('id')
+        ->where(['centerCode' => $this->centerCode])
+        ->one();
+        $codigo = $codigo['id'];
+        return $codigo;
     }
 }

@@ -13,6 +13,7 @@ use kartik\date\DatePicker;
     <?php $form = ActiveForm::begin([
         'action' => ['/user/create'],
         'id' => 'registro',
+        'method' => 'post',
     ]); ?>
         
     <div id='p1'>
