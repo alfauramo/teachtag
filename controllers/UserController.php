@@ -124,7 +124,7 @@ class UserController extends BaseController
 
 
                     //Enviamos el correo
-                    Yii::$app->mailer->compose()
+                    Yii::$app->mailer->compose('user/confirm')
                     ->setTo($user->email)
                     ->setFrom([Yii::$app->params["adminEmail"] => Yii::$app->params["title"]])
                     ->setSubject($subject)
@@ -267,24 +267,20 @@ class UserController extends BaseController
     /**
      * Método para validar al usuario después de hacer click en el enlace
      */
-    public function actionConfirm(){
+    public function actionConfirm($id, $authKey){
 
         $model = new User();
 
         if(Yii::$app->request->get()){
-            //Obtenemos el valor de los parámetros get
-            $id = Html::encode($_GET["id"]);
-            $authKey = $_GET["authKey"];
 
             if((int)$id){
                 //Realizamos la consulta para obtener el registro
                 $model = $model
                 ->find()
                 ->where(["id" => $id])
-                ->andWhere(["authKey" => $authKey]);
-
+                ->andWhere(["authKey" => $authKey])->one();
                 //Si el registro existe
-                if($model->count() == 1){
+                if($model !== NULL){
                     $activar = User::findOne($id);
                     $activar->activate = 1;
 
@@ -297,7 +293,7 @@ class UserController extends BaseController
                     }
                 }else{
                     //Si no existe redireccionamos a login
-                    Yii::$app->session->setFlash('success', "Cuenta verificada.");
+                    Yii::$app->session->setFlash('warning', "Los datos no son correctos");
                     return $this->redirect(["site/login"]);
                 }
             }else{
