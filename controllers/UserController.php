@@ -7,8 +7,9 @@ use app\models\User;
 use app\models\UserSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\models\RegisterForm;
-
+use Date;
+use yii\helpers\Html;
+use yii\helpers\Url;
 /**
  * UserController implements the CRUD actions for User model.
  */
@@ -27,9 +28,9 @@ class UserController extends BaseController
                     [
                         'allow' => true,
                         'roles' => ['@'],
-                        // 'matchCallback' => function ($rule, $action) {
-                        //    return $this->isAdminUser();
-                        // }
+                        'matchCallback' => function ($rule, $action) {
+                            return $this->isAdminUser();
+                        }
                     ],
                     [
                         'allow' => false,
@@ -70,25 +71,73 @@ class UserController extends BaseController
         ]);
     }
 
-    /**
-     * Creates a new User model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-     public function actionCreate() {
+    public function actionCreate() {
         //Capto los parámetros introducidos en el registerForm.
         $model = new User();
-        
-        //TODAVÍA QUEDA CREAR LA VALIDACIÓN POR LA PARTE DE LA VISTA
-        
+
         //Si todo es correcto, se crea el usuario.
-        if ($model->load(Yii::$app->request->post())) {
-            if($model->save())
-                Yii::$app->session->setFlash('success', "Usuario creado correctamente.");
-            else 
-                Yii::$app->session->setFlash('error', "Usuario NO creado.");
+        
+        //Validación mediante ajax
+        if($model->load(Yii::$app->request->post()) && Yii::$app->request->isAjax){
+
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
         }
-    
+
+        //Validación cuando el formulario es enviado vía post
+        //Esto sucede cuando la validación ajax se ha llevado a cabo correctamente
+        //También previene por si el usuario tiene desactivado javascript y la
+        //validación mediante ajax no puede ser llevada a cabo
+        if ($model->load(Yii::$app->request->post())){
+
+            $model->rol = User::ROL_USUARIO;
+            $model->birthday = Yii::$app->formatter->asDate($model->birthday, 'yyyy-MM-dd');
+            $model->centerCode = $model->asignarCentro();
+            $centerCode = $model->centerCode;
+            $model->centerCode = "";
+
+            if($model->save()){
+
+                //Encriptamos el password
+                $model->password = crypt($model->password, Yii::$app->params["salt"]);
+                
+                //Creamos una cookie para autenticar al usuario cuando decida recordar la sesión, esta misma
+                //clave será utilizada para activar el usuario
+                $model->authKey = $this->randKey("abcdef0123456789", 200);
+                
+                //Creamos un token de acceso único para el usuario
+                $model->accessToken = $this->randKey("abcdef0123456789", 200);
+                $model->centerCode = $centerCode;
+
+                //Si el registro es guardado correctamente
+                if ($model->save()){
+                    //Nueva consulta para obtener el id del usuario
+                    //Para confirmar al usuario se requiere su id y su authKey
+                    $user = $model->find()->where(["email" => $model->email])->one();
+                    $id = urlencode($user->id);
+                    $authKey = urlencode($user->authKey);
+
+                    $subject = "Confirmar registro";
+                    $body = "<h3>Bienvenido a Teachtag, $model->username</h3>";
+                    $body .= "Por favor, haz clic en el siguiente enlace para confirmar tu cuenta. :)";
+                    $body .= "<a href='http://teachtag.loc/index.php?r=user/confirm&id=".$id."&authKey=".$authKey."'>Confirmar</a>";
+
+
+                    //Enviamos el correo
+                    Yii::$app->mailer->compose('user/confirm')
+                    ->setTo($user->email)
+                    ->setFrom([Yii::$app->params["adminEmail"] => Yii::$app->params["title"]])
+                    ->setSubject($subject)
+                    ->setHtmlBody($body)
+                    ->send();
+
+                    Yii::$app->session->setFlash('success', "Usuario creado correctamente. Por favor, revise su correo y valide su cuenta.");
+                }
+            }else{
+                Yii::$app->session->setFlash('error', "Usuario NO creado.");
+            }
+        }
+
         return $this->goHome();
         
     }
@@ -156,9 +205,15 @@ class UserController extends BaseController
     public function actionRegistro(){
         $model = new User();
 
-        return $this->render('signup',[
-            'model' => $model,
-        ]);
+        if(Yii::$app->user->isGuest){
+            return $this->render('signup',[
+                'model' => $model,
+            ]);
+        }else{
+            return $this->render('create',[
+                'model' => $model,
+            ]);
+        }
     }
 
     /**
@@ -181,7 +236,7 @@ class UserController extends BaseController
      * Método que se comunica con el validarRegistro.js
      * Devuelve true si encuentra una coincidencia o false si no
      */
-    public function actionComprobarCorreo($correo){
+     public function actionComprobarCorreo($correo){
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
         $user = User::find()->where(['email'=> $correo])->all();
@@ -191,5 +246,75 @@ class UserController extends BaseController
         }
         return true;
         
+    }
+
+    /**
+     * Genera la random key para validar el usuario por correo.
+     */
+    private function randKey($str='', $long=0)
+    {
+        $clave = null;
+        $str = str_split($str);
+        $inicio = 0;
+        $fin = count($str)-1;
+        for($i = 0; $i < $long; $i++)
+        {
+            $clave .= $str[rand($inicio, $fin)];
+        }
+        return $clave;
+    }
+
+    /**
+     * Método para validar al usuario después de hacer click en el enlace
+     */
+    public function actionConfirm($id, $authKey){
+
+        $model = new User();
+
+        if(Yii::$app->request->get()){
+
+            if((int)$id){
+                //Realizamos la consulta para obtener el registro
+                $model = $model
+                ->find()
+                ->where(["id" => $id])
+                ->andWhere(["authKey" => $authKey])->one();
+                //Si el registro existe
+                if($model !== NULL){
+                    $activar = User::findOne($id);
+                    $activar->activate = 1;
+
+                    if($activar->update()){
+                        echo "Enhorabuena registro llevado a cabo correctamente, redireccionando ...";
+                        echo "<meta http-equiv='refresh' content='3; ".Url::toRoute("site/login")."'>";
+                    }else{
+                        echo "Ha ocurrido un error al realizar el registro, redireccionando ...";
+                        echo "<meta http-equiv='refresh' content='3; ".Url::toRoute("site/login")."'>";
+                    }
+                }else{
+                    //Si no existe redireccionamos a login
+                    Yii::$app->session->setFlash('warning', "Los datos no son correctos");
+                    return $this->redirect(["site/login"]);
+                }
+            }else{
+                //Si id no es un número entero redireccionamos a login
+                Yii::$app->session->setFlash('error', "Ha ocurrido un error en la validación de su cuenta. Por favor, pongase en contacto con nosotros.");
+                return $this->redirect(["index"]);
+            }
+        }
+    }
+
+
+    public function actionTest(){
+        $model = new User();
+        $model->username = "alfredo";
+        $model->password = ".A2864b2.";
+        $model->name = "alfredo"; 
+        $model->birthday = "1994-06-04";
+        $model->rol = 0;
+        $model->centerCode = 2;
+        var_dump($model->save());
+        die();
+
     }
 }
