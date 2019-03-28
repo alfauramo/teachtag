@@ -92,9 +92,11 @@ class UserController extends BaseController
 
             $model->rol = User::ROL_USUARIO;
             $model->birthday = Yii::$app->formatter->asDate($model->birthday, 'yyyy-MM-dd');
+
             $model->centerCode = $model->asignarCentro();
             $centerCode = $model->centerCode;
-            $model->centerCode = "";
+            
+            //$model->centerCode = "";
 
             if($model->save()){
 
@@ -107,8 +109,8 @@ class UserController extends BaseController
                 
                 //Creamos un token de acceso único para el usuario
                 $model->accessToken = $this->randKey("abcdef0123456789", 200);
-                $model->centerCode = $centerCode;
-
+                //$model->centerCode = $centerCode;
+               
                 //Si el registro es guardado correctamente
                 if ($model->save()){
                     //Nueva consulta para obtener el id del usuario
@@ -124,13 +126,13 @@ class UserController extends BaseController
 
 
                     //Enviamos el correo
-                    Yii::$app->mailer->compose('user/confirm')
+                    Yii::$app->mailer->compose()
                     ->setTo($user->email)
                     ->setFrom([Yii::$app->params["adminEmail"] => Yii::$app->params["title"]])
                     ->setSubject($subject)
                     ->setHtmlBody($body)
                     ->send();
-
+                                        
                     Yii::$app->session->setFlash('success', "Usuario creado correctamente. Por favor, revise su correo y valide su cuenta.");
                 }
             }else{
