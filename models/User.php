@@ -190,6 +190,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         ->where(['centerCode' => $this->centerCode])
         ->one();
         $codigo = $codigo['id'];
+
+        
         return $codigo;
     }
 }
