@@ -124,7 +124,7 @@ class UserController extends BaseController
 
 
                     //Enviamos el correo
-                    Yii::$app->mailer->compose('user/confirm')
+                    Yii::$app->mailer->compose()
                     ->setTo($user->email)
                     ->setFrom([Yii::$app->params["adminEmail"] => Yii::$app->params["title"]])
                     ->setSubject($subject)
@@ -302,19 +302,5 @@ class UserController extends BaseController
                 return $this->redirect(["index"]);
             }
         }
-    }
-
-
-    public function actionTest(){
-        $model = new User();
-        $model->username = "alfredo";
-        $model->password = ".A2864b2.";
-        $model->name = "alfredo"; 
-        $model->birthday = "1994-06-04";
-        $model->rol = 0;
-        $model->centerCode = 2;
-        var_dump($model->save());
-        die();
-
     }
 }
