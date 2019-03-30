@@ -1,4 +1,0 @@
-#PRIMER CAMBIO AÑADIENDO PARÁMETROS A LA TABLA DE USUARIO
-
-ALTER TABLE `user` ADD `name` VARCHAR(75) NOT NULL AFTER `rol`, ADD `email` VARCHAR(100) NOT NULL AFTER `name`, ADD `birthday` DATE NULL AFTER `email`, ADD `centerCode` VARCHAR(15) NOT NULL AFTER `birthday`, ADD `mailCode` VARCHAR(15) NOT NULL AFTER `centerCode`, ADD `descripcion` VARCHAR(100) NULL AFTER `mailCode`;
-
