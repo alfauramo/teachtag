@@ -53,6 +53,10 @@ AppAsset::register($this);
     }
 
     if(!Yii::$app->user->isGuest) {
+        $menuItems[] = [
+            'label' => 'Tags',['class'=>'btn btn-link tags'],
+            'url' => ['/tag/index'], 
+        ];
         if(Yii::$app->user->identity->rol == User::ROL_ADMINISTRADOR){
             $menuItems[] = [
                 'label' => 'Usuarios',['class'=>'btn btn-link users']   ,
@@ -71,23 +75,7 @@ AppAsset::register($this);
     }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => $menuItems/*[
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],*/
+        'items' => $menuItems,
     ]);
     NavBar::end();
     ?>

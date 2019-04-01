@@ -305,4 +305,18 @@ class UserController extends BaseController
             }
         }
     }
+
+
+    public function actionTest(){
+        $model = new User();
+        $model->username = "alfredo";
+        $model->password = ".A2864b2.";
+        $model->name = "alfredo"; 
+        $model->birthday = "1994-06-04";
+        $model->rol = 0;
+        $model->centerCode = 2;
+        var_dump($model->save());
+        die();
+
+    }
 }

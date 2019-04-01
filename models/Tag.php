@@ -1,0 +1,74 @@
+<?php
+
+namespace app\models;
+
+use Yii;
+
+/**
+ * This is the model class for table "tag".
+ *
+ * @property int $id
+ * @property string $text_cont
+ *
+ * @property TagHasUser[] $tagHasUsers
+ * @property User[] $users
+ */
+class Tag extends \yii\db\ActiveRecord
+{
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableName()
+    {
+        return 'tag';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function rules()
+    {
+        return [
+            [['id'], 'required'],
+            [['id'], 'integer'],
+            [['text_cont'], 'string'],
+            [['id'], 'unique'],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'text_cont' => 'Texto',
+        ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTagHasUsers()
+    {
+        return $this->hasMany(TagHasUser::className(), ['tag_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUsers()
+    {
+        return $this->hasMany(User::className(), ['id' => 'user_id'])->viaTable('tag_has_user', ['tag_id' => 'id']);
+    }
+
+    /**
+     * {@inheritdoc}
+     * @return TagQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new TagQuery(get_called_class());
+    }
+}
