@@ -8,7 +8,7 @@ use app\models\TagSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use yii\db\Sql;
 /**
  * TagController implements the CRUD actions for Tag model.
  */
@@ -72,14 +72,14 @@ class TagController extends Controller
     public function actionCreate()
     {
         $model = new Tag();
-
-
-
+        $tag = Tag::find()->orderBy(['id' => SORT_DESC])->one();
+        $id = $tag->id + 1;
         if ($model->load(Yii::$app->request->post())){
-            var_dump($model);
-            die();
+            $model->id = $id;
             if($model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['index']);
+            }else{
+                 return $this->redirect(['error']);
             }
         }
 

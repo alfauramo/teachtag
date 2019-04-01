@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use arogachev\ManyToMany\behaviors\ManyToManyBehavior;
 
 /**
  * This is the model class for table "tag".
@@ -15,6 +16,29 @@ use Yii;
  */
 class Tag extends \yii\db\ActiveRecord
 {
+
+    public $editableUsers;
+    public function behaviors()
+    {
+
+        $behaviors = [
+            [
+                'class' => ManyToManyBehavior::className(),
+                'relations' => [
+                    [
+                        'editableAttribute' => 'editableUsers', // Editable attribute name
+                        'table' => 'tag_has_user', // Name of the junction table
+                        'ownAttribute' => 'tag_id', // Name of the column in junction table that represents current model
+                        'relatedModel' => Tag::className(), // Related model class
+                        'relatedAttribute' => 'user_id', // Name of the column in junction table that represents related model
+                    ],
+                ],
+            ],
+        ];
+
+        return array_merge(parent::behaviors(), $behaviors);
+    }
+
     /**
      * {@inheritdoc}
      */
