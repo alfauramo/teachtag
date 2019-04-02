@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost:3306
--- Tiempo de generación: 02-04-2019 a las 14:22:21
--- Versión del servidor: 5.7.23
--- Versión de PHP: 7.1.22
+-- Servidor: localhost
+-- Tiempo de generación: 02-04-2019 a las 19:43:50
+-- Versión del servidor: 10.1.38-MariaDB
+-- Versión de PHP: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -52,8 +54,19 @@ INSERT INTO `center` (`id`, `nombre`, `poblacion`, `provincia`, `centerCode`) VA
 
 CREATE TABLE `tag` (
   `id` int(11) NOT NULL,
-  `text_cont` text
+  `texto` text,
+  `fecha` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tag`
+--
+
+INSERT INTO `tag` (`id`, `texto`, `fecha`) VALUES
+(1, 'Mi primer tag', '2019-04-02 17:34:00'),
+(2, 'Hola mundo!', '0000-00-00 00:00:00'),
+(3, 'Probando a crear con fecha', '0000-00-00 00:00:00'),
+(4, 'asd', '2019-04-02 19:41:37');
 
 -- --------------------------------------------------------
 
@@ -65,6 +78,16 @@ CREATE TABLE `tag_has_user` (
   `tag_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tag_has_user`
+--
+
+INSERT INTO `tag_has_user` (`tag_id`, `user_id`) VALUES
+(1, 128),
+(2, 128),
+(3, 128),
+(4, 128);
 
 -- --------------------------------------------------------
 
@@ -141,7 +164,7 @@ ALTER TABLE `center`
 -- AUTO_INCREMENT de la tabla `tag`
 --
 ALTER TABLE `tag`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `user`
@@ -165,6 +188,7 @@ ALTER TABLE `tag_has_user`
 --
 ALTER TABLE `user`
   ADD CONSTRAINT `fk_user_center` FOREIGN KEY (`centerCode`) REFERENCES `center` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
