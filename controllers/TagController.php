@@ -72,10 +72,11 @@ class TagController extends Controller
     public function actionCreate()
     {
         $model = new Tag();
-        $tag = Tag::find()->orderBy(['id' => SORT_DESC])->one();
-        $id = $tag->id + 1;
+
         if ($model->load(Yii::$app->request->post())){
-            $model->id = $id;
+            
+            $model->editableUsers[] = Yii::$app->user->identity->id;
+
             if($model->save()) {
                 return $this->redirect(['index']);
             }else{
