@@ -53,7 +53,6 @@ class Tag extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id'], 'required'],
             [['id'], 'integer'],
             [['text_cont'], 'string'],
             [['id'], 'unique'],
