@@ -61,13 +61,13 @@ class UserSearch extends User
             'id' => $this->id,
             'rol' => $this->rol,
             'birthday' => $this->birthday, 
+            'centerCode' => $this->centerCode,
         ]);
 
         $query->andFilterWhere(['like', 'username', $this->username])
             ->andFilterWhere(['like', 'password', $this->password])
             ->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'email', $this->email])
-            ->andFilterWhere(['like', 'centerCode', $this->centerCode])
             ->andFilterWhere(['like', 'descripcion', $this->descripcion]);
 
         return $dataProvider;
