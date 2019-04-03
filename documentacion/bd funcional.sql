@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 02-04-2019 a las 14:22:21
+-- Tiempo de generación: 03-04-2019 a las 14:07:50
 -- Versión del servidor: 5.7.23
 -- Versión de PHP: 7.1.22
 
@@ -54,6 +54,18 @@ CREATE TABLE `tag` (
   `id` int(11) NOT NULL,
   `text_cont` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tag`
+--
+
+INSERT INTO `tag` (`id`, `text_cont`) VALUES
+(1, 'shjk'),
+(2, 'qweqeqwe'),
+(3, 'qwe'),
+(4, 'asd'),
+(5, 'asd'),
+(6, 'asd');
 
 -- --------------------------------------------------------
 
@@ -141,7 +153,7 @@ ALTER TABLE `center`
 -- AUTO_INCREMENT de la tabla `tag`
 --
 ALTER TABLE `tag`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `user`
@@ -157,7 +169,7 @@ ALTER TABLE `user`
 -- Filtros para la tabla `tag_has_user`
 --
 ALTER TABLE `tag_has_user`
-  ADD CONSTRAINT `fk_tag_has_user_tag1` FOREIGN KEY (`tag_id`) REFERENCES `tag` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_tag_has_user_tag1` FOREIGN KEY (`tag_id`) REFERENCES `tag` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_tag_has_user_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
