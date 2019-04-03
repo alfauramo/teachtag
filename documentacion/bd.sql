@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-04-2019 a las 00:11:00
+-- Tiempo de generación: 03-04-2019 a las 22:41:50
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -43,8 +43,7 @@ CREATE TABLE `center` (
 --
 
 INSERT INTO `center` (`id`, `nombre`, `poblacion`, `provincia`, `centerCode`) VALUES
-(2, 'IES Macià Abela', 'Crevillent', 'Alacant', 'a1b2c3d4'),
-(3, 'prueba', 'prueba', 'prueba', 'prueba');
+(2, 'IES Macià Abela', 'Crevillent', 'Alacant', 'a1b2c3d4');
 
 -- --------------------------------------------------------
 
@@ -54,8 +53,16 @@ INSERT INTO `center` (`id`, `nombre`, `poblacion`, `provincia`, `centerCode`) VA
 
 CREATE TABLE `tag` (
   `id` int(11) NOT NULL,
-  `text_cont` text
+  `texto` text,
+  `fecha` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tag`
+--
+
+INSERT INTO `tag` (`id`, `texto`, `fecha`) VALUES
+(2, 'ads', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -67,6 +74,13 @@ CREATE TABLE `tag_has_user` (
   `tag_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tag_has_user`
+--
+
+INSERT INTO `tag_has_user` (`tag_id`, `user_id`) VALUES
+(3, 121);
 
 -- --------------------------------------------------------
 
@@ -94,7 +108,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `rol`, `name`, `email`, `birthday`, `descripcion`, `authKey`, `accessToken`, `activate`, `centerCode`) VALUES
-(121, 'admin', 'admin', 1, 'admin', 'admin@admin.com', '0000-00-00', '', 'c4e9ae3fcd89eeef986cef3f8e54bbaab751714e33e539ccb64d1d362ca6fece2217cdc2d19f38b8785f6dd54302ab23207c0de4ff50da12c3c3ca73f26f0c8aab0b310e56c08abc31fa6354ed0db0a006219a0030dcc12eabc5de0bb466b0bbba08', 'f38f8c16d4bce3e79a76980a657a296b02ce02e98a927fb8479f243e83847e767da80f52eef1cf77e7791b7fd8ff7e5935b15faf68de0ccbcce53d9c1daac0fca6629a94a957c46337f08a088e37434698ad623a914f39c50f9991282a8c35b1032887', 1, 2),
+(121, 'admin', 'fsPZnsdpMIWNQ', 1, 'admin', 'admin@admin.com', '0000-00-00', '', 'c4e9ae3fcd89eeef986cef3f8e54bbaab751714e33e539ccb64d1d362ca6fece2217cdc2d19f38b8785f6dd54302ab23207c0de4ff50da12c3c3ca73f26f0c8aab0b310e56c08abc31fa6354ed0db0a006219a0030dcc12eabc5de0bb466b0bbba08', 'f38f8c16d4bce3e79a76980a657a296b02ce02e98a927fb8479f243e83847e767da80f52eef1cf77e7791b7fd8ff7e5935b15faf68de0ccbcce53d9c1daac0fca6629a94a957c46337f08a088e37434698ad623a914f39c50f9991282a8c35b1032887', 1, 2),
 (128, 'alfredo', 'fs9diRKEGnxgA', 0, 'alfredo', 'alfredofauramolina@gmail.com', '1994-06-04', NULL, 'c4e9ae3fcd89eeef986cef3f8eef3954bbaab751714e33e539ccb64d1d362ca6fece2217cdc2d19f38b8785f6dd54302ab23207c0de4ff50da12c3c3ca73f26f0c8aab0b310e56c08abc31fa6354ed0db0a006219a0030dcc12eabc5de0bb466b0bbba08', 'f38f8c16d4bce3e79a76980a657a296b02ce02e98a927fb8479f243e83847e767da80f52eef1cf77e7791b7fd8ff7e5935b15faf68de0ccbcce53d9c1daac0fca6629a94a957c46337f08a088e37434698ad623a914f39c50f9991282a8c35b10328878a', 1, 2);
 
 --
@@ -118,8 +132,8 @@ ALTER TABLE `tag`
 --
 ALTER TABLE `tag_has_user`
   ADD PRIMARY KEY (`tag_id`,`user_id`),
-  ADD KEY `fk_tag_has_user_user1_idx` (`user_id`),
-  ADD KEY `fk_tag_has_user_tag1_idx` (`tag_id`);
+  ADD KEY `tag_has_user_ibfk_2` (`user_id`),
+  ADD KEY `tag_has_user_ibfk_3` (`tag_id`) USING BTREE;
 
 --
 -- Indices de la tabla `user`
@@ -140,6 +154,12 @@ ALTER TABLE `center`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT de la tabla `tag`
+--
+ALTER TABLE `tag`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
@@ -153,8 +173,7 @@ ALTER TABLE `user`
 -- Filtros para la tabla `tag_has_user`
 --
 ALTER TABLE `tag_has_user`
-  ADD CONSTRAINT `fk_tag_has_user_tag1` FOREIGN KEY (`tag_id`) REFERENCES `tag` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_tag_has_user_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `tag_has_user_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `user`

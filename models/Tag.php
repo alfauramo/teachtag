@@ -9,7 +9,8 @@ use arogachev\ManyToMany\behaviors\ManyToManyBehavior;
  * This is the model class for table "tag".
  *
  * @property int $id
- * @property string $text_cont
+ * @property string $texto
+ * @property DateTime $fecha
  *
  * @property TagHasUser[] $tagHasUsers
  * @property User[] $users
@@ -54,8 +55,10 @@ class Tag extends \yii\db\ActiveRecord
     {
         return [
             [['id'], 'integer'],
-            [['text_cont'], 'string'],
+            [['texto'], 'string'],
             [['id'], 'unique'],
+            [['fecha'], 'required'],
+            [['fecha'], 'safe'],
         ];
     }
 
@@ -66,7 +69,8 @@ class Tag extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'text_cont' => 'Texto',
+            'texto' => 'Contenido',
+            'fecha' => 'Fecha de publicación',
         ];
     }
 

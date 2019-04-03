@@ -18,7 +18,7 @@ class TagSearch extends Tag
     {
         return [
             [['id'], 'integer'],
-            [['text_cont'], 'safe'],
+            [['texto','fecha'], 'safe'],
         ];
     }
 
@@ -59,9 +59,10 @@ class TagSearch extends Tag
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'fecha' => $this->fecha,
         ]);
 
-        $query->andFilterWhere(['like', 'text_cont', $this->text_cont]);
+        $query->andFilterWhere(['like', 'texto', $this->texto]);
 
         return $dataProvider;
     }

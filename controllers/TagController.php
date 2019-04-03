@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\db\Sql;
+use DateTime;
 /**
  * TagController implements the CRUD actions for Tag model.
  */
@@ -76,7 +77,10 @@ class TagController extends Controller
         if ($model->load(Yii::$app->request->post())){
             
             $model->editableUsers[] = Yii::$app->user->identity->id;
-
+            $fecha = new DateTime('now');
+            
+            $model->fecha = $fecha->format('Y-m-d H:i:s');
+            
             if($model->save()) {
                 return $this->redirect(['index']);
             }else{
