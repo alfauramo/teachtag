@@ -1,14 +1,14 @@
 <?php
 
 /* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\LoginForm */
+/* @var $name string */
+/* @var $message string */
+/* @var $exception Exception */
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Iniciar sesión';
-
+$this->title = "Error";
 ?>
 <div class="row justify-content-center">
     <div class="col-md-8">
@@ -17,11 +17,12 @@ $this->title = 'Iniciar sesión';
 
                 <h1><?= Html::encode($this->title) ?></h1>
 
-                <p class="text-muted ">Introduce tu usuario y contraseña</p>
+                <p class="text-muted ">El correo introducido no es correcto</p>
 
                 <?php $form = ActiveForm::begin([
-                    'id' => 'login-form',
+                    'id' => 'recover-form',
                     'layout' => 'horizontal',
+                    'action' => ['site/comprobar-correo'],
                     'fieldConfig' => [
                         'template' => "<div class='row'>{label}\n 
                                         <div class='col-lg-9'>{input}</div></div>\n
@@ -32,24 +33,12 @@ $this->title = 'Iniciar sesión';
                     ],
                 ]); ?>
 
-                <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
-
-                <?php if (true): ?>
-                <?= $form->field($model, 'password')->passwordInput() ?>
-
-                <?= $form->field($model, 'rememberMe')->checkbox([
-                    'template' => "<div class='row'><div class=\"offset-lg-3 col-lg-9\">{input} {label}</div>\n<div class=\"col-lg-9 offset-lg-3\">{error}</div></div>",
-                ]) ?>
 
                 <div class="form-group">
-                    <?= Html::submitButton('Entrar', ['class' => 'btn btn-primary btn-lg btn-block', 'name' => 'login-button']) ?>
+                    <?= Html::submitButton('He olvidado mi contraseña.', ['class' => 'btn btn-primary btn-lg btn-block', 'name' => 'login-button']) ?>
                 </div>
-                <?php endif; ?>
 
                 <?php ActiveForm::end(); ?>
-
-
-                <p class="text-muted text-center"><?=Html::a('He olvidado mi contraseña.',['comprobar-correo'])?></p>
 
             </div>
         </div>
