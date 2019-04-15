@@ -26,4 +26,3 @@ class ChangePasswordForm extends Model
 			'password_repeat' => 'Repita contraseña',
 		];
 	}
-}

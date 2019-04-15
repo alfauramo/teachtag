@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 
 /* @var $this yii\web\View */
@@ -43,5 +44,3 @@ $this->title = "Error";
             </div>
         </div>
     </div>
-
-</div>
