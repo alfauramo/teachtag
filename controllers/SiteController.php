@@ -210,5 +210,8 @@ class SiteController extends BaseController
         return $this->render('cambio_pass_ko');
     }
 
-    
+    public function actionTest(){
+        $pass = crypt("admin", Yii::$app->params["salt"]);
+        echo $pass;
+    }
 }

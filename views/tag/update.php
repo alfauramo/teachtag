@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Tag */
 
-$this->title = 'Editar Tag: ' . $model->id;
+$this->title = 'Update Tag: ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Tags', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Editar';
+$this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="tag-update">
 

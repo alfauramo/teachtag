@@ -88,7 +88,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'name' => 'Nombre', 
             'email' => 'Correo electrónico', 
             'birthday' => 'Fecha de nacimiento', 
-            'centerCode' => 'Código del centro', 
+            'centerCode' => 'Centro', 
             'descripcion' => 'Descripción'
         ];
     }
@@ -184,6 +184,11 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return true;
     }
 
+    /**
+     * Realiza una query de Center y si el código insertado coincide, se asigna el id al centerCode de usuario
+     *
+     * @return int $codigo
+     */
     public function asignarCentro(){
 
         $codigo = Center::find()->select('id')
@@ -193,5 +198,20 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 
         
         return $codigo;
+    }
+
+    /**
+     * Método que capta los valores de la tabla usuario.
+     * Con afterFind podemos manipular dichos datos antes de ser mostrados en cualquier vista o método.
+     */
+    public function afterFind(){
+
+        parent::afterFind();
+
+        $birthday = $this->birthday;
+        if(!empty($birthday)){
+            $birthday = Yii::$app->formatter->asDate($birthday, 'php:d-m-Y');
+            $this->birthday = $birthday;
+        }
     }
 }
