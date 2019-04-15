@@ -64,9 +64,9 @@ class UserController extends BaseController
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionPerfil($id)
     {
-        return $this->render('view', [
+        return $this->render('perfil', [
             'model' => $this->findModel($id),
         ]);
     }
@@ -304,19 +304,5 @@ class UserController extends BaseController
                 return $this->redirect(["index"]);
             }
         }
-    }
-
-
-    public function actionTest(){
-        $model = new User();
-        $model->username = "alfredo";
-        $model->password = ".A2864b2.";
-        $model->name = "alfredo"; 
-        $model->birthday = "1994-06-04";
-        $model->rol = 0;
-        $model->centerCode = 2;
-        var_dump($model->save());
-        die();
-
     }
 }
