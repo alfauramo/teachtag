@@ -10,6 +10,7 @@ use app\models\User;
 class BaseController extends Controller
 {
 
+    public $layout = 'olympus';
 	public $adminUsers = [];
 	public $users = []; 
 

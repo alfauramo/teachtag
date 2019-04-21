@@ -25,77 +25,16 @@ AppAsset::register($this);
     <?php $this->head() ?>
 </head>
 <body>
-<?php $this->beginBody() ?>
+<?php $this->beginBody("landing-page") ?>
 
-<div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    $menuItems = [];
-    $menuItems[] = [
-        'label' => 'Home', 
-        'url' => ['/site/index']
-    ];
-    if(Yii::$app->user->isGuest){
-        $menuItems[] = [
-            'label' => 'Signin', 
-            'url' => ['/site/login']
-        ];
-        $menuItems[] = [
-            'label' => 'Signup', 
-            'url' => ['/user/registro']
-        ];
-    }
+<div class="container">
 
-    if(!Yii::$app->user->isGuest) {
-        $menuItems[] = [
-            'label' => 'Tags',['class'=>'btn btn-link tags'],
-            'url' => ['/tag/index'], 
-        ];
-        if(Yii::$app->user->identity->rol == User::ROL_ADMINISTRADOR){
-            $menuItems[] = [
-                'label' => 'Usuarios',['class'=>'btn btn-link users']   ,
-                'url' => ['/user/index'], 
-            ];
-            $menuItems[] = [
-                'label' => 'Centros',['class'=>'btn btn-link center']   ,
-                'url' => ['/center/index'], 
-            ];
-        }
-        $menuItems[] = [
-            'label' => 'Logout (' . Yii::$app->user->identity->username . ')',['class'=>'btn btn-link logout']   ,
-            'url' => ['/site/logout'], 
-            'linkOptions' =>  ['data-method' =>'post'],
-        ];
-    }
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => $menuItems,
-    ]);
-    NavBar::end();
-    ?>
-
-    <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
-        <?= $content ?>
-    </div>
+    <?= Breadcrumbs::widget([
+        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+    ]) ?>
+    <?= Alert::widget() ?>
+    <?= $content ?>
 </div>
-
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
 
 <?php $this->endBody() ?>
 </body>

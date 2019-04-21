@@ -58,6 +58,15 @@ class UserController extends BaseController
         ]);
     }
 
+    public function actionPerfil($id = false)
+    {
+        $model = $this->findModel($id);
+
+        return $this->render('perfil', [
+            'model' => $model,
+        ]);
+    }
+
     /**
      * Displays a single User model.
      * @param integer $id

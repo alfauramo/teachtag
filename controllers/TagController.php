@@ -13,7 +13,7 @@ use DateTime;
 /**
  * TagController implements the CRUD actions for Tag model.
  */
-class TagController extends Controller
+class TagController extends BaseController
 {
     /**
      * {@inheritdoc}

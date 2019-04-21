@@ -37,12 +37,12 @@ class SiteController extends BaseController
                     ],
                 ],
             ],
-            'verbs' => [
+            /*'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'logout' => ['post'],
                 ],
-            ],
+            ],*/
         ];
     }
 
@@ -79,6 +79,8 @@ class SiteController extends BaseController
      */
     public function actionLogin()
     {
+        $this->layout = 'main';
+
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
