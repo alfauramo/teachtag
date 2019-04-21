@@ -1622,7 +1622,8 @@ Description: "HTML-template"
   .top-header.top-header-favorit .author-name {
     font-size: 18px; }
   .header-spacer--standard {
-    height: 103px; } }
+    height: 103px;
+    margin-bottom: 40px; } }
 
 /*------------- #FOOTER --------------*/
 .footer {

@@ -26,7 +26,7 @@ class AppAsset extends AssetBundle
         'theme/Bootstrap/dist/css/bootstrap.css',
         'theme/Bootstrap/dist/css/bootstrap-grid.css',
         'theme/css/main.css',
-        'theme/css/fonts.min.css'
+        'theme/css/fonts.min.css',
         
     ];
     public $js = [

@@ -25,18 +25,72 @@ AppAsset::register($this);
     <?php $this->head() ?>
 </head>
 <body>
-<?php $this->beginBody("landing-page") ?>
+    <?php $this->beginBody() ?>
 
-<div class="container">
+    <div class="content-bg-wrap"></div>  
+    <div class="header--standard header--standard-landing" id="header--standard">
+                    <div class="container">
+                        <div class="header--standard-wrap">
 
-    <?= Breadcrumbs::widget([
-        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-    ]) ?>
-    <?= Alert::widget() ?>
-    <?= $content ?>
-</div>
+                            <a href="#" class="logo">
+                                <div class="img-wrap">
+                                    <img src="theme/img/logo.png" alt="Olympus">
+                                    <img src="theme/img/logo-colored-small.png" alt="Olympus" class="logo-colored">
+                                </div>
+                                <div class="title-block">
+                                    <h6 class="logo-title">TeachTag</h6>
+                                    <div class="sub-title">LA RED SOCIAL DEL PROFESORADO</div>
+                                </div>
+                            </a>
 
-<?php $this->endBody() ?>
+                            <a href="#" class="open-responsive-menu js-open-responsive-menu">
+                                <svg class="olymp-menu-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-menu-icon"></use></svg>
+                            </a>
+
+                            <div class="nav nav-pills nav1 header-menu">
+                                <div class="mCustomScrollbar">
+                                    <ul>
+                                        <li class="nav-item">
+                                            <?php
+                                                echo Html::a('Inicio', ['site/login'], ['class' => 'nav-link']); 
+                                            ?>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <?php
+                                                echo Html::a('Echa un vistazo', ['user/perfil'], ['class' => 'nav-link']); 
+                                            ?>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">Términos y condiciones</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">Política de privacidad</a>
+                                        </li>
+                                        <li class="close-responsive-menu js-close-responsive-menu">
+                                            <svg class="olymp-close-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
+                                        </li>
+                                        <li class="nav-item js-expanded-menu">
+                                            <a href="#" class="nav-link">
+                                                <svg class="olymp-menu-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-menu-icon"></use></svg>
+                                                <svg class="olymp-close-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    <div class="header-spacer--standard"></div>
+    <div class="container" style="/*! width: 100%; *//*! top: 0; */">
+        <?= Breadcrumbs::widget([
+            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+        ]) ?>
+        <?= Alert::widget() ?>
+        <?= $content ?>
+    </div>
+
+    <?php $this->endBody() ?>
 </body>
 </html>
 <?php $this->endPage() ?>
