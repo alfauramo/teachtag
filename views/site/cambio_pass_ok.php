@@ -22,7 +22,7 @@ $this->title = "Éxito";
                 <?php $form = ActiveForm::begin([
                     'id' => 'recover-form',
                     'layout' => 'horizontal',
-                    'action' => ['site/index'],
+                    'action' => ['site/login'],
                     'fieldConfig' => [
                         'template' => "<div class='row'>{label}\n 
                                         <div class='col-lg-9'>{input}</div></div>\n

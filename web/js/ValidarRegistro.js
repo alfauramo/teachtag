@@ -17,7 +17,9 @@ $(document).ready(function(){
 	});
 
 	$("#alias").on("change keyup paste",function(){
+		
 		res_alias = comprobarAlias();
+
 		if(res_alias && res_pass){
 			$("#subp1").removeAttr("disabled");
 		} else if(!res_alias || !res_pass) {
@@ -39,7 +41,7 @@ $(document).ready(function(){
 		$("#p2").css("display","block");
 	})
 	
-	$("#registro").change(function(){
+	$("#p2").change(function(){
 		res_nombre = comprobarNombre();
 		res_fecha = comprobarFecha();
 		
@@ -85,6 +87,7 @@ $(document).ready(function(){
 	    if(exp_reg.test(p1)){
 	    	if($("#pass1_error").length){
 		    		/*Si existe el mensaje de error de psswd1, lo borro*/
+		    		$("#psswd1").css("border","1px solid #e6ecf5");
 		    		$("#pass1_error").remove();
 		    }
 		    while (!espacios && (cont < p1.length)) {
@@ -98,6 +101,7 @@ $(document).ready(function(){
 		    if(p1 != p2){
 		    	if(!$("#pass2_error").length){
 				   	$("#psswd2").after("<div id='pass2_error' class='error-registro'>Las contraseñas deben coincidir </div>");
+				   	$("#psswd2").css("border","1px solid red");
 				}
 		        return false;
 		    }
@@ -106,11 +110,14 @@ $(document).ready(function(){
 		    		/*Si existe el mensaje de error de psswd1, lo borro*/
 		    		$("#pass2_error").remove();
 		    	}
+		    	$("#psswd1").css("border","1px solid #e6ecf5");
+		    	$("#psswd2").css("border","1px solid #e6ecf5");
 		        return true;
 	    }else{
 	    	/*Si no existe el mensaje de error de psswd1, lo añado*/
 	    	if(!$("#pass1_error").length){
 			   	$("#psswd1").after("<div id='pass1_error' class='error-registro'>La contraseña debe contener mínimo 8 caracteres alfanuméricos. </div>");
+			   	$("#psswd1").css("border","1px solid red");
 			}
 	        return false;
 		}
@@ -125,13 +132,16 @@ $(document).ready(function(){
 			  .done(function( data ) {
 			    if(data == true){
 			    	res_alias = true;
+			    	$("#alias").css("border","1px solid #e6ecf5");
 			    	$("#alias_error").remove();
 			    }else {
 			    	$("#subp1").attr("disabled", "disabled");
 			    	/*Si el alias ya existe, error*/
+			    	$("#alias").css("border","1px solid red");
 			    	if(!$("#alias_error").length){
 			    		$("#alias").after("<div id='alias_error' class='error-registro'>El alias ya existe</div>");
 			    	}
+
 			    }
 			  }, "JSON");
 		} else {
@@ -187,6 +197,7 @@ $(document).ready(function(){
 			    if(data == true){
 			    	res_correo = true;
 			    	$("#registrar").attr("activo", "activo");
+			    	$("#mail").css("border","1px solid #e6ecf5");
 			    	/*Se borrar el mensaje de error*/
 			    	if($("#email_error1").length){
 			    		$("#email_error1").remove();
@@ -196,6 +207,7 @@ $(document).ready(function(){
 			    	res_correo = false;
 			    	/*Error si el correo introducido ya existe*/
 			    	$("#registrar").attr("disabled", "disabled");
+			    	$("#mail").css("border","1px solid red");
 			    	if(!$("#email_error1").length){
 			    		$("#mail").after("<div id='email_error1' class='error-registro'>El email introducido ya existe</div>");
 			    	}
@@ -205,6 +217,7 @@ $(document).ready(function(){
 		} else {
 			res_correo = false;
 			$("#registrar").attr("disabled", "disabled");
+			$("#mail").css("border","1px solid red");
 			/*Si el email no cumple con el regex, error*/
 			if(!$("#email_error2").length){
 			   	$("#mail").after("<div id='email_error2' class='error-registro'>Introduzca un email válido</div>");
@@ -224,6 +237,7 @@ $(document).ready(function(){
 					res_centro = true;
 					$("#registrar").attr("activo", "activo");
 					/*Si existe el div del mensaje de error, lo elimina*/
+					$("#centerCode").css("border","1px solid #e6ecf5");
 					if($("#center_error").length){
 			    		$("#center_error").remove();
 			    	}
@@ -231,6 +245,7 @@ $(document).ready(function(){
 					res_centro = false;
 					$("#registrar").attr("disabled", "disabled");
 					/*Error si el código no es válido*/
+					$("#centerCode").css("border","1px solid red");
 					if(!$("#center_error").length){
 					   	$("#centerCode").after("<div id='center_error' class='error-registro'>Código no válido</div>");
 					}
@@ -242,8 +257,6 @@ $(document).ready(function(){
 		}
 		return res_centro;
 	}
-
-
 
 });
 

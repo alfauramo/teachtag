@@ -141,6 +141,8 @@ class SiteController extends BaseController
      */
     public function actionComprobarCorreo()
     {
+        $this->layout = "main";
+
         $model = new ComprobarCorreoForm();
 
         return $this->render('comprobar_correo', [
@@ -151,6 +153,7 @@ class SiteController extends BaseController
     public function actionVerificarCorreo()
     {
 
+        $this->layout = "main";
         $correo = new ComprobarCorreoForm();
         $correo->load(Yii::$app->request->post());
 
@@ -179,6 +182,9 @@ class SiteController extends BaseController
     }
 
     public function actionConfirmarRecuperacion($id, $token){
+
+        $this->layout = "main";
+
         $model = User::find()->where(['id' => $id])->one();
         
         if($model === NULL){
@@ -197,6 +203,8 @@ class SiteController extends BaseController
     }
 
     public function actionChangePassword($email) {
+
+        $this->layout = "main";
         $cPModel = new ChangePasswordForm();
         $cPModel->load(Yii::$app->request->post());
 

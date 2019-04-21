@@ -2874,7 +2874,9 @@ img {
       color: inherit; }
   .btn.disabled, .btn:disabled {
     background-color: #9a9fbf;
-    border-color: #9a9fbf; }
+    border-color: #9a9fbf; 
+    cursor: not-allowed;
+  pointer-events: all !important;}
 
 .btn-transparent {
   background-color: transparent; }

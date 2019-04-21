@@ -15,9 +15,13 @@ $this->registerJsFile("@web/js/ValidarRegistro.js",[
         \yii\web\JqueryAsset::className()
     ]
 ]);
+$this->registerCss(" 
+    .content-bg-wrap, html { 
+        background:url(./theme/img/landing-bg.jpg);
+        -webkit-animation: sidedownscroll 30s linear infinite;
+        animation: sidedownscroll 30s linear infinite; }");
 ?>
-<div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="user-signup">
 
 	<?= $this->render('_formReg', [
         'model' => $model,

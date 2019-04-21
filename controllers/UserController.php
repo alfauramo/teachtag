@@ -83,7 +83,6 @@ class UserController extends BaseController
     public function actionCreate() {
         //Capto los parámetros introducidos en el registerForm.
         $model = new User();
-
         //Si todo es correcto, se crea el usuario.
         
         //Validación mediante ajax
@@ -214,9 +213,14 @@ class UserController extends BaseController
 
      */
     public function actionRegistro(){
+
+        
+
         $model = new User();
 
         if(Yii::$app->user->isGuest){
+            $this->layout = 'main';
+            
             return $this->render('signup',[
                 'model' => $model,
             ]);

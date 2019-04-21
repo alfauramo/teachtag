@@ -8,86 +8,115 @@ use kartik\date\DatePicker;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="container">
-
-    <?php $form = ActiveForm::begin([
-        'action' => ['/user/create'],
-        'id' => 'registro',
-        'method' => 'post',
-    ]); ?>
-        
-    <div id='p1'>
-        <div class='row'>
-            <div class='col-sm-10 col-md-10'>
-                <?= $form->field($model, 'username',['inputOptions' => [
-                    'id' => 'alias',
-                    'class' => 'form-control',
-                    'placeholder' => 'Alias',
-                    'autocomplete' => 'off'
-                ]])->label(false) ?>
-            </div>
-                
-            <div class='col-sm-5 col-md-5'>
-                <?= $form->field($model, 'password',['inputOptions' => [
-                    'id' => 'psswd1',
-                    'class' => 'form-control in-line',
-                    'placeholder' => 'Contraseña',
-                    'autocomplete' => 'off'
-                ]])->passwordInput()->label(false) ?>
-            </div>
+<div class="col col-xl-5 col-lg-12 col-md-12 col-sm-12 col-12 registration-login-form">
+    <h2 class="title">Registro</h2>
+    <div class="content">
+        <?php $form = ActiveForm::begin([
+            'action' => ['/user/create'],
+            'id' => 'registro',
+            'method' => 'post',
+        ]); ?>
             
-            <div class='col-sm-5 col-md-5'>
-                <?= $form->field($model, 'password',['inputOptions' => [
-                    'id' => 'psswd2',
-                    'class' => 'form-control inline',
-                    'placeholder' => 'Repite contraseña',
-                    'autocomplete' => 'off'
-                ]])->passwordInput()->label(false) ?>
+        <div id='p1' >
+            <div class='col-sm-12 col-md-12'>
+                <?= $form->field($model, 'username',
+                    ['options' => [
+                        'id' => 'alias_c',
+                        'class' => 'form-group label-floating is-empty'
+                        ],
+                    'inputOptions' => [
+                        'id' => 'alias',
+                        'class' => 'form-control',
+                        'autocomplete' => 'off']
+                    ])->label("Alias") ?>
             </div>
+
+            <br/>
+            <hr>
+            <br/>
+
+            <div class='col-sm-12 col-md-12'>
+                <?= $form->field($model, 'password',
+                    ['options' => [
+                        'class' => 'form-group label-floating is-empty',
+                        'id' => 'psswd1_c'
+                        ],
+                    'inputOptions' => [
+                    'id' => 'psswd1',
+                    'class' => 'form-control',
+                    'autocomplete' => 'off'
+                ]])->passwordInput() ?>
+            </div>
+                    
+            <div class='col-sm-12 col-md-12'>
+                <?= $form->field($model, 'password',
+                    ['options' => [
+                        'class' => 'form-group label-floating is-empty',
+                        'id' => 'psswd2_c',
+                        ],
+                    'inputOptions' => [
+                        'id' => 'psswd2',
+                        'class' => 'form-control',
+                        'autocomplete' => 'off'
+                ]])->passwordInput()->label('Repite contraseña')?>
+            </div>
+
+            <br/>
+            <hr>
+            <br/>
             <div class="col-sm-12">
-                <button type="button" action='' id='subp1' class="btn btn-primary" disabled="disabled">Siguiente</button>
+                <button type="button" action='' id='subp1' class="btn btn-primary btn-md " disabled="disabled">Siguiente</button>
             </div>
         </div>
-    </div>
+    
     
 
     <div id='p2' class='row' style="display: none;">
-        <div class='col-sm-5 col-md-5'>
-            <?= $form->field($model, 'name', ['inputOptions' => [
-                'id' => 'nombre',
-                'class' => 'form-control in-line',
-                'placeholder' => 'Nombre',
-                'autocomplete' => 'off'
-                ]])->label(false) ?>
+        <div class='col-sm-12 col-md-12'>
+            <?= $form->field($model, 'name', [
+                'options' => [
+                    'class' => 'form-group label-floating is-empty',
+                    'id' => 'nombre_c'
+                ],
+                'inputOptions' => [
+                    'id' => 'nombre',
+                    'class' => 'form-control',
+                    'autocomplete' => 'off'
+                ]])->label("Nombre") ?>
             </div>
-                
-        <div class='col-sm-5 col-md-5'>
+        <br/>
+        <hr>
+        <br/>
+        <div class='col-sm-12 col-md-12'>
             
             <?= $form->field($model, 'birthday')->widget(DatePicker::classname(), [
                     'attribute' => 'birthday',
                     'type' => DatePicker::TYPE_COMPONENT_APPEND,
                     'options' => [
-                        'placeholder' => 'Fecha de nacimiento',
-                        'autocomplete' => 'off'
+                        'autocomplete' => 'off',
+                        'id' => 'user-birthday',
                     ],
                     'pluginOptions' => [
                         'autoclose'=>true,
+                        'id' => 'user-birthday',
                         'format' => 'dd-mm-yyyy',
                         'endDate' => '-18y'
                     ],
-                ])->label(false); 
+                ])->label("Fecha de nacimiento"); 
             ?>
         </div>
-
+        <br/>
+        <hr>
+        <br/>
         <div class="btn-group col-sm-12">
-            <button type="button" action='' id='prep1' class="btn btn-warning" >Anterior</button>
-            <button type="button" action='' id='subp2' class="btn btn-primary" disabled="disabled">Siguiente</button>
+            <button type="button" action='' id='prep1' class="btn btn-grey btn-md" >Anterior</button>
+            <button type="button" action='' id='subp2' class="btn btn-primary btn-md" disabled="disabled">Siguiente</button>
         </div>
     </div>
         
 
     <div id='p3' class='row' style="display:none;">
-        <div class='col-sm-6 col-md-6'>
+        <div class='col-sm-12 col-md-12'>
             <?= $form->field($model, 'email',['inputOptions' => [
             'id' => 'mail',
             'class' => 'form-control',
@@ -95,8 +124,10 @@ use kartik\date\DatePicker;
             'autocomplete' => 'off'
         ]])->label(false) ?>
         </div>
-                
-        <div class='col-sm-4 col-md-4'>
+        <br/>
+        <hr>
+        <br/>  
+        <div class='col-sm-12 col-md-12'>
             <?= $form->field($model, 'centerCode',['inputOptions' => [
                 'id' => 'centerCode',
                 'class' => 'form-control',
@@ -104,12 +135,15 @@ use kartik\date\DatePicker;
                 'autocomplete' => 'off'
             ]])->passwordInput()->label(false) ?>
         </div>
+        <br/>
+        <hr>
+        <br/>
         <div class="btn-group col-sm-12">
-            <button type="button" action='' id='prep2' class="btn btn-warning" >Anterior</button>
-            <?= Html::submitButton('Registrar',  ['class' => 'btn btn-success', 'id' => 'registrar', 'disabled' => 'disabled']) ?>
+            <button type="button" action='' id='prep2' class="btn btn-grey btn-md" >Anterior</button>
+            <?= Html::submitButton('Registrar',  ['class' => 'btn btn-yellow btn-md', 'id' => 'registrar', 'disabled' => 'disabled']) ?>
         </div>
     </div>
-
+    </div>
     
    
 

@@ -12,6 +12,11 @@ use app\assets\AppAsset;
 use app\models\User;
 
 AppAsset::register($this);
+$this->registerCss(" 
+    .content-bg-wrap, html { 
+        background:url(./theme/img/landing-bg.jpg);
+        -webkit-animation: sidedownscroll 30s linear infinite;
+        animation: sidedownscroll 30s linear infinite; }");
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
