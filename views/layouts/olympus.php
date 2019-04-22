@@ -1217,19 +1217,21 @@ AppAsset::register($this);
 
 
 <main class="main">
-    <?= Breadcrumbs::widget([
-        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : []
-    ]) ?>
-
-    <div class="container-fluid">
-        <?= $content; ?>
+    <div class="container" style="/*! width: 100%; *//*! top: 0; */">
+        <div class="header--standard--wrap">
+        <?= Breadcrumbs::widget([
+            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+        ]) ?>
+        <?= Alert::widget() ?>
+        <?= $content ?>
+    </div>
     </div>
 </main>
 
-<footer class="app-footer">
-        <span><a href="#">TeachTag</a> © <?= date('Y') ?></span>
-        <span class="ml-auto">Realizado por Alfredo Faura</span>
-    </footer>
+<footer>
+    <span><a href="#">TeachTag</a> © <?= date('Y') ?></span>
+    <span class="ml-auto">Realizado por Alfredo Faura</span>
+</footer>
 <?php $this->endBody() ?>
 </body>
 </html>
