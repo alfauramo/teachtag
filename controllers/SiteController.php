@@ -69,7 +69,26 @@ class SiteController extends BaseController
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        if(Yii::$app->user->isGuest){
+            var_dump("usuario");
+            die();
+            $this->layout = 'main';
+            $model = new LoginForm();
+            $model->password = '';
+            return $this->render('login', [
+                'model' => $model,
+            ]);
+        }else{
+            if(Yii::$app->controller->isAdminUser()){
+                var_dump("hola");
+                    die();
+                return $this->redirect('user/index');
+            }else{
+                var_dump("hola");
+                    die();
+                return $this->redirect('user/perfil');
+            }
+        }
     }
 
     /**
