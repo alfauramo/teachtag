@@ -68,14 +68,14 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'observacionapi', 'pluralize' => false],
-            ],
-        ],*/
+        /*'urlManager' => [
+           'enablePrettyUrl' => true,
+           'showScriptName' => false,
+           'rules' => [
+               '' => 'site/index',
+               '<action>'=>'<controller>/<action>',
+           ],
+       ], */   
     ],
     'params' => $params,
     'modules' => [
