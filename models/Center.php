@@ -67,4 +67,9 @@ class Center extends \yii\db\ActiveRecord
     { 
         return $this->hasMany(User::className(), ['centerCode' => 'id']); 
     }
+
+     public function getNombreCompleto() 
+    { 
+        return $this->nombre . ", " . $this->poblacion . " (" . $this->provincia .")"; 
+    }
 }

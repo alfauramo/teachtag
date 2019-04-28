@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\User;
+use app\models\Center;
 use app\models\UserSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -74,8 +75,11 @@ class UserController extends BaseController
             $model = User::findOne(Yii::$app->user->id);
         }
 
+        $centro = Center::findOne($model->centerCode);
+
         return $this->render('perfil', [
-            'model' => $model
+            'model' => $model,
+            'centro' => $centro,
         ]);
     }
 

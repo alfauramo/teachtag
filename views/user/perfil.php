@@ -138,11 +138,11 @@ if(isset($_GET['id'])){
 					</div>
 					<div class="top-header-author">
 						<a href="02-ProfilePage.html" class="author-thumb">
-							<img src="theme/img/author-main1.jpg" alt="author">
+							<img src="<?= $model->img_perfil === null ?  './img/perfil.png' : $model->img_perfil ?>" width="120" alt="author">
 						</a>
 						<div class="author-content">
 							<a href="02-ProfilePage.html" class="h4 author-name"><?= $model->name; ?></a>
-							<div class="country">Centro del perfil</div>
+							<div class="country"><?=$centro->getNombreCompleto()?></div>
 						</div>
 					</div>
 				</div>
@@ -165,7 +165,7 @@ if(isset($_GET['id'])){
 					<article class="hentry post">
 					
 							<div class="post__author author vcard inline-items">
-								<img src="theme/img/author-page.jpg" alt="author">
+								<img src="<?= $model->img_perfil === null ?  './img/perfil.png' : $model->img_perfil ?>" width="120" alt="author">
 					
 								<div class="author-date">
 									<a class="h6 post__author-name fn" href="02-ProfilePage.html"><?= $model->name ?></a>

@@ -59,7 +59,7 @@ AppAsset::register($this);
             <div class="control-block">
                 <div class="author-page author vcard inline-items">
                     <div class="author-thumb">
-                        <img alt="author" src="theme/img/author-page.jpg" class="avatar">
+                        <img alt="author" src="<?= Yii::$app->user->identity->img_perfil === null ?  './img/perfil.png' : Yii::$app->user->identity->img_perfil ?>" width="36" class="avatar">
                     </div>
                     <a href="02-ProfilePage.html" class="author-name fn">
                         <div class="author-title">
@@ -67,7 +67,7 @@ AppAsset::register($this);
                             Yii::$app->user->identity->name;
                             ?><svg class="olymp-dropdown-arrow-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-dropdown-arrow-icon"></use></svg>
                         </div>
-                        <span class="author-subtitle">Centro del profesor</span>
+                        <span class="author-subtitle"><?= Yii::$app->user->identity->center->nombre ?></span>
                     </a>
                 </div>
             </div>
@@ -400,7 +400,7 @@ AppAsset::register($this);
             </div>
             <div class="author-page author vcard inline-items more">
                 <div class="author-thumb">
-                    <img alt="author" src="theme/img/author-page.jpg" class="avatar">
+                    <img alt="author" src="<?= Yii::$app->user->identity->img_perfil === null ?  './img/perfil.png' : Yii::$app->user->identity->img_perfil ?>" width="36" class="avatar">
                     <div class="more-dropdown more-with-triangle">
                         <div class="mCustomScrollbar" data-mcs-theme="dark">
                             <div class="ui-block-title ui-block-title-small">
@@ -451,7 +451,7 @@ AppAsset::register($this);
                     <div class="author-title">
                         <?= Yii::$app->user->identity->name ?><svg class="olymp-dropdown-arrow-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-dropdown-arrow-icon"></use></svg>
                     </div>
-                    <span class="author-subtitle">Centro de enseñanza</span>
+                    <span class="author-subtitle"><?= Yii::$app->user->identity->center->nombre ?></span>
                 </a>
             </div>
 

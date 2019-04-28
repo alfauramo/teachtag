@@ -37,10 +37,10 @@ $this->registerCss("
                         <div class="row">
                             <div class="col col-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
                                 <div class="form-group label-floating is-empty">                                        
-                                    <?= $form->field($model, 'username',['options' => ['class' => 'form-group label-floating is-empty field-loginform-username required']])->label("Usuario")?>
+                                    <?= $form->field($model, 'username',['options' => ['class' => '']])->label("Usuario")?>
                                 </div>
                                 <div class="form-group label-floating is-empty">
-                                    <?= $form->field($model, 'password',['options' => ['class' => 'form-group label-floating is-empty required']])->passwordInput()->label("Contraseña") ?>
+                                    <?= $form->field($model, 'password',['options' => ['class' => '']])->passwordInput()->label("Contraseña") ?>
                                 </div>
                                 <div class="remember">
                                     <div class="checkbox">

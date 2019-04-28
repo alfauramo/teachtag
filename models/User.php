@@ -46,6 +46,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
              [['username', 'password'], 'string', 'max' => 25],
              [['name'], 'string', 'max' => 75],
              [['email', 'descripcion'], 'string', 'max' => 100],
+             [['img_perfil', 'img_cabecera'], 'string', 'max' => 255],
              [['authKey', 'accessToken'], 'string', 'max' => 250],
              [['centerCode'], 'exist', 'skipOnError' => true, 'targetClass' => Center::className(), 'targetAttribute' => ['centerCode' => 'id']],
          ];
@@ -70,7 +71,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     /** 
     * @return \yii\db\ActiveQuery 
     */ 
-    public function getCenterCode0() 
+    public function getCenter() 
     { 
         return $this->hasOne(Center::className(), ['id' => 'centerCode']); 
     }
@@ -89,7 +90,9 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'email' => 'Correo electrónico', 
             'birthday' => 'Fecha de nacimiento', 
             'centerCode' => 'Centro', 
-            'descripcion' => 'Descripción'
+            'descripcion' => 'Descripción',
+            'img_perfil' => 'Foto perfil',
+            'img_cabecera' => 'Imagen de cabecera'
         ];
     }
 

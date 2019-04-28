@@ -23,7 +23,7 @@ use kartik\date\DatePicker;
                 <?= $form->field($model, 'username',
                     ['options' => [
                         'id' => 'alias_c',
-                        'class' => 'form-group label-floating is-empty'
+                        'class' => ''
                         ],
                     'inputOptions' => [
                         'id' => 'alias',
