@@ -3,3 +3,31 @@
 	margin-top: 5px;
 	margin-bottom: 10px;
 }
+
+.profile-menu li > div, .profile-menu li a.btn {
+	color:white !important;
+}
+
+.profile-menu li > div, .profile-menu li a.btn:hover {
+	color: #515365 !important;
+}
+#svg_cupcake {
+	width: 26px;
+	height: 20px;
+}
+
+#shite-header.fixed-logo {
+	position: fixed;
+	z-index: 22;
+	width: 70px;
+}
+
+.fixed-logo .logo {
+	height: 70px;
+	background-color: #ff5e3a;
+	padding: 15px;
+}
+
+#btn_logout {
+	display: none;
+}

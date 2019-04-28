@@ -21,7 +21,7 @@ $this->registerCss("
         -webkit-animation: sidedownscroll 30s linear infinite;
         animation: sidedownscroll 30s linear infinite; }");
 ?>
-<div class="user-signup">
+<div class="row justify-content-center">
 
 	<?= $this->render('_formReg', [
         'model' => $model,

@@ -30,179 +30,8 @@ AppAsset::register($this);
     <?php $this->head() ?>
 
 </head>
-<body>
+<body class="app flex-row align-items-center">
 <?php $this->beginBody(['class' => 'body-bg-white']) ?>
-
-<!-- Fixed Sidebar Left -->
-<div class="fixed-sidebar">
-    <div class="fixed-sidebar-left sidebar--small" id="sidebar-left">
-
-        <a href="02-ProfilePage.html" class="logo">
-            <div class="img-wrap">
-                <img src="theme/img/logo.png" alt="Olympus">
-            </div>
-        </a>
-
-        <div class="mCustomScrollbar" data-mcs-theme="dark">
-            <ul class="left-menu">
-                <li>
-                    <a href="#" class="js-sidebar-open">
-                        <svg class="olymp-menu-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="OPEN MENU"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-menu-icon"></use></svg>
-                    </a>
-                </li>
-                <li>
-                    <a href="03-Newsfeed.html">
-                        <svg class="olymp-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right"   data-original-title="NEWSFEED"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-newsfeed-icon"></use></svg>
-                    </a>
-                </li>
-                <li>
-                    <a href="16-FavPagesFeed.html">
-                        <svg class="olymp-star-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FAV PAGE"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-star-icon"></use></svg>
-                    </a>
-                </li>
-                <li>
-                    <a href="17-FriendGroups.html">
-                        <svg class="olymp-happy-faces-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FRIEND GROUPS"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-faces-icon"></use></svg>
-                    </a>
-                </li>
-                <li>
-                    <a href="18-MusicAndPlaylists.html">
-                        <svg class="olymp-headphones-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="MUSIC&PLAYLISTS"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-headphones-icon"></use></svg>
-                    </a>
-                </li>
-                <li>
-                    <a href="19-WeatherWidget.html">
-                        <svg class="olymp-weather-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="WEATHER APP"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-weather-icon"></use></svg>
-                    </a>
-                </li>
-                <li>
-                    <a href="20-CalendarAndEvents-MonthlyCalendar.html">
-                        <svg class="olymp-calendar-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="CALENDAR AND EVENTS"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-calendar-icon"></use></svg>
-                    </a>
-                </li>
-                <li>
-                    <a href="24-CommunityBadges.html">
-                        <svg class="olymp-badge-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Community Badges"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-badge-icon"></use></svg>
-                    </a>
-                </li>
-                <li>
-                    <a href="25-FriendsBirthday.html">
-                        <svg class="olymp-cupcake-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Friends Birthdays"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-cupcake-icon"></use></svg>
-                    </a>
-                </li>
-                <li>
-                    <a href="26-Statistics.html">
-                        <svg class="olymp-stats-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Account Stats"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-stats-icon"></use></svg>
-                    </a>
-                </li>
-                <li>
-                    <a href="27-ManageWidgets.html">
-                        <svg class="olymp-manage-widgets-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Manage Widgets"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-manage-widgets-icon"></use></svg>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="fixed-sidebar-left sidebar--large" id="sidebar-left-1">
-        <a href="02-ProfilePage.html" class="logo">
-            <div class="img-wrap">
-                <img src="theme/img/logo.png" alt="Olympus">
-            </div>
-            <div class="title-block">
-                <h6 class="logo-title">TeachTag</h6>
-            </div>
-        </a>
-
-        <div class="mCustomScrollbar" data-mcs-theme="dark">
-            <ul class="left-menu">
-                <li>
-                    <a href="#" class="js-sidebar-open">
-                        <svg class="olymp-close-icon left-menu-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
-                        <span class="left-menu-title">Collapse Menu</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="03-Newsfeed.html">
-                        <svg class="olymp-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right"   data-original-title="NEWSFEED"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-newsfeed-icon"></use></svg>
-                        <span class="left-menu-title">Newsfeed</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="16-FavPagesFeed.html">
-                        <svg class="olymp-star-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FAV PAGE"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-star-icon"></use></svg>
-                        <span class="left-menu-title">Fav Pages Feed</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="17-FriendGroups.html">
-                        <svg class="olymp-happy-faces-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FRIEND GROUPS"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-faces-icon"></use></svg>
-                        <span class="left-menu-title">Friend Groups</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="18-MusicAndPlaylists.html">
-                        <svg class="olymp-headphones-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="MUSIC&PLAYLISTS"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-headphones-icon"></use></svg>
-                        <span class="left-menu-title">Music & Playlists</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="19-WeatherWidget.html">
-                        <svg class="olymp-weather-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="WEATHER APP"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-weather-icon"></use></svg>
-                        <span class="left-menu-title">Weather App</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="20-CalendarAndEvents-MonthlyCalendar.html">
-                        <svg class="olymp-calendar-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="CALENDAR AND EVENTS"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-calendar-icon"></use></svg>
-                        <span class="left-menu-title">Calendar and Events</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="24-CommunityBadges.html">
-                        <svg class="olymp-badge-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Community Badges"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-badge-icon"></use></svg>
-                        <span class="left-menu-title">Community Badges</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="25-FriendsBirthday.html">
-                        <svg class="olymp-cupcake-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Friends Birthdays"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-cupcake-icon"></use></svg>
-                        <span class="left-menu-title">Friends Birthdays</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="26-Statistics.html">
-                        <svg class="olymp-stats-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Account Stats"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-stats-icon"></use></svg>
-                        <span class="left-menu-title">Account Stats</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="27-ManageWidgets.html">
-                        <svg class="olymp-manage-widgets-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Manage Widgets"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-manage-widgets-icon"></use></svg>
-                        <span class="left-menu-title">Manage Widgets</span>
-                    </a>
-                </li>
-            </ul>
-
-            <div class="profile-completion">
-
-                <div class="skills-item">
-                    <div class="skills-item-info">
-                        <span class="skills-item-title">Profile Completion</span>
-                        <span class="skills-item-count"><span class="count-animate" data-speed="1000" data-refresh-interval="50" data-to="76" data-from="0"></span><span class="units">76%</span></span>
-                    </div>
-                    <div class="skills-item-meter">
-                        <span class="skills-item-meter-active bg-primary" style="width: 76%"></span>
-                    </div>
-                </div>
-
-                <span>Complete <a href="#">your profile</a> so people can know more about you!</span>
-
-            </div>
-        </div>
-    </div>
-</div>
-<!-- ... end Fixed Sidebar Left -->
 
 
 <!-- Fixed Sidebar Left -->
@@ -210,7 +39,7 @@ AppAsset::register($this);
 
     <div class="fixed-sidebar-left sidebar--small" id="sidebar-left-responsive">
         <a href="#" class="logo js-sidebar-open">
-            <img src="theme/img/logo.png" alt="Olympus">
+            <img src="theme/img/logo.png" alt="TeachTag">
         </a>
 
     </div>
@@ -218,10 +47,10 @@ AppAsset::register($this);
     <div class="fixed-sidebar-left sidebar--large" id="sidebar-left-1-responsive">
         <a href="#" class="logo">
             <div class="img-wrap">
-                <img src="theme/img/logo.png" alt="Olympus">
+                <img src="theme/img/logo.png" alt="TeachTag">
             </div>
             <div class="title-block">
-                <h6 class="logo-title">olympus</h6>
+                <h6 class="logo-title">TeachTag</h6>
             </div>
         </a>
 
@@ -231,143 +60,71 @@ AppAsset::register($this);
                 <div class="author-page author vcard inline-items">
                     <div class="author-thumb">
                         <img alt="author" src="theme/img/author-page.jpg" class="avatar">
-                        <span class="icon-status online"></span>
                     </div>
                     <a href="02-ProfilePage.html" class="author-name fn">
                         <div class="author-title">
-                            James Spiegel <svg class="olymp-dropdown-arrow-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-dropdown-arrow-icon"></use></svg>
+                            <?=
+                            Yii::$app->user->identity->name;
+                            ?><svg class="olymp-dropdown-arrow-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-dropdown-arrow-icon"></use></svg>
                         </div>
-                        <span class="author-subtitle">SPACE COWBOY</span>
+                        <span class="author-subtitle">Centro del profesor</span>
                     </a>
                 </div>
             </div>
 
-            <div class="ui-block-title ui-block-title-small">
+            <!--<div class="ui-block-title ui-block-title-small">
                 <h6 class="title">MAIN SECTIONS</h6>
-            </div>
+            </div>-->
 
             <ul class="left-menu">
                 <li>
                     <a href="#" class="js-sidebar-open">
                         <svg class="olymp-close-icon left-menu-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
-                        <span class="left-menu-title">Collapse Menu</span>
+                        <span class="left-menu-title">Cerrar menú</span>
                     </a>
                 </li>
-                <li>
-                    <a href="mobile-index.html">
-                        <svg class="olymp-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right"   data-original-title="NEWSFEED"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-newsfeed-icon"></use></svg>
-                        <span class="left-menu-title">Newsfeed</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="Mobile-28-YourAccount-PersonalInformation.html">
-                        <svg class="olymp-star-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FAV PAGE"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-star-icon"></use></svg>
-                        <span class="left-menu-title">Fav Pages Feed</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="mobile-29-YourAccount-AccountSettings.html">
-                        <svg class="olymp-happy-faces-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FRIEND GROUPS"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-faces-icon"></use></svg>
-                        <span class="left-menu-title">Friend Groups</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="Mobile-30-YourAccount-ChangePassword.html">
-                        <svg class="olymp-headphones-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="MUSIC&PLAYLISTS"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-headphones-icon"></use></svg>
-                        <span class="left-menu-title">Music & Playlists</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="Mobile-31-YourAccount-HobbiesAndInterests.html">
-                        <svg class="olymp-weather-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="WEATHER APP"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-weather-icon"></use></svg>
-                        <span class="left-menu-title">Weather App</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="Mobile-32-YourAccount-EducationAndEmployement.html">
-                        <svg class="olymp-calendar-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="CALENDAR AND EVENTS"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-calendar-icon"></use></svg>
-                        <span class="left-menu-title">Calendar and Events</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="Mobile-33-YourAccount-Notifications.html">
-                        <svg class="olymp-badge-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Community Badges"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-badge-icon"></use></svg>
-                        <span class="left-menu-title">Community Badges</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="Mobile-34-YourAccount-ChatMessages.html">
-                        <svg class="olymp-cupcake-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Friends Birthdays"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-cupcake-icon"></use></svg>
-                        <span class="left-menu-title">Friends Birthdays</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="Mobile-35-YourAccount-FriendsRequests.html">
-                        <svg class="olymp-stats-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Account Stats"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-stats-icon"></use></svg>
-                        <span class="left-menu-title">Account Stats</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <svg class="olymp-manage-widgets-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Manage Widgets"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-manage-widgets-icon"></use></svg>
-                        <span class="left-menu-title">Manage Widgets</span>
-                    </a>
-                </li>
+                
             </ul>
 
             <div class="ui-block-title ui-block-title-small">
-                <h6 class="title">YOUR ACCOUNT</h6>
+                <h6 class="title">TU CUENTA</h6>
             </div>
 
             <ul class="account-settings">
                 <li>
-                    <a href="#">
-
-                        <svg class="olymp-menu-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-menu-icon"></use></svg>
-
-                        <span>Profile Settings</span>
-                    </a>
+                    <?=
+                    Html::a('<svg class="olymp-menu-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-menu-icon"></use></svg>
+                        <span>Configuración</span>', ['user/ajustes'])
+                    ?>
                 </li>
                 <li>
-                    <a href="#">
-                        <svg class="olymp-star-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FAV PAGE"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-star-icon"></use></svg>
+                    <?=
+                    Html::a('<svg class="olymp-logout-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-logout-icon"></use></svg>
 
-                        <span>Create Fav Page</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <svg class="olymp-logout-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-logout-icon"></use></svg>
-
-                        <span>Log Out</span>
-                    </a>
+                        <span>Cerrar sesión</span>',['site/logout'],['method' => 'post'])
+                    ?>
                 </li>
             </ul>
 
             <div class="ui-block-title ui-block-title-small">
-                <h6 class="title">About Olympus</h6>
+                <h6 class="title">SOBRE TEACHTAG</h6>
             </div>
 
             <ul class="about-olympus">
                 <li>
-                    <a href="#">
-                        <span>Terms and Conditions</span>
-                    </a>
+                <?=
+                Html::a('Términos y condiciones',['site/terms'])
+                ?>
                 </li>
                 <li>
-                    <a href="#">
-                        <span>FAQs</span>
-                    </a>
+                <?=
+                Html::a('FAQs',['site/faqs']);
+                ?>
                 </li>
                 <li>
-                    <a href="#">
-                        <span>Careers</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span>Contact</span>
-                    </a>
+                <?=
+                Html::a('Contacto',['site/contact']);
+                ?>
                 </li>
             </ul>
 
@@ -378,23 +135,29 @@ AppAsset::register($this);
 
 <!-- Header Standard Landing  -->
 <header class="header" id="site-header">
-    
+    <div class="fixed-sidebar">
+        <div class="fixed-logo-left sidebar--small" id="sidebar-left">
+            <?=
+            Html::a('<div class="img-wrap">
+                    <img src="theme/img/logo.png" alt="TeachTag">
+                </div>',['site/index'],['class' => 'logo']);
+            ?>
+        </div>
+    </div>
     <div class="page-title">
 
-        <h6>your account</h6>
+        <h6>HORA</h6>
     </div>
 
     <div class="header-content-wrapper">
         <form class="search-bar w-search notification-list friend-requests">
             <div class="form-group with-button">
-                <input class="form-control js-user-search" placeholder="Search here people or pages..." type="text">
+                <input class="form-control js-user-search" placeholder="Buscar amigos..." type="text">
                 <button>
                     <svg class="olymp-magnifying-glass-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-magnifying-glass-icon"></use></svg>
                 </button>
             </div>
         </form>
-
-        <a href="#" class="link-find-friend">Find Friends</a>
 
         <div class="control-block">
 
@@ -404,9 +167,7 @@ AppAsset::register($this);
 
                 <div class="more-dropdown more-with-triangle triangle-top-center">
                     <div class="ui-block-title ui-block-title-small">
-                        <h6 class="title">FRIEND REQUESTS</h6>
-                        <a href="#">Find Friends</a>
-                        <a href="#">Settings</a>
+                        <h6 class="title">Peticiones de amistad</h6>
                     </div>
 
                     <div class="mCustomScrollbar" data-mcs-theme="dark">
@@ -515,98 +276,7 @@ AppAsset::register($this);
                         </ul>
                     </div>
 
-                    <a href="#" class="view-all bg-blue">Check all your Events</a>
-                </div>
-            </div>
-
-            <div class="control-icon more has-items">
-                <svg class="olymp-chat---messages-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-chat---messages-icon"></use></svg>
-                <div class="label-avatar bg-purple">2</div>
-
-                <div class="more-dropdown more-with-triangle triangle-top-center">
-                    <div class="ui-block-title ui-block-title-small">
-                        <h6 class="title">Chat / Messages</h6>
-                        <a href="#">Mark all as read</a>
-                        <a href="#">Settings</a>
-                    </div>
-
-                    <div class="mCustomScrollbar" data-mcs-theme="dark">
-                        <ul class="notification-list chat-message">
-                            <li class="message-unread">
-                                <div class="author-thumb">
-                                    <img src="theme/img/avatar59-sm.jpg" alt="author">
-                                </div>
-                                <div class="notification-event">
-                                    <a href="#" class="h6 notification-friend">Diana Jameson</a>
-                                    <span class="chat-message-item">Hi James! It’s Diana, I just wanted to let you know that we have to reschedule...</span>
-                                    <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">4 hours ago</time></span>
-                                </div>
-                                <span class="notification-icon">
-                                    <svg class="olymp-chat---messages-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-chat---messages-icon"></use></svg>
-                                </span>
-                                <div class="more">
-                                    <svg class="olymp-three-dots-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="author-thumb">
-                                    <img src="theme/img/avatar60-sm.jpg" alt="author">
-                                </div>
-                                <div class="notification-event">
-                                    <a href="#" class="h6 notification-friend">Jake Parker</a>
-                                    <span class="chat-message-item">Great, I’ll see you tomorrow!.</span>
-                                    <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">4 hours ago</time></span>
-                                </div>
-                                <span class="notification-icon">
-                                    <svg class="olymp-chat---messages-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-chat---messages-icon"></use></svg>
-                                </span>
-
-                                <div class="more">
-                                    <svg class="olymp-three-dots-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="author-thumb">
-                                    <img src="theme/img/avatar61-sm.jpg" alt="author">
-                                </div>
-                                <div class="notification-event">
-                                    <a href="#" class="h6 notification-friend">Elaine Dreyfuss</a>
-                                    <span class="chat-message-item">We’ll have to check that at the office and see if the client is on board with...</span>
-                                    <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">Yesterday at 9:56pm</time></span>
-                                </div>
-                                    <span class="notification-icon">
-                                        <svg class="olymp-chat---messages-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-chat---messages-icon"></use></svg>
-                                    </span>
-                                <div class="more">
-                                    <svg class="olymp-three-dots-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
-                                </div>
-                            </li>
-
-                            <li class="chat-group">
-                                <div class="author-thumb">
-                                    <img src="theme/img/avatar11-sm.jpg" alt="author">
-                                    <img src="theme/img/avatar12-sm.jpg" alt="author">
-                                    <img src="theme/img/avatar13-sm.jpg" alt="author">
-                                    <img src="theme/img/avatar10-sm.jpg" alt="author">
-                                </div>
-                                <div class="notification-event">
-                                    <a href="#" class="h6 notification-friend">You, Faye, Ed &amp; Jet +3</a>
-                                    <span class="last-message-author">Ed:</span>
-                                    <span class="chat-message-item">Yeah! Seems fine by me!</span>
-                                    <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">March 16th at 10:23am</time></span>
-                                </div>
-                                    <span class="notification-icon">
-                                        <svg class="olymp-chat---messages-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-chat---messages-icon"></use></svg>
-                                    </span>
-                                <div class="more">
-                                    <svg class="olymp-three-dots-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <a href="#" class="view-all bg-purple">View All Messages</a>
+                    <a href="#" class="view-all bg-blue">Revisar todas las peticiones</a>
                 </div>
             </div>
 
@@ -617,9 +287,8 @@ AppAsset::register($this);
 
                 <div class="more-dropdown more-with-triangle triangle-top-center">
                     <div class="ui-block-title ui-block-title-small">
-                        <h6 class="title">Notifications</h6>
-                        <a href="#">Mark all as read</a>
-                        <a href="#">Settings</a>
+                        <h6 class="title">Notificaciones</h6>
+                        <a href="#">Marcar todas como leídas</a>
                     </div>
 
                     <div class="mCustomScrollbar" data-mcs-theme="dark">
@@ -721,113 +390,57 @@ AppAsset::register($this);
                         </ul>
                     </div>
 
-                    <a href="#" class="view-all bg-primary">View All Notifications</a>
+                    <a href="#" class="view-all bg-primary">Ver todas las notificaciones</a>
                 </div>
             </div>
-
+            <div class="control-icon more has-items">
+                <?=
+                Html::a('<svg id="svg_cupcake" class="olymp-cupcake-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Cumpleaños de amigos"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-cupcake-icon"></use></svg>',['user/aniversarios']);
+                ?>
+            </div>
             <div class="author-page author vcard inline-items more">
                 <div class="author-thumb">
                     <img alt="author" src="theme/img/author-page.jpg" class="avatar">
-                    <span class="icon-status online"></span>
                     <div class="more-dropdown more-with-triangle">
                         <div class="mCustomScrollbar" data-mcs-theme="dark">
                             <div class="ui-block-title ui-block-title-small">
-                                <h6 class="title">Your Account</h6>
+                                <h6 class="title">Tu cuenta</h6>
                             </div>
 
                             <ul class="account-settings">
                                 <li>
-                                    <a href="29-YourAccount-AccountSettings.html">
-
-                                        <svg class="olymp-menu-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-menu-icon"></use></svg>
-
-                                        <span>Profile Settings</span>
-                                    </a>
+                                    <?=
+                                    Html::a('<svg class="olymp-menu-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-menu-icon"></use></svg>
+                                        <span>Configuración</span>',['user/ajustes'])
+                                    ?>
                                 </li>
                                 <li>
-                                    <a href="36-FavPage-SettingsAndCreatePopup.html">
-                                        <svg class="olymp-star-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FAV PAGE"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-star-icon"></use></svg>
-
-                                        <span>Create Fav Page</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <svg class="olymp-logout-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-logout-icon"></use></svg>
-
-                                        <span>Log Out</span>
-                                    </a>
+                                    <?=
+                                    Html::a('<svg class="olymp-logout-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-logout-icon"></use></svg><span>Cerrar sesión</span>',['site/logout'],['method' => 'post']);
+                                    ?>
+                                    
                                 </li>
                             </ul>
 
                             <div class="ui-block-title ui-block-title-small">
-                                <h6 class="title">Chat Settings</h6>
-                            </div>
-
-                            <ul class="chat-settings">
-                                <li>
-                                    <a href="#">
-                                        <span class="icon-status online"></span>
-                                        <span>Online</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="icon-status away"></span>
-                                        <span>Away</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="icon-status disconected"></span>
-                                        <span>Disconnected</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <span class="icon-status status-invisible"></span>
-                                        <span>Invisible</span>
-                                    </a>
-                                </li>
-                            </ul>
-
-                            <div class="ui-block-title ui-block-title-small">
-                                <h6 class="title">Custom Status</h6>
-                            </div>
-
-                            <form class="form-group with-button custom-status">
-                                <input class="form-control" placeholder="" type="text" value="Space Cowboy">
-
-                                <button class="bg-purple">
-                                    <svg class="olymp-check-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-check-icon"></use></svg>
-                                </button>
-                            </form>
-
-                            <div class="ui-block-title ui-block-title-small">
-                                <h6 class="title">About Olympus</h6>
+                                <h6 class="title">Sobre TeachTag</h6>
                             </div>
 
                             <ul>
                                 <li>
-                                    <a href="#">
-                                        <span>Terms and Conditions</span>
-                                    </a>
+                                    <?=
+                                    Html::a('<span>Términos y condiciones</span>',['site/terms']);
+                                    ?>
                                 </li>
                                 <li>
-                                    <a href="#">
-                                        <span>FAQs</span>
-                                    </a>
+                                    <?=
+                                    Html::a('<span>FAQs</span>',['site/faqs']);
+                                    ?>
                                 </li>
                                 <li>
-                                    <a href="#">
-                                        <span>Careers</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span>Contact</span>
-                                    </a>
+                                    <?=
+                                    Html::a('<span>Contacto</span',['site/contact']);
+                                    ?>
                                 </li>
                             </ul>
                         </div>
@@ -836,9 +449,9 @@ AppAsset::register($this);
                 </div>
                 <a href="02-ProfilePage.html" class="author-name fn">
                     <div class="author-title">
-                        James Spiegel <svg class="olymp-dropdown-arrow-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-dropdown-arrow-icon"></use></svg>
+                        <?= Yii::$app->user->identity->name ?><svg class="olymp-dropdown-arrow-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-dropdown-arrow-icon"></use></svg>
                     </div>
-                    <span class="author-subtitle">SPACE COWBOY</span>
+                    <span class="author-subtitle">Centro de enseñanza</span>
                 </a>
             </div>
 
@@ -862,8 +475,7 @@ AppAsset::register($this);
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#chat" role="tab">
                     <div class="control-icon has-items">
-                        <svg class="olymp-chat---messages-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-chat---messages-icon"></use></svg>
-                        <div class="label-avatar bg-purple">2</div>
+                        <svg id="svg_cupcake" class="olymp-cupcake-icon" ><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-cupcake-icon"></use></svg>
                     </div>
                 </a>
             </li>
@@ -893,9 +505,7 @@ AppAsset::register($this);
 
             <div class="mCustomScrollbar ps ps--theme_default" data-mcs-theme="dark" data-ps-id="f68c866a-1882-f16e-7223-192820a5f9c7">
                 <div class="ui-block-title ui-block-title-small">
-                    <h6 class="title">FRIEND REQUESTS</h6>
-                    <a href="#">Find Friends</a>
-                    <a href="#">Settings</a>
+                    <h6 class="title">PETICIONES DE AMISTAD</h6>
                 </div>
                 <ul class="notification-list friend-requests">
                     <li>
@@ -996,7 +606,7 @@ AppAsset::register($this);
                         </div>
                     </li>
                 </ul>
-                <a href="#" class="view-all bg-blue">Check all your Events</a>
+                <a href="#" class="view-all bg-blue">Revisar todas las peticiones</a>
             <div class="ps__scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps__scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__scrollbar-y-rail" style="top: 0px; right: 0px;"><div class="ps__scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
 
         </div>
@@ -1205,7 +815,7 @@ AppAsset::register($this);
 
                 <form class="search-bar w-search notification-list friend-requests">
                     <div class="form-group with-button is-empty">
-                        <input class="form-control js-user-search selectized" placeholder="Search here people or pages..." type="text" tabindex="-1" style="display: none;" value=""><div class="selectize-control form-control js-user-search multi"><div class="selectize-input items not-full has-options"><input type="text" autocomplete="off" tabindex="" placeholder="Search here people or pages..." style="width: 229.817px;"></div><div class="selectize-dropdown multi form-control js-user-search" style="display: none; width: 0px; top: 70px; left: 0px;"><div class="selectize-dropdown-content"></div></div></div>
+                        <input class="form-control js-user-search selectized" placeholder="Buscar amigos..." type="text" tabindex="-1" style="display: none;" value=""><div class="selectize-control form-control js-user-search multi"><div class="selectize-input items not-full has-options"><input type="text" autocomplete="off" tabindex="" placeholder="Buscar amigos..." style="width: 229.817px;"></div><div class="selectize-dropdown multi form-control js-user-search" style="display: none; width: 0px; top: 70px; left: 0px;"><div class="selectize-dropdown-content"></div></div></div>
                     <span class="material-input"></span></div>
                 </form>
 
@@ -1215,19 +825,19 @@ AppAsset::register($this);
     </div></header>
 <!-- ... end Header Responsive  -->
 
-
-<main class="main">
-    <div class="container" style="/*! width: 100%; *//*! top: 0; */">
+<div class="header-spacer"></div>
+<main class="">
+    <div class="container" style="! width: 100%;  top: 0; ">
         <div class="header--standard--wrap">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
         <?= Alert::widget() ?>
         <?= $content ?>
     </div>
     </div>
 </main>
-
+<a class="back-to-top" href="#">
+    <img src="theme/svg-icons/back-to-top.svg" alt="arrow" class="back-icon">
+</a>
+<div class="header-spacer"></div>
 <footer>
     <span><a href="#">TeachTag</a> © <?= date('Y') ?></span>
     <span class="ml-auto">Realizado por Alfredo Faura</span>

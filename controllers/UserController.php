@@ -23,22 +23,30 @@ class UserController extends BaseController
         return [
             'access' => [
                 'class' => \yii\filters\AccessControl::className(),
-                'only' => ['signup'],
+                'only' => ['signup','perfil'],
                 'rules' => [
                     [
                         'allow' => true,
                         'roles' => ['@'],
-                        'matchCallback' => function ($rule, $action) {
-                            return $this->isAdminUser();
-                        }
+                        'actions' => ['perfil', 'signup'],
                     ],
                     [
-                        'allow' => false,
-                    ],
+                        'allow' => true,
+                        'matchCallback' => function ($rule, $action) {
+                           return $this->isAdminUser();
+                       }
+                   ],
+                   [
+                    'allow' => false,
+                    'roles' => ['*']
                 ],
             ],
-        ];
-    }
+            'denyCallback' => function () {
+                return Yii::$app->response->redirect(['site/index']);
+            },
+        ],
+    ];
+}
 
     
 
@@ -60,10 +68,14 @@ class UserController extends BaseController
 
     public function actionPerfil($id = false)
     {
-        $model = $this->findModel($id);
+        if($id !== false){
+            $model = User::findOne($id);
+        } else {
+            $model = User::findOne(Yii::$app->user->id);
+        }
 
         return $this->render('perfil', [
-            'model' => $model,
+            'model' => $model
         ]);
     }
 
@@ -319,6 +331,51 @@ class UserController extends BaseController
         }
     }
 
+    public function actionAjustes(){
+        $model = User::findOne(Yii::$app->user->id);
+        var_dump("Ajustes de ".$model->name);
+        die();
+    }
+
+    public function actionVerAmigos($id){
+        $model = User::findOne($id);
+        var_dump("Amigos de ".$model->name);
+        die();
+    }
+
+    public function actionFotos($id){
+        $model = User::findOne($id);
+        //Puede que ésto lo sustituya creando un controlador y modelo llamado fotos.
+
+        var_dump("Fotos de ".$model->name);
+        die();
+    }
+
+    public function actionEliminarAmistad($id){
+        $model = User::findOne($id);
+
+        if($id == Yii::$app->user->id){
+            var_dump("No te puedes eliminar a ti mismo, gilipollas");
+            die();
+        }else {
+            var_dump("Eliminando a ".$model->name." como amistad");
+            die();    
+        }
+        
+    }
+
+    public function actionBloquear($id){
+        $model = User::findOne($id);
+
+        if($id == Yii::$app->user->id){
+            var_dump("No te puedes bloquear a ti mismo, gilipollas");
+            die();
+        }else {
+            var_dump("Bloqueando a ".$model->name." como amistad");
+            die();    
+        }
+        
+    }
 
     public function actionTest(){
         $model = new User();

@@ -8,12 +8,13 @@ use kartik\date\DatePicker;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="col col-xl-5 col-lg-12 col-md-12 col-sm-12 col-12 registration-login-form">
+<div class="col col-xl-5 col-lg-12 col-md-12 col-sm-12 col-12 registration-login-form ">
     <h2 class="title">Registro</h2>
     <div class="content">
         <?php $form = ActiveForm::begin([
             'action' => ['/user/create'],
             'id' => 'registro',
+            'class' => 'form-control-sm',
             'method' => 'post',
         ]); ?>
             
@@ -30,7 +31,7 @@ use kartik\date\DatePicker;
                         'autocomplete' => 'off']
                     ])->label("Alias") ?>
             </div>
-
+            
             <br/>
             <hr>
             <br/>
