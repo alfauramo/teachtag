@@ -126,7 +126,7 @@ if(isset($_GET['id'])){
 										<a href="#" data-toggle="modal" data-target="#update-header-photo">Actualizar cabecera</a>
 									</li>
 									<li>
-										<?= Html::a('Configuración',['user/ajustes']);
+										<?= Html::a('Configuración',['user/configuracion']);
 										?>
 									</li>
 								</ul>

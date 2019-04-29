@@ -335,10 +335,16 @@ class UserController extends BaseController
         }
     }
 
-    public function actionAjustes(){
+    public function actionConfiguracion(){
         $model = User::findOne(Yii::$app->user->id);
-        var_dump("Ajustes de ".$model->name);
-        die();
+        
+
+        $centro = Center::findOne($model->centerCode);
+
+        return $this->render('configuracion', [
+            'model' => $model,
+            'centro' => $centro,
+        ]);
     }
 
     public function actionVerAmigos($id){
