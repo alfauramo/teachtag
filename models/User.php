@@ -45,8 +45,9 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
              [['username','email'], 'unique'],
              [['username', 'password'], 'string', 'max' => 25],
              [['name'], 'string', 'max' => 75],
+             [['username'], 'string', 'skipOnEmpty' => true],
              [['email', 'descripcion'], 'string', 'max' => 100],
-             [['img_perfil', 'img_cabecera'], 'string', 'max' => 255],
+             [['img_perfil', 'img_cabecera', 'facebook', 'twitter'], 'string', 'max' => 255],
              [['authKey', 'accessToken'], 'string', 'max' => 250],
              [['centerCode'], 'exist', 'skipOnError' => true, 'targetClass' => Center::className(), 'targetAttribute' => ['centerCode' => 'id']],
          ];
@@ -92,7 +93,9 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'centerCode' => 'Centro', 
             'descripcion' => 'Descripción',
             'img_perfil' => 'Foto perfil',
-            'img_cabecera' => 'Imagen de cabecera'
+            'img_cabecera' => 'Imagen de cabecera',
+            'facebook' => 'Tu cuenta de Facebook',
+            'twitter' => 'Tu cuenta de Twitter'
         ];
     }
 
@@ -182,6 +185,12 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         if (!parent::beforeSave($insert)) {
             return false;
+        }
+
+        $birthday = $this->birthday;
+        if(!empty($birthday)){
+            $birthday = Yii::$app->formatter->asDate($birthday, 'php:Y-m-d');
+            $this->birthday = $birthday;
         }
 
         return true;

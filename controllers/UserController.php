@@ -178,12 +178,16 @@ class UserController extends BaseController
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             if($model->save()){
-                Yii::$app->session->setFlash('success', "Usuario modificado correctamente.");
+                Yii::$app->session->setFlash('success', "Perfil modificado correctamente.");
             } else {
-                Yii::$app->session->setFlash('error', "Usuario NO modificado.");
+                Yii::$app->session->setFlash('error', "Perfil NO modificado.");
+            }
+
+            if(isset($_GET['name'])){
+                return $this->redirect(['perfil']);
             }
             return $this->redirect(['index', 'id' => $model->id]);
         }
