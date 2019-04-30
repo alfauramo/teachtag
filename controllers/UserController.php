@@ -6,6 +6,7 @@ use Yii;
 use app\models\User;
 use app\models\Center;
 use app\models\UserSearch;
+use app\models\ChangePasswordForm;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use Date;
@@ -79,7 +80,7 @@ class UserController extends BaseController
 
         return $this->render('perfil', [
             'model' => $model,
-            'centro' => $centro,
+            'centro' => $centro
         ]);
     }
 
@@ -348,7 +349,21 @@ class UserController extends BaseController
         return $this->render('configuracion', [
             'model' => $model,
             'centro' => $centro,
+            'changePasswordModel' => new ChangePasswordForm(),
         ]);
+    }
+
+    public function actionChangePassword() {
+        $changePasswordModelForm = new ChangePasswordForm();
+        $changePasswordModelForm->load(Yii::$app->request->post());
+        $model = $this->findModel(Yii::$app->user->id);
+        $model->password = crypt($changePasswordModelForm->password, Yii::$app->params["salt"]);
+        
+        if ($model->save())
+            Yii::$app->session->setFlash('success', "Su contraseña ha sido cambiada.");
+        else
+            Yii::$app->session->setFlash('error', "Ha habido un problema al cambiar la contraseña");
+        $this->redirect(['user/perfil']);
     }
 
     public function actionVerAmigos($id){

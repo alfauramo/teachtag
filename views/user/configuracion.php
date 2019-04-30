@@ -20,9 +20,15 @@ if(isset($_GET['id'])){
 		<div class="col col-xl-9 order-xl-2 col-lg-9 order-lg-2 col-md-12 order-md-1 col-sm-12 col-12">
 			<?php
 			if(isset($_GET['cp'])){
-
+				echo $this->render('_formChangePass', [
+			        'changePasswordModel' => $changePasswordModel,
+			        'centro' => $centro
+			    ]);
 			}else if(isset($_GET['am'])) {
-
+				echo $this->render('_formAbout', [
+			        'model' => $model,
+			        'centro' => $centro
+			    ]);
 			}else{
 				echo $this->render('_formInfPer', [
 			        'model' => $model,
