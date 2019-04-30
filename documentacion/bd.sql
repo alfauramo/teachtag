@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 30-04-2019 a las 01:29:28
--- Versión del servidor: 10.1.35-MariaDB
--- Versión de PHP: 7.2.9
+-- Servidor: localhost
+-- Tiempo de generación: 30-04-2019 a las 18:41:58
+-- Versión del servidor: 10.1.38-MariaDB
+-- Versión de PHP: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -96,7 +96,7 @@ CREATE TABLE `user` (
   `name` varchar(75) NOT NULL,
   `email` varchar(100) NOT NULL,
   `birthday` date NOT NULL,
-  `descripcion` varchar(100) DEFAULT NULL,
+  `descripcion` text,
   `authKey` varchar(250) DEFAULT NULL,
   `accessToken` varchar(250) DEFAULT NULL,
   `activate` tinyint(1) DEFAULT NULL,
@@ -104,16 +104,19 @@ CREATE TABLE `user` (
   `img_perfil` varchar(255) DEFAULT NULL,
   `img_cabecera` varchar(255) DEFAULT NULL,
   `facebook` varchar(100) NOT NULL,
-  `twitter` varchar(100) NOT NULL
+  `twitter` varchar(100) NOT NULL,
+  `hobbies` text,
+  `films` text,
+  `music` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `password`, `rol`, `name`, `email`, `birthday`, `descripcion`, `authKey`, `accessToken`, `activate`, `centerCode`, `img_perfil`, `img_cabecera`, `facebook`, `twitter`) VALUES
-(121, 'admin', 'fsPZnsdpMIWNQ', 1, 'admin', 'admin@admin.com', '0000-00-00', '', 'c4e9ae3fcd89eeef986cef3f8e54bbaab751714e33e539ccb64d1d362ca6fece2217cdc2d19f38b8785f6dd54302ab23207c0de4ff50da12c3c3ca73f26f0c8aab0b310e56c08abc31fa6354ed0db0a006219a0030dcc12eabc5de0bb466b0bbba08', 'f38f8c16d4bce3e79a76980a657a296b02ce02e98a927fb8479f243e83847e767da80f52eef1cf77e7791b7fd8ff7e5935b15faf68de0ccbcce53d9c1daac0fca6629a94a957c46337f08a088e37434698ad623a914f39c50f9991282a8c35b1032887', 1, 2, NULL, NULL, '', ''),
-(128, 'alfredo', 'fs9diRKEGnxgA', 0, 'alfredo', 'alfredofauramolina@gmail.com', '1994-06-04', NULL, 'c4e9ae3fcd89eeef986cef3f8eef3954bbaab751714e33e539ccb64d1d362ca6fece2217cdc2d19f38b8785f6dd54302ab23207c0de4ff50da12c3c3ca73f26f0c8aab0b310e56c08abc31fa6354ed0db0a006219a0030dcc12eabc5de0bb466b0bbba08', 'f38f8c16d4bce3e79a76980a657a296b02ce02e98a927fb8479f243e83847e767da80f52eef1cf77e7791b7fd8ff7e5935b15faf68de0ccbcce53d9c1daac0fca6629a94a957c46337f08a088e37434698ad623a914f39c50f9991282a8c35b10328878a', 1, 2, NULL, NULL, 'https://www.facebook.com/alfredo.faura', 'https://twitter.com/Alfredo_Faura');
+INSERT INTO `user` (`id`, `username`, `password`, `rol`, `name`, `email`, `birthday`, `descripcion`, `authKey`, `accessToken`, `activate`, `centerCode`, `img_perfil`, `img_cabecera`, `facebook`, `twitter`, `hobbies`, `films`, `music`) VALUES
+(121, 'admin', 'fsPZnsdpMIWNQ', 1, 'admin', 'admin@admin.com', '0000-00-00', '', 'c4e9ae3fcd89eeef986cef3f8e54bbaab751714e33e539ccb64d1d362ca6fece2217cdc2d19f38b8785f6dd54302ab23207c0de4ff50da12c3c3ca73f26f0c8aab0b310e56c08abc31fa6354ed0db0a006219a0030dcc12eabc5de0bb466b0bbba08', 'f38f8c16d4bce3e79a76980a657a296b02ce02e98a927fb8479f243e83847e767da80f52eef1cf77e7791b7fd8ff7e5935b15faf68de0ccbcce53d9c1daac0fca6629a94a957c46337f08a088e37434698ad623a914f39c50f9991282a8c35b1032887', 1, 2, NULL, NULL, '', '', NULL, NULL, NULL),
+(128, 'alfredo', 'fs9diRKEGnxgA', 0, 'Alfredo', 'alfredofauramolina@gmail.com', '1994-06-04', 'I like to ride the bike to work, swimming, and working out. I also like reading design magazines, go to museums, and binge watching a good tv show while it’s raining outside.', 'c4e9ae3fcd89eeef986cef3f8eef3954bbaab751714e33e539ccb64d1d362ca6fece2217cdc2d19f38b8785f6dd54302ab23207c0de4ff50da12c3c3ca73f26f0c8aab0b310e56c08abc31fa6354ed0db0a006219a0030dcc12eabc5de0bb466b0bbba08', 'f38f8c16d4bce3e79a76980a657a296b02ce02e98a927fb8479f243e83847e767da80f52eef1cf77e7791b7fd8ff7e5935b15faf68de0ccbcce53d9c1daac0fca6629a94a957c46337f08a088e37434698ad623a914f39c50f9991282a8c35b10328878a', 1, 2, NULL, NULL, 'https://www.facebook.com/alfredo.faura', 'https://twitter.com/Alfredo_Faura', 'Prueba', 'Breaking Good, RedDevil, People of Interest, The Running Dead, Found,  American Guy.', 'Iron Maid, DC/AC, Megablow, The Ill, Kung Fighters, System of a Revenge.');
 
 --
 -- Índices para tablas volcadas

@@ -179,8 +179,9 @@ class UserController extends BaseController
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            
             if($model->save()){
                 Yii::$app->session->setFlash('success', "Perfil modificado correctamente.");
             } else {

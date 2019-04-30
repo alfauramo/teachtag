@@ -300,15 +300,19 @@ if(isset($_GET['id'])){
 					<ul class="widget w-personal-info item-block">
 						<li>
 							<span class="title">Sobre mí:</span>
-							<span class="text">Hi, I’m James, I’m 36 and I work as a Digital Designer for the  “Daydreams” Agency in Pier 56.</span>
+							<span class="text"><?=$model->descripcion?></span>
 						</li>
 						<li>
-							<span class="title">Mis series y películas favoritas:</span>
-							<span class="text">Breaking Good, RedDevil, People of Interest, The Running Dead, Found,  American Guy.</span>
+							<span class="title">Películas y series favoritas:</span>
+							<span class="text"><?= $model->films ?></span>
 						</li>
 						<li>
-							<span class="title">Mi música y artistas preferidos:</span>
-							<span class="text">Iron Maid, DC/AC, Megablow, The Ill, Kung Fighters, System of a Revenge.</span>
+							<span class="title">Música y artistas preferidos:</span>
+							<span class="text"><?= $model->music ?></span>
+						</li>
+						<li>
+							<span class="title">Hobbies:</span>
+							<span class="text"><?= $model->hobbies ?></span>
 						</li>
 					</ul>
 					

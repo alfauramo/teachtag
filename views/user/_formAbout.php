@@ -16,40 +16,27 @@ use kartik\datetime\DateTimePicker;
 	<div class="ui-block-content">
 					<!-- Form Hobbies and Interests -->
 					
-		<form>
+		<?php $form = ActiveForm::begin([
+	        'action' => ['/user/update', 'id' => $model->id, 'name' => 1],
+	        'id' => 'registro',
+	        'method' => 'post',
+	    ]); ?>
 			<div class="row">					
 				<div class="col col-lg-6 col-md-6 col-sm-12 col-12">
-					<div class="form-group label-floating">
-						<label class="control-label">Sobre mí</label>
-						<textarea class="form-control" placeholder="">I like to ride the bike to work, swimming, and working out. I also like reading design magazines, go to museums, and binge watching a good tv show while it’s raining outside.
-						</textarea>
-						<span class="material-input"></span>
-					</div>
-					<div class="form-group label-floating">
-						<label class="control-label">Películas y series favoritas</label>
-						<textarea class="form-control" placeholder="">Breaking Good, RedDevil, People of Interest, The Running Dead, Found,  American Guy.
-						</textarea>
-						<span class="material-input"></span>
-					</div>
-					<button class="btn btn-primary btn-lg full-width">Guardar</button>
+					<?= $form->field($model, 'descripcion')->textarea(['rows' => '3']) ?>
+					
+					<?= $form->field($model, 'films')->textarea(['rows' => '3']) ?>
+					
+					<?= Html::submitButton('Guardar',  ['class' => 'btn btn-primary btn-lg full-width'])?>
 				</div>					
 				<div class="col col-lg-6 col-md-6 col-sm-12 col-12">
-					<div class="form-group label-floating">
-						<label class="control-label">Hobbies</label>
-						<textarea class="form-control" placeholder="">I like to ride the bike to work, swimming, and working out. I also like reading design magazines, go to museums, and binge watching a good tv show while it’s raining outside.
-						</textarea>
-						<span class="material-input"></span>
-					</div>
-					<div class="form-group label-floating">
-						<label class="control-label">Música y artistas preferidos</label>
-						<textarea class="form-control" placeholder="">Breaking Good, RedDevil, People of Interest, The Running Dead, Found,  American Guy.
-						</textarea>
-						<span class="material-input"></span>
-					</div>
-					<button class="btn btn-secondary btn-lg full-width">Volver sin guardar</button>
+					<?= $form->field($model, 'hobbies')->textarea(['rows' => '3']) ?>
+					
+					<?= $form->field($model, 'music')->textarea(['rows' => '3']) ?>
+					<?= Html::a('Volver sin guardar', ['user/perfil'], ['class' => 'btn btn-secondary btn-lg full-width']) ?>
 					
 				</div>
-		</form>
+		<?php ActiveForm::end(); ?>
 	</div>
 					
 	<!-- ... end Form Hobbies and Interests -->

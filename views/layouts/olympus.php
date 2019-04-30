@@ -94,7 +94,7 @@ AppAsset::register($this);
                 <li>
                     <?=
                     Html::a('<svg class="olymp-menu-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-menu-icon"></use></svg>
-                        <span>Configuración</span>', ['user/ajustes'])
+                        <span>Configuración</span>', ['user/configuracion'])
                     ?>
                 </li>
                 <li>
@@ -411,7 +411,7 @@ AppAsset::register($this);
                                 <li>
                                     <?=
                                     Html::a('<svg class="olymp-menu-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-menu-icon"></use></svg>
-                                        <span>Configuración</span>',['user/ajustes'])
+                                        <span>Configuración</span>',['user/configuracion'])
                                     ?>
                                 </li>
                                 <li>
