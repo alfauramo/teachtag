@@ -367,6 +367,20 @@ class UserController extends BaseController
         $this->redirect(['user/perfil']);
     }
 
+    public function actionLike($id){
+        $model = User::findOne(Yii::$app->user->id);
+        $model->likeTags[] = $id;
+        $model->save();
+        $this->goBack();
+    }
+
+    public function actionUnlike($id){
+        $model = User::findOne(Yii::$app->user->id);
+        $this->deleteElement($id, $model->likeTags);
+        $model->save();
+        $this->goBack();
+    }
+
     public function actionCompartir($id){
         $model = User::findOne(Yii::$app->user->id);
         $model->editableTags[] = $id;

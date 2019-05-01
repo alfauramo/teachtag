@@ -45,42 +45,40 @@
 }
 
 /* line 41, ../../sass/custom.scss */
-.shared {
-  margin-top: 2%;
-  margin-left: 2%;
-  color: #9b6161;
+p.more {
+  font-size: 100% !important;
 }
 
-/* line 47, ../../sass/custom.scss */
+/* line 45, ../../sass/custom.scss */
 #foto_perfil {
   width: 120px;
   height: 120px;
 }
 
-/* line 52, ../../sass/custom.scss */
-#compartido.post-add-icon, span#compartido {
+/* line 50, ../../sass/custom.scss */
+#liked, #compartido.post-add-icon, span#compartido {
   color: #ff5e3a !important;
   fill: #ff5e3a !important;
 }
-/* line 55, ../../sass/custom.scss */
-#compartido.post-add-icon:hover, span#compartido:hover {
+/* line 53, ../../sass/custom.scss */
+#liked:hover, #compartido.post-add-icon:hover, span#compartido:hover {
   fill: #c2c5d9 !important;
   color: #c2c5d9 !important;
 }
 
-/* line 61, ../../sass/custom.scss */
-.post-control-button #compartido_but {
+/* line 59, ../../sass/custom.scss */
+.post-control-button #compartido_but, .post-control-button #liked_but {
   background: #ff5e3a !important;
 }
 
 @media (min-width: 768px) {
-  /* line 66, ../../sass/custom.scss */
+  /* line 64, ../../sass/custom.scss */
   .header .page-title {
     display: block !important;
   }
 }
 @media (min-width: 1200px) {
-  /* line 72, ../../sass/custom.scss */
+  /* line 70, ../../sass/custom.scss */
   .profile-menu #btn_logout {
     display: block !important;
   }

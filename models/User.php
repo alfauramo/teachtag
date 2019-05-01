@@ -26,6 +26,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 
 
     public $editableTags;
+    public $likeTags;
     public function behaviors()
     {
 
@@ -36,6 +37,18 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
                     [
                         'editableAttribute' => 'editableTags', // Editable attribute name
                         'table' => 'user_has_tag', // Name of the junction table
+                        'ownAttribute' => 'user_id', // Name of the column in junction table that represents current model
+                        'relatedModel' => Tag::className(), // Related model class
+                        'relatedAttribute' => 'tag_id', // Name of the column in junction table that represents related model
+                    ],
+                ],
+            ],
+            [
+                'class' => ManyToManyBehavior::className(),
+                'relations' => [
+                    [
+                        'editableAttribute' => 'likeTags', // Editable attribute name
+                        'table' => 'user_like_tag', // Name of the junction table
                         'ownAttribute' => 'user_id', // Name of the column in junction table that represents current model
                         'relatedModel' => Tag::className(), // Related model class
                         'relatedAttribute' => 'tag_id', // Name of the column in junction table that represents related model

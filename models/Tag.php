@@ -20,6 +20,7 @@ class Tag extends \yii\db\ActiveRecord
 {
 
     public $editableUsers;
+    public $likeUsers;
     public function behaviors()
     {
 
@@ -36,8 +37,19 @@ class Tag extends \yii\db\ActiveRecord
                     ],
                 ],
             ],
+            [
+                'class' => ManyToManyBehavior::className(),
+                'relations' => [
+                    [
+                        'editableAttribute' => 'likeUsers',
+                        'table' => 'user_like_tag',
+                        'ownAttribute' => 'tag_id', // Name of the column in junction table that represents current model
+                        'relatedModel' => Tag::className(), // Related model class
+                        'relatedAttribute' => 'user_id', // Name of the column in junction table that represents related model
+                    ],
+                ],
+            ]
         ];
-
         return array_merge(parent::behaviors(), $behaviors);
     }
 
@@ -106,12 +118,9 @@ class Tag extends \yii\db\ActiveRecord
             $user_c = User::findOne($id);
         }
         $user = User::findOne($this->creator_id);
-        echo "<div class='ui-block'>";
+        echo "<div class='ui-block'>
 
-        if(isset($user_c))
-            echo "<p class='shared'>Compartido por <b>@".$user_c->username."</b></p>";
-
-        echo            "<!-- Post -->
+        <!-- Post -->
                     
                     <article class='hentry post'>
                     
@@ -123,10 +132,10 @@ class Tag extends \yii\db\ActiveRecord
                                     echo $user->img_perfil; 
                                 echo "' alt='author'>
                     
-                                <div class='author-date'>
-                                    <a class='h6 post__author-name fn' href='02-ProfilePage.html'>";
-                                echo "$user->name </a>
-                                    <div class='post__date'>
+                                <div class='author-date'>";
+                                echo Html::a($user->name,['user/perfil','id' => $this->creator_id],['class' => 'h6 post__author-name fn']);
+
+                                echo "<div class='post__date'>
                                         <time class='published' datetime='";
                                         echo $this->fecha;
                                 echo "'>
@@ -134,6 +143,9 @@ class Tag extends \yii\db\ActiveRecord
                                         </time>
                                     </div>
                                 </div>";
+
+        if(isset($user_c))
+            echo "<p class='more'>Compartido por <b>@".$user_c->username."</b></p>";
                             if(!isset($user_c))
                                 echo "<div class='more'>
                                     <svg class='olymp-three-dots-icon'>
@@ -141,10 +153,10 @@ class Tag extends \yii\db\ActiveRecord
                                     </svg>
                                     <ul class='more-dropdown'>
                                         <li>
-                                            <a href='#'>Editar Post</a>
+                                            <a href='#'>Editar</a>
                                         </li>
                                         <li>
-                                            <a href='#'>Eliminar Post</a>
+                                            <a href='#'>Eliminar</a>
                                         </li>
                                     </ul>
                                 </div>";
@@ -154,50 +166,20 @@ class Tag extends \yii\db\ActiveRecord
                             <p>$this->texto
                             </p>
                     
-                            <div class='post-additional-info inline-items'>
-                    
-                                <a href='#' class='post-add-icon inline-items' >
-                                    <svg class='olymp-heart-icon'>
-                                        <use xlink:href='theme/svg-icons/sprites/icons.svg#olymp-heart-icon'></use>
-                                    </svg>
-                                    <span>8</span>
-                                </a>
-                    
-                                <ul class='friends-harmonic'>
-                                    <li>
-                                        <a href='#'>
-                                            <img src='theme/img/friend-harmonic7.jpg' alt='friend'>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href='#'>
-                                            <img src='theme/img/friend-harmonic8.jpg' alt='friend'>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href='#'>
-                                            <img src='theme/img/friend-harmonic9.jpg' alt='friend'>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href='#'>
-                                            <img src='theme/img/friend-harmonic10.jpg' alt='friend'>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href='#'>
-                                            <img src='theme/img/friend-harmonic11.jpg' alt='friend'>
-                                        </a>
-                                    </li>
-                                </ul>
-                    
-                                <div class='names-people-likes'>
-                                    <a href='#'>Jenny</a>, <a href='#'>Robert</a> and
-                                    <br>6 more liked this
-                                </div>
-                    
-                    
-                                <div class='comments-shared'>";
+                            <div class='post-additional-info inline-items'>";
+
+                            if(array_search(Yii::$app->user->id, $this->likeUsers) !== false){
+                                echo Html::a("<svg class='olymp-heart-icon'>
+                                            <use xlink:href='theme/svg-icons/sprites/icons.svg#olymp-heart-icon'></use>
+                                        </svg>
+                                    <span id='liked'>".count($this->likeUsers)."</span>",['user/unlike', 'id' => $this->id], ['class' => 'post-add-icon inline-items', 'id' => 'liked']);
+                            }else{
+                                echo Html::a("<svg class='olymp-heart-icon'>
+                                            <use xlink:href='theme/svg-icons/sprites/icons.svg#olymp-heart-icon'></use>
+                                        </svg>
+                                    <span>".count($this->likeUsers)."</span>",['user/like', 'id' => $this->id], ['class' => 'post-add-icon inline-items']);
+                            }
+                            echo "<div class='comments-shared'>";
 
                                 if(array_search(Yii::$app->user->id, $this->editableUsers)){
                                     echo Html::a("<svg class='olymp-share-icon'>
@@ -216,14 +198,17 @@ class Tag extends \yii\db\ActiveRecord
                     
                             </div>
                     
-                            <div class='control-block-button post-control-button'>
-                    
-                                <a href='#' class='btn btn-control'>
-                                    <svg class='olymp-like-post-icon'>
+                            <div class='control-block-button post-control-button'>";
+
+                            if(array_search(Yii::$app->user->id, $this->likeUsers) !== false){
+                                echo Html::a("<svg class='olymp-like-post-icon'>
                                         <use xlink:href='theme/svg-icons/sprites/icons.svg#olymp-like-post-icon'></use>
-                                    </svg>
-                                </a>
-                            ";
+                                    </svg>",['user/unlike', 'id' => $this->id], ['class' => 'btn btn-control', 'id' => 'liked_but']);
+                            }else{
+                                echo Html::a("<svg class='olymp-like-post-icon'>
+                                        <use xlink:href='theme/svg-icons/sprites/icons.svg#olymp-like-post-icon'></use>
+                                    </svg>",['user/like', 'id' => $this->id], ['class' => 'btn btn-control']);
+                            }
 
                             if(array_search(Yii::$app->user->id, $this->editableUsers)){
                                 echo Html::a("<svg class='olymp-share-icon'>
