@@ -367,13 +367,25 @@ class UserController extends BaseController
         $this->redirect(['user/perfil']);
     }
 
+    public function actionCompartir($id){
+        $model = User::findOne(Yii::$app->user->id);
+        $model->editableTags[] = $id;
+        $model->save();
+        $this->goBack();
+    }
+
     public function actionDejarCompartir($id){
         $model = User::findOne(Yii::$app->user->id);
-        echo "<prev>";
-        var_dump($model->editableTags);
-        array_diff( $model->editableTags, $id );
-        var_dump($model->editableTags);
-        die();
+        $this->deleteElement($id, $model->editableTags);
+        $model->save();
+        $this->goBack();
+    }
+
+    protected function deleteElement($element, &$array){
+        $index = array_search($element, $array);
+        if($index !== false){
+            unset($array[$index]);
+        }
     }
 
     public function actionVerAmigos($id){

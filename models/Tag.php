@@ -133,9 +133,9 @@ class Tag extends \yii\db\ActiveRecord
                                             19 hours ago
                                         </time>
                                     </div>
-                                </div>
-                    
-                                <div class='more'>
+                                </div>";
+                            if(!isset($user_c))
+                                echo "<div class='more'>
                                     <svg class='olymp-three-dots-icon'>
                                         <use xlink:href='theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon'></use>
                                     </svg>
@@ -147,9 +147,9 @@ class Tag extends \yii\db\ActiveRecord
                                             <a href='#'>Eliminar Post</a>
                                         </li>
                                     </ul>
-                                </div>
+                                </div>";
                     
-                            </div>
+                            echo "</div>
                     
                             <p>$this->texto
                             </p>
@@ -203,15 +203,12 @@ class Tag extends \yii\db\ActiveRecord
                                     echo Html::a("<svg class='olymp-share-icon'>
                                             <use xlink:href='theme/svg-icons/sprites/icons.svg#olymp-share-icon'></use>
                                         </svg>
-                                        <span id='compartido'>24</span>",['user/dejar-compartir', 'id' => $this->id], ['class' => 'post-add-icon inline-items', 'id' => 'compartido']);
+                                        <span id='compartido'>".(count($this->editableUsers)-1)."</span>",['user/dejar-compartir', 'id' => $this->id], ['class' => 'post-add-icon inline-items', 'id' => 'compartido']);
                                 }else{
-                    
-                                echo "    <a href='#' class='post-add-icon inline-items'>
-                                        <svg class='olymp-share-icon'>
+                                    echo Html::a("<svg class='olymp-share-icon'>
                                             <use xlink:href='theme/svg-icons/sprites/icons.svg#olymp-share-icon'></use>
                                         </svg>
-                                        <span>24</span>
-                                    </a>";
+                                        <span>".(count($this->editableUsers)-1)."</span>",['user/compartir', 'id' => $this->id], ['class' => 'post-add-icon inline-items']);
                                 }
                                 echo "
                                 </div>
@@ -226,12 +223,18 @@ class Tag extends \yii\db\ActiveRecord
                                         <use xlink:href='theme/svg-icons/sprites/icons.svg#olymp-like-post-icon'></use>
                                     </svg>
                                 </a>
-                    
-                                <a href='#' class='btn btn-control'>
-                                    <svg class='olymp-share-icon'>
-                                        <use xlink:href='theme/svg-icons/sprites/icons.svg#olymp-share-icon'></use>
-                                    </svg>
-                                </a>
+                            ";
+
+                            if(array_search(Yii::$app->user->id, $this->editableUsers)){
+                                echo Html::a("<svg class='olymp-share-icon'>
+                                                <use xlink:href='theme/svg-icons/sprites/icons.svg#olymp-share-icon'></use>
+                                            </svg>",['user/dejar-compartir', 'id' => $this->id], ['class' => 'btn btn-control', 'id' => 'compartido_but']);
+                            }else{
+                                echo Html::a("<svg class='olymp-share-icon'>
+                                                <use xlink:href='theme/svg-icons/sprites/icons.svg#olymp-share-icon'></use>
+                                            </svg>",['user/compartir', 'id' => $this->id], ['class' => 'btn btn-control']);
+                            }
+                            echo "
                     
                             </div>
                     

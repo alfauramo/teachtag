@@ -70,9 +70,9 @@ class UserSearch extends User
             ->andFilterWhere(['like', 'img_cabecera', $this->img_cabecera])
             ->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'email', $this->email])
-            ->andFilterWhere(['like', 'descripcion', $this->descripcion]);
-            ->andFilterWhere(['like', 'films', $this->films]);
-            ->andFilterWhere(['like', 'music', $this->music]);
+            ->andFilterWhere(['like', 'descripcion', $this->descripcion])
+            ->andFilterWhere(['like', 'films', $this->films])
+            ->andFilterWhere(['like', 'music', $this->music])
             ->andFilterWhere(['like', 'hobbies', $this->hobbies]);
 
         return $dataProvider;
