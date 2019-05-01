@@ -1,0 +1,74 @@
+.error-registro{
+	color: #a94442;
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+.profile-menu li > div{
+	color:white !important;
+	
+}
+
+.profile-menu li a.btn {
+
+	color: white !important;
+	&:hover{
+		color: #515365 !important;
+	}
+}
+
+#svg_cupcake {
+	width: 26px;
+	height: 20px;
+}
+
+#shite-header.fixed-logo {
+	position: fixed;
+	z-index: 22;
+	width: 70px;
+}
+
+.fixed-logo .logo {
+	height: 70px;
+	background-color: #ff5e3a;
+	padding: 15px;
+}
+
+#btn_logout {
+	display: none;
+}
+
+.shared {
+	margin-top: 2%;
+	margin-left: 2%;
+	color: #9b6161;
+}
+
+#foto_perfil{
+	width: 120px;
+	height: 120px;
+}
+
+#compartido.post-add-icon, span#compartido{
+	color:  #ff5e3a !important;
+	fill:  #ff5e3a !important;
+	&:hover{
+	    fill: #c2c5d9 !important;
+	    color: #c2c5d9 !important;
+	}
+}
+
+
+
+@media (min-width: 768px) { 
+	.header .page-title {
+    	display: block !important;
+	}
+}
+
+@media (min-width: 1200px) {
+	.profile-menu #btn_logout {
+    	display: block !important;
+	}
+}
+

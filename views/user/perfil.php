@@ -11,7 +11,11 @@ if(isset($_GET['id'])){
 	if($_GET['id'] != Yii::$app->user->id){
 		$this->title = "Perfil de ".$model->name;
 	}
+	$id = $_GET['id'];
+} else {
+	$id = Yii::$app->user->id;
 }
+
 
 ?>
 
@@ -21,7 +25,8 @@ if(isset($_GET['id'])){
 			<div class="ui-block">
 				<div class="top-header">
 					<div class="top-header-thumb">
-						<img src="theme/img/top-header1.jpg" alt="nature">
+						<img src="<?= $model->img_cabecera === null ?  'theme/img/top-header1.jpg' : $model->img_cabecera ?>
+						" alt="nature">
 					</div>
 					<div class="profile-section">
 						<div class="row">
@@ -138,7 +143,7 @@ if(isset($_GET['id'])){
 					</div>
 					<div class="top-header-author">
 						<a href="02-ProfilePage.html" class="author-thumb">
-							<img src="<?= $model->img_perfil === null ?  './img/perfil.png' : $model->img_perfil ?>" width="120" alt="author">
+							<img id="foto_perfil" src="<?= $model->img_perfil === null ?  './img/perfil.png' : $model->img_perfil ?>" alt="author">
 						</a>
 						<div class="author-content">
 							<a href="02-ProfilePage.html" class="h4 author-name"><?= $model->name; ?></a>
@@ -159,120 +164,7 @@ if(isset($_GET['id'])){
 		<div class="col col-xl-6 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-12">
 			<div id="newsfeed-items-grid">
 
-				<div class="ui-block">
-					<!-- Post -->
-					
-					<article class="hentry post">
-					
-							<div class="post__author author vcard inline-items">
-								<img src="<?= $model->img_perfil === null ?  './img/perfil.png' : $model->img_perfil ?>" width="120" alt="author">
-					
-								<div class="author-date">
-									<a class="h6 post__author-name fn" href="02-ProfilePage.html"><?= $model->name ?></a>
-									<div class="post__date">
-										<time class="published" datetime="2017-03-24T18:18">
-											19 hours ago
-										</time>
-									</div>
-								</div>
-					
-								<div class="more">
-									<svg class="olymp-three-dots-icon">
-										<use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
-									</svg>
-									<ul class="more-dropdown">
-										<li>
-											<a href="#">Editar Post</a>
-										</li>
-										<li>
-											<a href="#">Eliminar Post</a>
-										</li>
-									</ul>
-								</div>
-					
-							</div>
-					
-							<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-								pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-								mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-								accusantium doloremque.
-							</p>
-					
-							<div class="post-additional-info inline-items">
-					
-								<a href="#" class="post-add-icon inline-items">
-									<svg class="olymp-heart-icon">
-										<use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-heart-icon"></use>
-									</svg>
-									<span>8</span>
-								</a>
-					
-								<ul class="friends-harmonic">
-									<li>
-										<a href="#">
-											<img src="theme/img/friend-harmonic7.jpg" alt="friend">
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<img src="theme/img/friend-harmonic8.jpg" alt="friend">
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<img src="theme/img/friend-harmonic9.jpg" alt="friend">
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<img src="theme/img/friend-harmonic10.jpg" alt="friend">
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<img src="theme/img/friend-harmonic11.jpg" alt="friend">
-										</a>
-									</li>
-								</ul>
-					
-								<div class="names-people-likes">
-									<a href="#">Jenny</a>, <a href="#">Robert</a> and
-									<br>6 more liked this
-								</div>
-					
-					
-								<div class="comments-shared">
-					
-									<a href="#" class="post-add-icon inline-items">
-										<svg class="olymp-share-icon">
-											<use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-share-icon"></use>
-										</svg>
-										<span>24</span>
-									</a>
-								</div>
-					
-					
-							</div>
-					
-							<div class="control-block-button post-control-button">
-					
-								<a href="#" class="btn btn-control">
-									<svg class="olymp-like-post-icon">
-										<use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-like-post-icon"></use>
-									</svg>
-								</a>
-					
-								<a href="#" class="btn btn-control">
-									<svg class="olymp-share-icon">
-										<use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-share-icon"></use>
-									</svg>
-								</a>
-					
-							</div>
-					
-						</article>
-					
-					<!-- .. end Post -->				</div>
+				<?php $model->imprimir($id); ?>
 			</div>
 
 			<a id="load-more-button" href="#" class="btn btn-control btn-more" data-load-link="items-to-load.html" data-container="newsfeed-items-grid">

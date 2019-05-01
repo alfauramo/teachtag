@@ -367,6 +367,15 @@ class UserController extends BaseController
         $this->redirect(['user/perfil']);
     }
 
+    public function actionDejarCompartir($id){
+        $model = User::findOne(Yii::$app->user->id);
+        echo "<prev>";
+        var_dump($model->editableTags);
+        array_diff( $model->editableTags, $id );
+        var_dump($model->editableTags);
+        die();
+    }
+
     public function actionVerAmigos($id){
         $model = User::findOne($id);
         var_dump("Amigos de ".$model->name);
@@ -408,15 +417,14 @@ class UserController extends BaseController
     }
 
     public function actionTest(){
-        $model = new User();
-        $model->username = "alfredo";
-        $model->password = ".A2864b2.";
-        $model->name = "alfredo"; 
-        $model->birthday = "1994-06-04";
-        $model->rol = 0;
-        $model->centerCode = 2;
-        var_dump($model->save());
+        //Probando cómo relacionar tags y usuarios a la hora de compartir.
+        //Si añado un id de tag al array de editableTags del usuario, y mando un safe, éste se guarda. Ésto se puede interpretar como compartido si creamos un $model de tag con el id del array de editable tags y el user_id no es el mismo que lo creó, entonces es un tag compartido.
+        $model = User::findOne(128);
+        $tags = $model->tags;
+        foreach($tags as $t){
+            $t->dibujar();
+            
+        }
         die();
-
     }
 }

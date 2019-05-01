@@ -1,81 +1,76 @@
-/* line 1, ../../sass/custom.scss */
+/* line 1, ../sass/custom.scss */
 .error-registro {
   color: #a94442;
   margin-top: 5px;
   margin-bottom: 10px;
 }
 
-/* line 7, ../../sass/custom.scss */
+/* line 7, ../sass/custom.scss */
 .profile-menu li > div {
   color: white !important;
 }
 
-/* line 12, ../../sass/custom.scss */
+/* line 12, ../sass/custom.scss */
 .profile-menu li a.btn {
   color: white !important;
 }
-/* line 15, ../../sass/custom.scss */
+/* line 15, ../sass/custom.scss */
 .profile-menu li a.btn:hover {
   color: #515365 !important;
 }
 
-/* line 20, ../../sass/custom.scss */
+/* line 20, ../sass/custom.scss */
 #svg_cupcake {
   width: 26px;
   height: 20px;
 }
 
-/* line 25, ../../sass/custom.scss */
+/* line 25, ../sass/custom.scss */
 #shite-header.fixed-logo {
   position: fixed;
   z-index: 22;
   width: 70px;
 }
 
-/* line 31, ../../sass/custom.scss */
+/* line 31, ../sass/custom.scss */
 .fixed-logo .logo {
   height: 70px;
   background-color: #ff5e3a;
   padding: 15px;
 }
 
-/* line 37, ../../sass/custom.scss */
+/* line 37, ../sass/custom.scss */
 #btn_logout {
   display: none;
 }
 
-/* line 41, ../../sass/custom.scss */
+/* line 41, ../sass/custom.scss */
 .shared {
   margin-top: 2%;
   margin-left: 2%;
   color: #9b6161;
 }
 
-/* line 47, ../../sass/custom.scss */
+/* line 47, ../sass/custom.scss */
 #foto_perfil {
   width: 120px;
   height: 120px;
 }
 
-/* line 52, ../../sass/custom.scss */
-#compartido.post-add-icon, span#compartido {
-  color: #ff5e3a !important;
-  fill: #ff5e3a !important;
-}
-/* line 55, ../../sass/custom.scss */
-#compartido.post-add-icon:hover, span#compartido:hover {
-  fill: #c2c5d9 !important;
-  color: #c2c5d9 !important;
+/* line 52, ../sass/custom.scss */
+#compartido a, #compartido span {
+  color: #ff5e3a;
+  fill: #ff5e3a;
 }
 
 @media (min-width: 768px) {
-  /* line 64, ../../sass/custom.scss */
+  /* line 59, ../sass/custom.scss */
   .header .page-title {
     display: block !important;
   }
 }
 @media (min-width: 1200px) {
-  /* line 70, ../../sass/custom.scss */
+  /* line 65, ../sass/custom.scss */
   .profile-menu #btn_logout {
     display: block !important;
   }

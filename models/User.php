@@ -5,6 +5,7 @@ namespace app\models;
 use Yii;
 use yii\web\IdentityInterface;
 use app\models\Center;
+use arogachev\ManyToMany\behaviors\ManyToManyBehavior;
 /**
  * This is the model class for table "user".
  *
@@ -23,6 +24,28 @@ use app\models\Center;
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
 
+
+    public $editableTags;
+    public function behaviors()
+    {
+
+        $behaviors = [
+            [
+                'class' => ManyToManyBehavior::className(),
+                'relations' => [
+                    [
+                        'editableAttribute' => 'editableTags', // Editable attribute name
+                        'table' => 'user_has_tag', // Name of the junction table
+                        'ownAttribute' => 'user_id', // Name of the column in junction table that represents current model
+                        'relatedModel' => Tag::className(), // Related model class
+                        'relatedAttribute' => 'tag_id', // Name of the column in junction table that represents related model
+                    ],
+                ],
+            ]
+        ];
+
+        return array_merge(parent::behaviors(), $behaviors);
+    }
     public static function getDb()
     {
         return Yii::$app->db;
@@ -49,6 +72,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
              [['username'], 'string', 'skipOnEmpty' => true],
              [['email'], 'string', 'max' => 100],
              [['img_perfil', 'img_cabecera', 'facebook', 'twitter'], 'string', 'max' => 255],
+             [['editableTags'], 'safe'],
              [['authKey', 'accessToken'], 'string', 'max' => 250],
              [['centerCode'], 'exist', 'skipOnError' => true, 'targetClass' => Center::className(), 'targetAttribute' => ['centerCode' => 'id']],
          ];
@@ -77,6 +101,15 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     { 
         return $this->hasOne(Center::className(), ['id' => 'centerCode']); 
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTags()
+    {
+        return $this->hasMany(Tag::className(), ['id' => 'tag_id'])
+            ->viaTable('user_has_tag', ['user_id' => 'id']);
+    }
     
     /**
      * {@inheritdoc}
@@ -99,7 +132,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'img_perfil' => 'Foto perfil',
             'img_cabecera' => 'Imagen de cabecera',
             'facebook' => 'Tu cuenta de Facebook',
-            'twitter' => 'Tu cuenta de Twitter'
+            'twitter' => 'Tu cuenta de Twitter',
+            'editableTags' => 'Tags',
         ];
     }
 
@@ -230,4 +264,16 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             $this->birthday = $birthday;
         }
     }
+
+    public function imprimir($id = false, $cant = false){
+        if($id == false)
+            $id = Yii::$app->user->id;
+        $model = User::findOne($id);
+        $tags = $model->tags;
+        foreach($tags as $t){
+            $t->dibujar($id);
+        }
+    }
+
+    
 }

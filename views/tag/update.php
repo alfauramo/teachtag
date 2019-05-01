@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = 'Editar';
 <div class="tag-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
+    <?php var_dump($model->users); ?>
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
