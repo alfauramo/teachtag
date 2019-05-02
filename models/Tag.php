@@ -152,11 +152,11 @@ class Tag extends \yii\db\ActiveRecord
                                         <use xlink:href='theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon'></use>
                                     </svg>
                                     <ul class='more-dropdown'>
-                                        <li>
-                                            <a href='#'>Editar</a>
+                                        <li>";
+            echo Html::a('Editar',['tag/update', 'id' => $this->id])."
                                         </li>
-                                        <li>
-                                            <a href='#'>Eliminar</a>
+                                        <li>";
+            echo Html::a('Eliminar',['tag/delete', 'id' => $this->id],['method' => 'post']) ."
                                         </li>
                                     </ul>
                                 </div>";

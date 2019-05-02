@@ -81,6 +81,7 @@ class TagController extends BaseController
             
             $model->fecha = $fecha->format('Y-m-d H:i:s');
             
+            $model->creator_id = Yii::$app->user->id;
             if($model->save()) {
                 return $this->redirect(['index']);
             }else{
@@ -105,7 +106,8 @@ class TagController extends BaseController
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            Yii::$app->session->setFlash('success', "Tag modificado satisfactoriamente");
+            return $this->redirect(['site/index']);
         }
 
         return $this->render('update', [
@@ -124,7 +126,7 @@ class TagController extends BaseController
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['site/index']);
     }
 
     /**

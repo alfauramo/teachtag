@@ -838,10 +838,6 @@ AppAsset::register($this);
     <img src="theme/svg-icons/back-to-top.svg" alt="arrow" class="back-icon">
 </a>
 <div class="header-spacer"></div>
-<footer>
-    <span><a href="#">TeachTag</a> © <?= date('Y') ?></span>
-    <span class="ml-auto">Realizado por Alfredo Faura</span>
-</footer>
 <?php $this->endBody() ?>
 </body>
 </html>
