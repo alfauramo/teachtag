@@ -409,24 +409,9 @@ class UserController extends BaseController
         $this->goBack();
     }
 
-    protected function deleteElement($element, &$array){
-        $index = array_search($element, $array);
-        if($index !== false){
-            unset($array[$index]);
-        }
-    }
-
     public function actionVerAmigos($id){
         $model = User::findOne($id);
         var_dump("Amigos de ".$model->name);
-        die();
-    }
-
-    public function actionFotos($id){
-        $model = User::findOne($id);
-        //Puede que ésto lo sustituya creando un controlador y modelo llamado fotos.
-
-        var_dump("Fotos de ".$model->name);
         die();
     }
 
@@ -443,17 +428,58 @@ class UserController extends BaseController
     }
 
     public function actionBloquear($id){
-        $model = User::findOne($id);
+        $model = User::findOne(Yii::$app->user->id);
 
-        if($id == Yii::$app->user->id){
-            var_dump("No te puedes bloquear a ti mismo, gilipollas");
-            die();
-        }else {
-            var_dump("Bloqueando a ".$model->name." como amistad");
-            die();    
+        if($id !== Yii::$app->user->id){
+            $model->blockeds[] = $id;
+            if(in_array($id,$model->friends)){
+                $model->eliminar($id);
+            }
+            $model->save();
         }
         
+        return $this->redirect(Yii::$app->request->referrer);
+    }
+
+    public function actionDesbloquear($id){
+        $model = User::findOne(Yii::$app->user->id);
+
+        if($id !== Yii::$app->user->id){
+            $model->desbloquear($id);
+            $model->save();
+        }
         
+        return $this->redirect(Yii::$app->request->referrer);
+    }
+
+    public function actionEnviarPeticion($id){
+        $model = User::findOne($id);
+
+        if($id !== Yii::$app->user->id){
+            $model->peticiones[] = Yii::$app->user->id;
+            $model->save();
+        }
+        
+        return $this->redirect(Yii::$app->request->referrer);
+    }
+
+    public function actionEliminarPeticion($id){
+        $model = User::findOne(Yii::$app->user->id);
+
+        if($id !== Yii::$app->user->id){
+            $model->eliminarPeticion($id);
+            $model->save();
+        }
+        
+        return $this->redirect(Yii::$app->request->referrer);
+    }
+
+    public function actionFotos($id){
+        $model = User::findOne($id);
+        //Puede que ésto lo sustituya creando un controlador y modelo llamado fotos.
+
+        var_dump("Fotos de ".$model->name);
+        die();
     }
 
     public function actionTest(){

@@ -11,6 +11,7 @@ use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use app\models\User;
 
+$model = User::findOne(Yii::$app->user->id);
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -197,7 +198,7 @@ if(Yii::$app->user->isGuest){
 
             <div class="control-icon more has-items">
                 <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-                <div class="label-avatar bg-blue">6</div>
+                <div class="label-avatar bg-blue"><?= count($model->peticiones) ?></div>
 
                 <div class="more-dropdown more-with-triangle triangle-top-center">
                     <div class="ui-block-title ui-block-title-small">
@@ -501,7 +502,7 @@ if(Yii::$app->user->isGuest){
                 <a class="nav-link" data-toggle="tab" href="#request" role="tab">
                     <div class="control-icon has-items">
                         <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-                        <div class="label-avatar bg-blue">6</div>
+                        <div class="label-avatar bg-blue"><?=count($model->peticiones)?></div>
                     </div>
                 </a>
             </li>

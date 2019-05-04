@@ -31,6 +31,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public $editableTags;
     public $likeTags;
     public $friends;
+    public $blockeds;
+    public $peticiones;
     public function behaviors()
     {
 
@@ -68,6 +70,30 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
                         'ownAttribute' => 'user_id', // Name of the column in junction table that represents current model
                         'relatedModel' => User::className(), // Related model class
                         'relatedAttribute' => 'friend_id', // Name of the column in junction table that represents related model
+                    ],
+                ],
+            ],
+            [
+                'class' => ManyToManyBehavior::className(),
+                'relations' => [
+                    [
+                        'editableAttribute' => 'blockeds', // Editable attribute name
+                        'table' => 'user_block_other', // Name of the junction table
+                        'ownAttribute' => 'user_id', // Name of the column in junction table that represents current model
+                        'relatedModel' => User::className(), // Related model class
+                        'relatedAttribute' => 'blocked_id', // Name of the column in junction table that represents related model
+                    ],
+                ],
+            ],
+            [
+                'class' => ManyToManyBehavior::className(),
+                'relations' => [
+                    [
+                        'editableAttribute' => 'peticiones', // Editable attribute name
+                        'table' => 'user_has_request', // Name of the junction table
+                        'ownAttribute' => 'uid_dest', // Name of the column in junction table that represents current model
+                        'relatedModel' => User::className(), // Related model class
+                        'relatedAttribute' => 'uid_ori', // Name of the column in junction table that represents related model
                     ],
                 ],
             ]
@@ -162,6 +188,15 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return $this->hasMany(User::className(), ['friend_id' => 'id'])
             ->viaTable('user_has_friends', ['user_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBloqueados()
+    {
+        return $this->hasMany(User::className(), ['blocked_id' => 'id'])
+            ->viaTable('user_block_other', ['user_id' => 'id']);
     }
 
     /**
@@ -358,4 +393,25 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         ->execute();
         return $this->save();
     }
+
+    public function desbloquear($id){
+        Yii::$app->db->createCommand()
+            ->delete('user_block_other', [
+                'user_id' => $this->id,
+                'blocked_id' => $id,
+            ])
+            ->execute();
+    }
+
+    public function eliminarPeticion($id){
+
+        Yii::$app->db->createCommand()
+            ->delete('user_has_request', [
+                'uid_ori' => $this->id,
+                'uid_dest' => $id,
+            ])
+            ->execute();
+    }
+
+
 }

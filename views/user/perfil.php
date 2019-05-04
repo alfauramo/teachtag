@@ -12,6 +12,7 @@ if(isset($_GET['id'])){
 		$this->title = "Perfil de ".$model->name;
 	}
 	$id = $_GET['id'];
+	$usuario = User::findOne(Yii::$app->user->id);
 } else {
 	$id = Yii::$app->user->id;
 }
@@ -63,8 +64,11 @@ if(isset($_GET['id'])){
 										?>
 									</li>
 									<?php
-										if(!Yii::$app->user->isGuest)
-											echo "<li>" . Html::a('Bloquear',['user/Bloquear','id' => $model->id]) . "</li>";
+										if(!Yii::$app->user->isGuest && !in_array($id, $usuario->blockeds)){
+											echo "<li>" . Html::a('Bloquear',['user/bloquear','id' => $model->id]) . "</li>";
+										} else {
+											echo "<li>" . Html::a('Desbloquear',['user/desbloquear','id' => $model->id]) . "</li>";
+										}
 									} else {
 									?>
 								<li>
@@ -89,23 +93,31 @@ if(isset($_GET['id'])){
 							</div>
 						</div>
 						<?php
-						if(!Yii::$app->user->isGuest){
+						if(!Yii::$app->user->isGuest  || !in_array($id, $usuario->blockeds)){
 						?>
 						<div class="control-block-button">
 							<?php
-							if(Yii::$app->user->id != $model->id){
-								if(!in_array(Yii::$app->user->id,$model->friends) ){
-									echo Html::a('<span class="icon-add without-text">
-	                                    <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-	                                </span>', ['user/enviar-peticion', 'id' => $id], ['class' => 'accept-request']);
-                            	} else {
-                                        
-                            		echo Html::a('<span class="icon-minus">
-                                            <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-                                        </span>', ['user/eliminar', 'id' => $id], ['class' => 'accept-request']);
-                            	}
-
-							} else {
+							if(Yii::$app->user->id != $model->id && !in_array(Yii::$app->user->id, $model->blockeds)){
+								if(!in_array($model->id,$usuario->blockeds)){
+									if(!in_array(Yii::$app->user->id,$model->friends)){
+										if(!in_array(Yii::$app->user->id, $model->peticiones)){
+											echo Html::a('<span class="icon-add without-text">
+		                                    <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+		                                </span>', ['user/enviar-peticion', 'id' => $id], ['class' => 'accept-request']);
+										} else {
+											echo Html::a('<span class="icon-minus">
+	                                            <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+	                                        </span>', ['user/eliminar-peticion', 'id' => $id], ['class' => 'accept-request']);
+										}
+									
+	                            	} else {
+	                                        
+	                            		echo Html::a('<span class="icon-minus">
+	                                            <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+	                                        </span>', ['user/eliminar', 'id' => $id], ['class' => 'accept-request']);
+	                            	}
+								}
+							} else if(Yii::$app->user->id == $model->id ){
 							?>
 							<a href="35-YourAccount-FriendsRequests.html" class="btn btn-control bg-blue">
 								<svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
@@ -150,7 +162,7 @@ if(isset($_GET['id'])){
 	</div>
 </div>
 <?php
-if(Yii::$app->user->isGuest || (isset($id) && $id !== Yii::$app->user->id && !in_array(Yii::$app->user->id, $model->friends) && $model->privado == User::PRIVADO)){
+if(Yii::$app->user->isGuest || (Yii::$app->user->id != $id && !in_array(Yii::$app->user->id, $model->friends) && $model->privado == User::PRIVADO) || (Yii::$app->user->id != $id && in_array(Yii::$app->user->id, $model->blockeds)) || $model->id != Yii::$app->user->id){
 ?>
 <div class="container">
 		<div class="row">
@@ -159,15 +171,22 @@ if(Yii::$app->user->isGuest || (isset($id) && $id !== Yii::$app->user->id && !in
 					<div class="logout-icon">
 						<svg class="svg-inline--fa fa-times fa-w-12" aria-hidden="true" data-prefix="fas" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M323.1 441l53.9-53.9c9.4-9.4 9.4-24.5 0-33.9L279.8 256l97.2-97.2c9.4-9.4 9.4-24.5 0-33.9L323.1 71c-9.4-9.4-24.5-9.4-33.9 0L192 168.2 94.8 71c-9.4-9.4-24.5-9.4-33.9 0L7 124.9c-9.4 9.4-9.4 24.5 0 33.9l97.2 97.2L7 353.2c-9.4 9.4-9.4 24.5 0 33.9L60.9 441c9.4 9.4 24.5 9.4 33.9 0l97.2-97.2 97.2 97.2c9.3 9.3 24.5 9.3 33.9 0z"></path></svg><!-- <i class="fas fa-times"></i> -->
 					</div>
-					<h6>¿Quieres ver el perfil de <?=$model->name?>?</h6>
 					<?php
-					if(Yii::$app->user->isGuest){
-
-						echo "<p>" . Html::a('Inicia sesión',['site/login']) . " o ¡" . Html::a('regístrate',['user/signup']) . " ahora y crea tu propio perfil y disfruta de las increíbles características de TeachTag!";
-					} else {
-					?>
-					<p><?php echo "¡Envíale una petición de amistad!"; }?></p>
-					
+					if(in_array(Yii::$app->user->id, $model->blockeds)){
+						echo "<p>¡Vaya!, parece que $model->name te ha bloqueado.</p>";
+					}else{
+						?>
+						<h6>¿Quieres ver el perfil de <?=$model->name?>?</h6>
+						<?php
+						if(Yii::$app->user->isGuest){
+							echo "<p>" . Html::a('Inicia sesión',['site/login']) . " o ¡" . Html::a('regístrate',['user/signup']) . " ahora y crea tu propio perfil y disfruta de las increíbles características de TeachTag!";
+						} else if(in_array($id, $usuario->blockeds)) {
+							echo "<p>¡Desbloquéalo!</p>";
+						} else {
+							echo "<p>¡Envíale una petición de amistad!</p>";
+						}
+					}
+						?>
 				</div>
 			</div>
 		</div>
