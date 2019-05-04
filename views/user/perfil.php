@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-
+use app\models\User;
 /* @var $this yii\web\View */
 /* @var $model app\models\User */
 
@@ -62,25 +62,10 @@ if(isset($_GET['id'])){
 											Html::a('Fotos',['user/fotos','id' => $model->id]);	
 										?>
 									</li>
-									<li>
-										<div class="more">
-											<svg class="olymp-three-dots-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
-											<ul class="more-dropdown more-with-triangle">
-												<li>
-													<?=
-													Html::a('Eliminar amistad', ['user/eliminar-amistad','id' => $model->id]);
-													?>
-												</li>
-												<li>
-													<?=
-													Html::a('Bloquear perfil',['user/bloquear', 'id' => $model->id])
-													?>
-												</li>
-											</ul>
-										</div>
-									</li>
 									<?php
-										} else {
+										if(!Yii::$app->user->isGuest)
+											echo "<li>" . Html::a('Bloquear',['user/Bloquear','id' => $model->id]) . "</li>";
+									} else {
 									?>
 								<li>
 									<?=
@@ -103,21 +88,23 @@ if(isset($_GET['id'])){
 								</ul>
 							</div>
 						</div>
-
+						<?php
+						if(!Yii::$app->user->isGuest){
+						?>
 						<div class="control-block-button">
 							<?php
 							if(Yii::$app->user->id != $model->id){
-								if(!in_array(Yii::$app->user->id,$model->friends)){
-							?>
-
-								<a href="#" class="accept-request">
-	                                <span class="icon-add without-text">
+								if(!in_array(Yii::$app->user->id,$model->friends) ){
+									echo Html::a('<span class="icon-add without-text">
 	                                    <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-	                                </span>
-	                            </a>
-
-                            <?php
+	                                </span>', ['user/enviar-peticion', 'id' => $id], ['class' => 'accept-request']);
+                            	} else {
+                                        
+                            		echo Html::a('<span class="icon-minus">
+                                            <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+                                        </span>', ['user/eliminar', 'id' => $id], ['class' => 'accept-request']);
                             	}
+
 							} else {
 							?>
 							<a href="35-YourAccount-FriendsRequests.html" class="btn btn-control bg-blue">
@@ -144,6 +131,9 @@ if(isset($_GET['id'])){
 							}
 							?>
 						</div>
+						<?php
+						}
+						?>
 					</div>
 					<div class="top-header-author">
 						<a href="02-ProfilePage.html" class="author-thumb">
@@ -159,12 +149,37 @@ if(isset($_GET['id'])){
 		</div>
 	</div>
 </div>
+<?php
+if(Yii::$app->user->isGuest || (isset($id) && $id !== Yii::$app->user->id && !in_array(Yii::$app->user->id, $model->friends) && $model->privado == User::PRIVADO)){
+?>
+<div class="container">
+		<div class="row">
+			<div class="col col-xl-4 col-lg-12 col-md-12 m-auto">
+				<div class="logout-content">
+					<div class="logout-icon">
+						<svg class="svg-inline--fa fa-times fa-w-12" aria-hidden="true" data-prefix="fas" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M323.1 441l53.9-53.9c9.4-9.4 9.4-24.5 0-33.9L279.8 256l97.2-97.2c9.4-9.4 9.4-24.5 0-33.9L323.1 71c-9.4-9.4-24.5-9.4-33.9 0L192 168.2 94.8 71c-9.4-9.4-24.5-9.4-33.9 0L7 124.9c-9.4 9.4-9.4 24.5 0 33.9l97.2 97.2L7 353.2c-9.4 9.4-9.4 24.5 0 33.9L60.9 441c9.4 9.4 24.5 9.4 33.9 0l97.2-97.2 97.2 97.2c9.3 9.3 24.5 9.3 33.9 0z"></path></svg><!-- <i class="fas fa-times"></i> -->
+					</div>
+					<h6>¿Quieres ver el perfil de <?=$model->name?>?</h6>
+					<?php
+					if(Yii::$app->user->isGuest){
 
+						echo "<p>" . Html::a('Inicia sesión',['site/login']) . " o ¡" . Html::a('regístrate',['user/signup']) . " ahora y crea tu propio perfil y disfruta de las increíbles características de TeachTag!";
+					} else {
+					?>
+					<p><?php echo "¡Envíale una petición de amistad!"; }?></p>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+<?php
+}else {
+?>
 <div class="container">
 	<div class="row">
 
 		<!-- Main Content -->
-
+		
 		<div class="col col-xl-6 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-12">
 			<div id="newsfeed-items-grid">
 
@@ -329,3 +344,6 @@ if(isset($_GET['id'])){
 
 	</div>
 </div>
+<?php
+}
+?>

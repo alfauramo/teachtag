@@ -29,8 +29,16 @@ class UserController extends BaseController
                 'rules' => [
                     [
                         'allow' => true,
-                        'roles' => ['@'],
                         'actions' => ['perfil', 'signup'],
+                        'matchCallback' => function ($rule, $action) {
+                           return Yii::$app->user->isGuest;
+                       }
+                    ],
+                    [
+                        'allow' => true,
+                        'matchCallback' => function ($rule, $action) {
+                           return $this->isNormalUser();
+                       }
                     ],
                     [
                         'allow' => true,
@@ -70,14 +78,20 @@ class UserController extends BaseController
 
     public function actionPerfil($id = false)
     {
+
         if($id !== false){
             $model = User::findOne($id);
         } else {
-            $model = User::findOne(Yii::$app->user->id);
+            if(Yii::$app->user->isGuest){
+                $model = User::findOne(121);
+            }else{
+                $model = User::findOne(Yii::$app->user->id);
+            }
+            
         }
 
         $centro = Center::findOne($model->centerCode);
-
+        
         return $this->render('perfil', [
             'model' => $model,
             'centro' => $centro
@@ -114,7 +128,7 @@ class UserController extends BaseController
         //También previene por si el usuario tiene desactivado javascript y la
         //validación mediante ajax no puede ser llevada a cabo
         if ($model->load(Yii::$app->request->post())){
-
+            $model->privado = User::PUBLICO;
             $model->rol = User::ROL_USUARIO;
             $model->birthday = Yii::$app->formatter->asDate($model->birthday, 'yyyy-MM-dd');
 
@@ -416,16 +430,15 @@ class UserController extends BaseController
         die();
     }
 
-    public function actionEliminarAmistad($id){
-        $model = User::findOne($id);
+    public function actionEliminar($id){
 
-        if($id == Yii::$app->user->id){
-            var_dump("No te puedes eliminar a ti mismo, gilipollas");
-            die();
-        }else {
-            var_dump("Eliminando a ".$model->name." como amistad");
-            die();    
+        $model = User::findOne(Yii::$app->user->id);
+
+        if($id !== Yii::$app->user->id){
+            $model->eliminar($id);
         }
+
+        return $this->redirect(Yii::$app->request->referrer);
         
     }
 
@@ -439,6 +452,7 @@ class UserController extends BaseController
             var_dump("Bloqueando a ".$model->name." como amistad");
             die();    
         }
+        
         
     }
 

@@ -34,6 +34,40 @@ AppAsset::register($this);
 <?php $this->beginBody(['class' => 'body-bg-white']) ?>
 
 
+<?php
+if(Yii::$app->user->isGuest){
+?>
+<!--Header logout-->
+<header class="header header--logout" id="site-header">
+    <a href="02-ProfilePage.html" class="logo">
+        <div class="img-wrap">
+            <img src="theme/img/logo.png" alt="TeachTag">
+        </div>
+    </a>
+
+    <div class="page-title">
+        <h6 id='hora'>HORA</h6>
+    </div>
+
+    <div class="header-content-wrapper">
+        <form class="search-bar w-search notification-list friend-requests">
+            <div class="form-group with-button is-empty">
+                <input class="form-control js-user-search" placeholder="Buscar amigos..." type="text"><div class="selectize-control form-control js-user-search multi"><div class="selectize-input items not-full has-options"><input type="text" autocomplete="off" tabindex="" placeholder="Search here people or pages..." style="width: 226px;"></div><div class="selectize-dropdown multi form-control js-user-search" style="display: none; width: 300px; top: 70px; left: 0px;"><div class="selectize-dropdown-content"></div></div></div>
+                <button>
+                    <svg class="olymp-magnifying-glass-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-magnifying-glass-icon"></use></svg>
+                </button>
+            <span class="material-input"></span></div>
+        </form>
+
+        <div class="buttons form-inline">
+            <?= Html::a('Iniciar sesión', ['site/login'], ['class' => 'btn btn-primary btn-md-2 login-btn-responsive']) ?>
+            <?= Html::a('Regístrate', ['site/registro'], ['class' => 'btn btn-blue btn-md-2 login-btn-responsive']) ?>
+        </div>
+    </div></header>
+<!-- ... end Header logout-->
+<?php
+}else{
+?>
 <!-- Fixed Sidebar Left -->
 <div class="fixed-sidebar fixed-sidebar-responsive">
 
@@ -824,7 +858,9 @@ AppAsset::register($this);
 
     </div></header>
 <!-- ... end Header Responsive  -->
-
+<?php
+}
+?>
 <div class="header-spacer"></div>
 <main class="">
     <div class="container" style="! width: 100%;  top: 0; ">

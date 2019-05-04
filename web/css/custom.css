@@ -67,18 +67,23 @@ p.more {
 }
 
 /* line 59, ../../sass/custom.scss */
+.buttons {
+  margin-left: 30%;
+}
+
+/* line 63, ../../sass/custom.scss */
 .post-control-button #compartido_but, .post-control-button #liked_but {
   background: #ff5e3a !important;
 }
 
 @media (min-width: 768px) {
-  /* line 64, ../../sass/custom.scss */
+  /* line 68, ../../sass/custom.scss */
   .header .page-title {
     display: block !important;
   }
 }
 @media (min-width: 1200px) {
-  /* line 70, ../../sass/custom.scss */
+  /* line 74, ../../sass/custom.scss */
   .profile-menu #btn_logout {
     display: block !important;
   }

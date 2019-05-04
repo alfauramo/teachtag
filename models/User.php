@@ -20,7 +20,8 @@ use yii\helpers\Html;
  * @property string $birthday
  * @property string $centerCode
  * @property string $descripcion
- *
+ * @property int Privado
+
  * @property Center $centro 
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
@@ -91,7 +92,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
          return [
              [['username', 'password', 'rol', 'name', 'email', 'birthday'], 'required'],
-             [['rol','activate'], 'integer'],
+             [['rol','activate', 'privado'], 'integer'],
              [['birthday'], 'safe'],
              [['descripcion', 'hobbies', 'films', 'music'], 'string'],
              [['username','email'], 'unique'],
@@ -120,6 +121,21 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 
     public function getRolToString() {
         return self::$rolUser[$this->rol];
+    }
+
+    /**
+     * Creo unas constantes, las cuales identificarán el rol.
+     */
+    const PUBLICO = 0;
+    const PRIVADO = 1;
+
+    static $privacidad = [
+        self::PUBLICO => 'Público',
+        self::PRIVADO => 'Privado',
+    ];
+
+    public function getprivadoToString() {
+        return self::$privacidad[$this->privado];
     }
 
     /** 
@@ -322,5 +338,24 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             echo Html::a("<img src=$img >", ['user/perfil','id' => $f->id]);
             echo "</li>";
         }
+    }
+
+    public function eliminar($id)
+    {
+
+        Yii::$app->db->createCommand()
+            ->delete('user_has_friend', [
+                'user_id' => $this->id,
+                'friend_id' => $id,
+            ])
+            ->execute();
+
+        Yii::$app->db->createCommand()
+            ->delete('user_has_friend', [
+                'user_id' => $id,
+                'friend_id' => $this->id,
+            ])
+        ->execute();
+        return $this->save();
     }
 }
