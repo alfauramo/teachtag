@@ -107,13 +107,17 @@ if(isset($_GET['id'])){
 						<div class="control-block-button">
 							<?php
 							if(Yii::$app->user->id != $model->id){
+								if(!in_array(Yii::$app->user->id,$model->friends)){
 							?>
-							<a href="#" class="accept-request">
-                                <span class="icon-add without-text">
-                                    <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-                                </span>
-                            </a>
+
+								<a href="#" class="accept-request">
+	                                <span class="icon-add without-text">
+	                                    <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+	                                </span>
+	                            </a>
+
                             <?php
+                            	}
 							} else {
 							?>
 							<a href="35-YourAccount-FriendsRequests.html" class="btn btn-control bg-blue">
@@ -294,86 +298,25 @@ if(isset($_GET['id'])){
 
 			<div class="ui-block">
 				<div class="ui-block-title">
-					<h6 class="title">Amigos (86)</h6>
+					<h6 class="title">Amigos (<?= count($model->friends)?>)</h6>
 				</div>
 				<div class="ui-block-content">
 
 					<!-- W-Faved-Page -->
 					
-					<ul class="widget w-faved-page js-zoom-gallery">
-						<li>
-							<a href="#">
-								<img src="theme/img/avatar38-sm.jpg" alt="author">
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="theme/img/avatar24-sm.jpg" alt="user">
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="theme/img/avatar36-sm.jpg" alt="author">
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="theme/img/avatar35-sm.jpg" alt="user">
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="theme/img/avatar34-sm.jpg" alt="author">
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="theme/img/avatar33-sm.jpg" alt="author">
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="theme/img/avatar32-sm.jpg" alt="user">
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="theme/img/avatar31-sm.jpg" alt="author">
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="theme/img/avatar30-sm.jpg" alt="author">
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="theme/img/avatar29-sm.jpg" alt="user">
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="theme/img/avatar28-sm.jpg" alt="user">
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="theme/img/avatar27-sm.jpg" alt="user">
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="theme/img/avatar26-sm.jpg" alt="user">
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="theme/img/avatar25-sm.jpg" alt="user">
-							</a>
-						</li>
+					<ul class="widget w-badges">
+						<?php 
+							$model->mostrarAmigos();
+						?>
+						<?php
+						if(count($model->friends) > 15){
+						?>
 						<li class="all-users">
-							<a href="#">+74</a>
+							<?= Html::a('+'.(count($model->friends)-15), ['user/ver-amigos', 'id'=>$model->id])?>
 						</li>
+						<?php
+						}
+						?>
 					</ul>
 					
 					<!-- .. end W-Faved-Page -->

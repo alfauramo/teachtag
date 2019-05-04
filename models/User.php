@@ -6,6 +6,8 @@ use Yii;
 use yii\web\IdentityInterface;
 use app\models\Center;
 use arogachev\ManyToMany\behaviors\ManyToManyBehavior;
+use yii\helpers\Html;
+
 /**
  * This is the model class for table "user".
  *
@@ -27,6 +29,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 
     public $editableTags;
     public $likeTags;
+    public $friends;
     public function behaviors()
     {
 
@@ -52,6 +55,18 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
                         'ownAttribute' => 'user_id', // Name of the column in junction table that represents current model
                         'relatedModel' => Tag::className(), // Related model class
                         'relatedAttribute' => 'tag_id', // Name of the column in junction table that represents related model
+                    ],
+                ],
+            ],
+            [
+                'class' => ManyToManyBehavior::className(),
+                'relations' => [
+                    [
+                        'editableAttribute' => 'friends', // Editable attribute name
+                        'table' => 'user_has_friend', // Name of the junction table
+                        'ownAttribute' => 'user_id', // Name of the column in junction table that represents current model
+                        'relatedModel' => User::className(), // Related model class
+                        'relatedAttribute' => 'friend_id', // Name of the column in junction table that represents related model
                     ],
                 ],
             ]
@@ -124,6 +139,15 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             ->viaTable('user_has_tag', ['user_id' => 'id']);
     }
     
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFriends()
+    {
+        return $this->hasMany(User::className(), ['friend_id' => 'id'])
+            ->viaTable('user_has_friends', ['user_id' => 'id']);
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -289,5 +313,14 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         }
     }
 
-    
+    public function mostrarAmigos(){
+
+        foreach($this->friends as $f){
+            $f = User::findOne($f);
+            $img = $f->img_perfil == null ?  './img/perfil.png' : $f->img_perfil;
+            echo "<li>";
+            echo Html::a("<img src=$img >", ['user/perfil','id' => $f->id]);
+            echo "</li>";
+        }
+    }
 }

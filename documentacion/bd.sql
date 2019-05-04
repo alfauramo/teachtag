@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-05-2019 a las 01:44:02
+-- Tiempo de generación: 04-05-2019 a las 13:39:13
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -64,8 +64,7 @@ CREATE TABLE `tag` (
 
 INSERT INTO `tag` (`id`, `texto`, `fecha`, `creator_id`) VALUES
 (2, 'ads', '0000-00-00 00:00:00', 121),
-(3, 'prueba', '2019-05-01 00:00:00', 128),
-(4, 'prueba', '2019-05-01 16:50:25', 0);
+(5, 'Estoy probando a editar ', '2019-05-04 08:49:20', 128);
 
 -- --------------------------------------------------------
 
@@ -106,6 +105,25 @@ INSERT INTO `user` (`id`, `username`, `password`, `rol`, `name`, `email`, `birth
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `user_has_friend`
+--
+
+CREATE TABLE `user_has_friend` (
+  `user_id` int(11) NOT NULL,
+  `friend_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `user_has_friend`
+--
+
+INSERT INTO `user_has_friend` (`user_id`, `friend_id`) VALUES
+(121, 128),
+(128, 121);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `user_has_tag`
 --
 
@@ -120,7 +138,7 @@ CREATE TABLE `user_has_tag` (
 
 INSERT INTO `user_has_tag` (`tag_id`, `user_id`) VALUES
 (2, 121),
-(3, 128);
+(5, 128);
 
 -- --------------------------------------------------------
 
@@ -165,6 +183,12 @@ ALTER TABLE `user`
   ADD KEY `fk_user_center_idx` (`centerCode`);
 
 --
+-- Indices de la tabla `user_has_friend`
+--
+ALTER TABLE `user_has_friend`
+  ADD PRIMARY KEY (`user_id`,`friend_id`);
+
+--
 -- Indices de la tabla `user_has_tag`
 --
 ALTER TABLE `user_has_tag`
@@ -193,7 +217,7 @@ ALTER TABLE `center`
 -- AUTO_INCREMENT de la tabla `tag`
 --
 ALTER TABLE `tag`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `user`
@@ -210,6 +234,12 @@ ALTER TABLE `user`
 --
 ALTER TABLE `user`
   ADD CONSTRAINT `fk_user_center` FOREIGN KEY (`centerCode`) REFERENCES `center` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `user_has_friend`
+--
+ALTER TABLE `user_has_friend`
+  ADD CONSTRAINT `user_has_friend_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
 -- Filtros para la tabla `user_has_tag`
