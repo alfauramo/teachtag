@@ -284,7 +284,6 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         $model = User::findOne($id);
         $tags = $model->tags;
         $tags = array_reverse($tags);
-
         foreach($tags as $t){
             $t->dibujar($id);
         }

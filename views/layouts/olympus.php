@@ -146,7 +146,7 @@ AppAsset::register($this);
     </div>
     <div class="page-title">
 
-        <h6>HORA</h6>
+        <h6 id='hora'>HORA</h6>
     </div>
 
     <div class="header-content-wrapper">

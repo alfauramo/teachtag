@@ -112,6 +112,23 @@ class Tag extends \yii\db\ActiveRecord
         return new TagQuery(get_called_class());
     }
 
+    public function beforeDelete()
+    {
+        if (!parent::beforeDelete()) {
+            return true;
+        }
+
+        Yii::$app->db->createCommand()
+            ->delete('user_has_tag', ['tag_id' => $this->id])
+            ->execute();
+
+        Yii::$app->db->createCommand()
+            ->delete('user_like_tag', ['tag_id' => $this->id])
+            ->execute();
+        
+        return $this->save();
+    }
+
     public function dibujar($id){
 
         if($this->creator_id != $id){

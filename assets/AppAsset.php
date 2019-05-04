@@ -65,6 +65,7 @@ class AppAsset extends AssetBundle
         'theme/js/base-init.js',
         'theme/fonts/fontawesome-all.js',
         'theme/Bootstrap/dist/js/bootstrap.bundle.js',
+        'js/custom.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
