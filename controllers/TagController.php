@@ -107,12 +107,15 @@ class TagController extends BaseController
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', "Tag modificado satisfactoriamente");
-            return $this->redirect(['site/index']);
+            return $this->goBack();
         }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+        
+        if($model->creator_id == Yii::$app->user->id){
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+        }
+        
     }
 
     /**
@@ -126,9 +129,13 @@ class TagController extends BaseController
     {
         $model = $this->findModel($id);
 
-        $model->delete();
+        if($model->creator_id == Yii::$app->user->id){
+            $model->delete();
+        }
 
-        return $this->redirect(['site/index']);
+        
+
+        return $this->goBack();
     }
 
     /**
