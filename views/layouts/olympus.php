@@ -12,6 +12,7 @@ use app\assets\AppAsset;
 use app\models\User;
 
 $model = User::findOne(Yii::$app->user->id);
+
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -207,111 +208,9 @@ if(Yii::$app->user->isGuest){
 
                     <div class="mCustomScrollbar" data-mcs-theme="dark">
                         <ul class="notification-list friend-requests">
-                            <li>
-                                <div class="author-thumb">
-                                    <img src="theme/img/avatar55-sm.jpg" alt="author">
-                                </div>
-                                <div class="notification-event">
-                                    <a href="#" class="h6 notification-friend">Tamara Romanoff</a>
-                                    <span class="chat-message-item">Mutual Friend: Sarah Hetfield</span>
-                                </div>
-                                <span class="notification-icon">
-                                    <a href="#" class="accept-request">
-                                        <span class="icon-add without-text">
-                                            <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-                                        </span>
-                                    </a>
-
-                                    <a href="#" class="accept-request request-del">
-                                        <span class="icon-minus">
-                                            <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-                                        </span>
-                                    </a>
-
-                                </span>
-
-                                <div class="more">
-                                    <svg class="olymp-three-dots-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="author-thumb">
-                                    <img src="theme/img/avatar56-sm.jpg" alt="author">
-                                </div>
-                                <div class="notification-event">
-                                    <a href="#" class="h6 notification-friend">Tony Stevens</a>
-                                    <span class="chat-message-item">4 Friends in Common</span>
-                                </div>
-                                <span class="notification-icon">
-                                    <a href="#" class="accept-request">
-                                        <span class="icon-add without-text">
-                                            <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-                                        </span>
-                                    </a>
-
-                                    <a href="#" class="accept-request request-del">
-                                        <span class="icon-minus">
-                                            <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-                                        </span>
-                                    </a>
-
-                                </span>
-
-                                <div class="more">
-                                    <svg class="olymp-three-dots-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
-                                </div>
-                            </li>
-
-                            <li class="accepted">
-                                <div class="author-thumb">
-                                    <img src="theme/img/avatar57-sm.jpg" alt="author">
-                                </div>
-                                <div class="notification-event">
-                                    You and <a href="#" class="h6 notification-friend">Mary Jane Stark</a> just became friends. Write on <a href="#" class="notification-link">her wall</a>.
-                                </div>
-                                <span class="notification-icon">
-                                    <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-                                </span>
-
-                                <div class="more">
-                                    <svg class="olymp-three-dots-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
-                                    <svg class="olymp-little-delete"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-little-delete"></use></svg>
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="author-thumb">
-                                    <img src="theme/img/avatar58-sm.jpg" alt="author">
-                                </div>
-                                <div class="notification-event">
-                                    <a href="#" class="h6 notification-friend">Stagg Clothing</a>
-                                    <span class="chat-message-item">9 Friends in Common</span>
-                                </div>
-                                <span class="notification-icon">
-                                    <a href="#" class="accept-request">
-                                        <span class="icon-add without-text">
-                                            <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-                                        </span>
-                                    </a>
-
-                                    <a href="#" class="accept-request request-del">
-                                        <span class="icon-minus">
-                                            <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-                                        </span>
-                                    </a>
-
-                                </span>
-
-                                <div class="more">
-                                    <svg class="olymp-three-dots-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
-                                </div>
-                            </li>
-
+                            <?= $model->listarPeticiones() ?>
                         </ul>
                     </div>
-
-                    <a href="#" class="view-all bg-blue">Revisar todas las peticiones</a>
                 </div>
             </div>
 
@@ -543,105 +442,8 @@ if(Yii::$app->user->isGuest){
                     <h6 class="title">PETICIONES DE AMISTAD</h6>
                 </div>
                 <ul class="notification-list friend-requests">
-                    <li>
-                        <div class="author-thumb">
-                            <img src="theme/img/avatar55-sm.jpg" alt="author">
-                        </div>
-                        <div class="notification-event">
-                            <a href="#" class="h6 notification-friend">Tamara Romanoff</a>
-                            <span class="chat-message-item">Mutual Friend: Sarah Hetfield</span>
-                        </div>
-                                    <span class="notification-icon">
-                                        <a href="#" class="accept-request">
-                                            <span class="icon-add without-text">
-                                                <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-                                            </span>
-                                        </a>
-
-                                        <a href="#" class="accept-request request-del">
-                                            <span class="icon-minus">
-                                                <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-                                            </span>
-                                        </a>
-
-                                    </span>
-
-                        <div class="more">
-                            <svg class="olymp-three-dots-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="author-thumb">
-                            <img src="theme/img/avatar56-sm.jpg" alt="author">
-                        </div>
-                        <div class="notification-event">
-                            <a href="#" class="h6 notification-friend">Tony Stevens</a>
-                            <span class="chat-message-item">4 Friends in Common</span>
-                        </div>
-                                    <span class="notification-icon">
-                                        <a href="#" class="accept-request">
-                                            <span class="icon-add without-text">
-                                                <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-                                            </span>
-                                        </a>
-
-                                        <a href="#" class="accept-request request-del">
-                                            <span class="icon-minus">
-                                                <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-                                            </span>
-                                        </a>
-
-                                    </span>
-
-                        <div class="more">
-                            <svg class="olymp-three-dots-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
-                        </div>
-                    </li>
-                    <li class="accepted">
-                        <div class="author-thumb">
-                            <img src="theme/img/avatar57-sm.jpg" alt="author">
-                        </div>
-                        <div class="notification-event">
-                            You and <a href="#" class="h6 notification-friend">Mary Jane Stark</a> just became friends. Write on <a href="#" class="notification-link">her wall</a>.
-                        </div>
-                                    <span class="notification-icon">
-                                        <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-                                    </span>
-
-                        <div class="more">
-                            <svg class="olymp-three-dots-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
-                            <svg class="olymp-little-delete"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-little-delete"></use></svg>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="author-thumb">
-                            <img src="theme/img/avatar58-sm.jpg" alt="author">
-                        </div>
-                        <div class="notification-event">
-                            <a href="#" class="h6 notification-friend">Stagg Clothing</a>
-                            <span class="chat-message-item">9 Friends in Common</span>
-                        </div>
-                                    <span class="notification-icon">
-                                        <a href="#" class="accept-request">
-                                            <span class="icon-add without-text">
-                                                <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-                                            </span>
-                                        </a>
-
-                                        <a href="#" class="accept-request request-del">
-                                            <span class="icon-minus">
-                                                <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-                                            </span>
-                                        </a>
-
-                                    </span>
-
-                        <div class="more">
-                            <svg class="olymp-three-dots-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
-                        </div>
-                    </li>
+                    <?= $model->listarPeticiones()?>
                 </ul>
-                <a href="#" class="view-all bg-blue">Revisar todas las peticiones</a>
             <div class="ps__scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps__scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__scrollbar-y-rail" style="top: 0px; right: 0px;"><div class="ps__scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
 
         </div>

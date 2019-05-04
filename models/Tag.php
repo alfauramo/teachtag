@@ -183,7 +183,7 @@ class Tag extends \yii\db\ActiveRecord
                     echo Html::a("<svg class='olymp-heart-icon'>
                         <use xlink:href='theme/svg-icons/sprites/icons.svg#olymp-heart-icon'></use>
                     </svg>
-                    <span id='liked'>".count($this->likeUsers)."</span>",['user/unlike', 'id' => $this->id], ['class' => 'post-add-icon inline-items', 'id' => 'liked']);
+                    <span id='liked'>".count($this->likeUsers)."</span>",['user/dislike', 'id' => $this->id], ['class' => 'post-add-icon inline-items', 'id' => 'liked']);
                 }else{
                     echo Html::a("<svg class='olymp-heart-icon'>
                         <use xlink:href='theme/svg-icons/sprites/icons.svg#olymp-heart-icon'></use>
@@ -208,7 +208,7 @@ class Tag extends \yii\db\ActiveRecord
             if(array_search(Yii::$app->user->id, $this->likeUsers) !== false){
                 echo Html::a("<svg class='olymp-like-post-icon'>
                     <use xlink:href='theme/svg-icons/sprites/icons.svg#olymp-like-post-icon'></use>
-                </svg>",['user/unlike', 'id' => $this->id], ['class' => 'btn btn-control', 'id' => 'liked_but']);
+                </svg>",['user/dislike', 'id' => $this->id], ['class' => 'btn btn-control', 'id' => 'liked_but']);
             }else{
                 echo Html::a("<svg class='olymp-like-post-icon'>
                     <use xlink:href='theme/svg-icons/sprites/icons.svg#olymp-like-post-icon'></use>

@@ -100,11 +100,19 @@ if(isset($_GET['id'])){
 							if(Yii::$app->user->id != $model->id && !in_array(Yii::$app->user->id, $model->blockeds)){
 								if(!in_array($model->id,$usuario->blockeds)){
 									if(!in_array(Yii::$app->user->id,$model->friends)){
-										if(!in_array(Yii::$app->user->id, $model->peticiones)){
+										if(in_array($model->id, $usuario->peticiones)){
+											echo Html::a('<span class="icon-add without-text">
+		                                    <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+		                                </span>', ['user/aceptar', 'id' => $id], ['class' => 'accept-request','id' => 'aceptar']);
+											echo Html::a('<span class="icon-minus">
+	                                            <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+	                                        </span>', ['user/rechazar', 'id' => $id], ['class' => 'accept-request','id' => 'rechazar']);
+
+										} else if(!in_array(Yii::$app->user->id, $model->peticiones)){
 											echo Html::a('<span class="icon-add without-text">
 		                                    <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
 		                                </span>', ['user/enviar-peticion', 'id' => $id], ['class' => 'accept-request']);
-										} else {
+										}else {
 											echo Html::a('<span class="icon-minus">
 	                                            <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
 	                                        </span>', ['user/eliminar-peticion', 'id' => $id], ['class' => 'accept-request']);
@@ -162,7 +170,7 @@ if(isset($_GET['id'])){
 	</div>
 </div>
 <?php
-if(Yii::$app->user->isGuest || (Yii::$app->user->id != $id && !in_array(Yii::$app->user->id, $model->friends) && $model->privado == User::PRIVADO) || (Yii::$app->user->id != $id && in_array(Yii::$app->user->id, $model->blockeds)) || $model->id != Yii::$app->user->id){
+if(Yii::$app->user->isGuest || (Yii::$app->user->id != $id && !in_array(Yii::$app->user->id, $model->friends) && $model->privado == User::PRIVADO) || (Yii::$app->user->id != $id && in_array(Yii::$app->user->id, $model->blockeds))){
 ?>
 <div class="container">
 		<div class="row">
@@ -180,8 +188,12 @@ if(Yii::$app->user->isGuest || (Yii::$app->user->id != $id && !in_array(Yii::$ap
 						<?php
 						if(Yii::$app->user->isGuest){
 							echo "<p>" . Html::a('Inicia sesión',['site/login']) . " o ¡" . Html::a('regístrate',['user/signup']) . " ahora y crea tu propio perfil y disfruta de las increíbles características de TeachTag!";
-						} else if(in_array($id, $usuario->blockeds)) {
+						} else if(in_array(Yii::$app->user->id,$model->peticiones)){
+							echo "<p>¡Espera a que acepte tu solicitud!</p>";
+						}else if(in_array($id, $usuario->blockeds)) {
 							echo "<p>¡Desbloquéalo!</p>";
+						} else if($model->privado == User::PRIVADO && in_array($model->id,$usuario->peticiones)){
+							echo "<p>¡Acepta su solicitud de amistad!</p>";
 						} else {
 							echo "<p>¡Envíale una petición de amistad!</p>";
 						}

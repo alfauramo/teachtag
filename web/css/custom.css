@@ -11,79 +11,94 @@
 }
 
 /* line 12, ../../sass/custom.scss */
+#aceptar.accept-request {
+  background-color: #47f026 !important;
+}
+
+/* line 16, ../../sass/custom.scss */
+#rechazar.accept-request {
+  background-color: #de5c39 !important;
+}
+
+/* line 20, ../../sass/custom.scss */
+#img_pet {
+  width: 34px;
+}
+
+/* line 24, ../../sass/custom.scss */
 .profile-menu li a.btn {
   color: white !important;
 }
-/* line 15, ../../sass/custom.scss */
+/* line 27, ../../sass/custom.scss */
 .profile-menu li a.btn:hover {
   color: #515365 !important;
 }
 
-/* line 20, ../../sass/custom.scss */
+/* line 32, ../../sass/custom.scss */
 #svg_cupcake {
   width: 26px;
   height: 20px;
 }
 
-/* line 25, ../../sass/custom.scss */
+/* line 37, ../../sass/custom.scss */
 #shite-header.fixed-logo {
   position: fixed;
   z-index: 22;
   width: 70px;
 }
 
-/* line 31, ../../sass/custom.scss */
+/* line 43, ../../sass/custom.scss */
 .fixed-logo .logo {
   height: 70px;
   background-color: #ff5e3a;
   padding: 15px;
 }
 
-/* line 37, ../../sass/custom.scss */
+/* line 49, ../../sass/custom.scss */
 #btn_logout {
   display: none;
 }
 
-/* line 41, ../../sass/custom.scss */
+/* line 53, ../../sass/custom.scss */
 p.more {
   font-size: 100% !important;
 }
 
-/* line 45, ../../sass/custom.scss */
+/* line 57, ../../sass/custom.scss */
 #foto_perfil {
   width: 120px;
   height: 120px;
 }
 
-/* line 50, ../../sass/custom.scss */
+/* line 62, ../../sass/custom.scss */
 #liked, #compartido.post-add-icon, span#compartido {
   color: #ff5e3a !important;
   fill: #ff5e3a !important;
 }
-/* line 53, ../../sass/custom.scss */
+/* line 65, ../../sass/custom.scss */
 #liked:hover, #compartido.post-add-icon:hover, span#compartido:hover {
   fill: #c2c5d9 !important;
   color: #c2c5d9 !important;
 }
 
-/* line 59, ../../sass/custom.scss */
+/* line 71, ../../sass/custom.scss */
 .buttons {
   margin-left: 30%;
 }
 
-/* line 63, ../../sass/custom.scss */
+/* line 75, ../../sass/custom.scss */
 .post-control-button #compartido_but, .post-control-button #liked_but {
   background: #ff5e3a !important;
 }
 
 @media (min-width: 768px) {
-  /* line 68, ../../sass/custom.scss */
+  /* line 80, ../../sass/custom.scss */
   .header .page-title {
     display: block !important;
   }
 }
 @media (min-width: 1200px) {
-  /* line 74, ../../sass/custom.scss */
+  /* line 86, ../../sass/custom.scss */
   .profile-menu #btn_logout {
     display: block !important;
   }

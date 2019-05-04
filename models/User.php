@@ -364,6 +364,26 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         }
     }
 
+    public function dejarCompartir($id){
+
+        Yii::$app->db->createCommand()
+            ->delete('user_has_tag', [
+                'user_id' => $this->id,
+                'tag_id' => $id,
+            ])
+            ->execute();
+    }
+
+    public function dislike($id){
+
+        Yii::$app->db->createCommand()
+            ->delete('user_like_tag', [
+                'user_id' => $this->id,
+                'tag_id' => $id,
+            ])
+            ->execute();
+    }
+
     public function mostrarAmigos(){
 
         foreach($this->friends as $f){
@@ -413,5 +433,29 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             ->execute();
     }
 
+    public function listarPeticiones(){
+        $peticiones = $this->peticiones;
+        foreach($peticiones as $p){
+            $model = User::findOne($p);
+            $centro = $model->center;
+            $img = $model->img_perfil === null ? './img/perfil.png' : $model->img_perfil;
+            echo "<li>
+                <div class='author-thumb'>
+                    <img id='img_pet' src='$img' alt='author'>
+                </div>
+                <div class='notification-event'>".
+                Html::a($model->name,['user/perfil','id' => $model->id], ['class' => 'h6 notification-friend']) . "
+                <span class='chat-message-item'>Centro: $centro->nombre</span>
+                </div>
+                <span class='notification-icon'>".
+                Html::a("<span class='icon-add without-text'>
+                        <svg class='olymp-happy-face-icon'><use xlink:href='theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon'></use></svg>
+                        </span>", ['user/aceptar','id' => $model->id], ['class' => 'accept-request']). Html::a("<span class='icon-minus'>
+                            <svg class='olymp-happy-face-icon'><use xlink:href='theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon'></use></svg>
+                        </span>", ['user/rechazar','id' => $model->id], ['class' => 'accept-request request-del' ])."
+                </span>
+            </li>";
+        }
+    }
 
 }

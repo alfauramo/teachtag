@@ -388,9 +388,9 @@ class UserController extends BaseController
         $this->goBack();
     }
 
-    public function actionUnlike($id){
+    public function actionDislike($id){
         $model = User::findOne(Yii::$app->user->id);
-        $this->deleteElement($id, $model->likeTags);
+        $model->dislike($id);
         $model->save();
         $this->goBack();
     }
@@ -404,7 +404,7 @@ class UserController extends BaseController
 
     public function actionDejarCompartir($id){
         $model = User::findOne(Yii::$app->user->id);
-        $this->deleteElement($id, $model->editableTags);
+        $model->dejarCompartir($id);
         $model->save();
         $this->goBack();
     }
@@ -469,6 +469,33 @@ class UserController extends BaseController
         if($id !== Yii::$app->user->id){
             $model->eliminarPeticion($id);
             $model->save();
+        }
+        
+        return $this->redirect(Yii::$app->request->referrer);
+    }
+
+    public function actionAceptar($id){
+        $model = User::findOne(Yii::$app->user->id);
+        $usuario = User::findOne($id);
+        if($id !== Yii::$app->user->id){
+            if(!in_array($id,$model->friends)){
+                $model->friends[] = $id;
+                $usuario->friends[] = $model->id;
+                $usuario->eliminarPeticion(Yii::$app->user->id);
+
+            }
+            $usuario->save();
+            $model->save();
+        }
+        
+        return $this->redirect(Yii::$app->request->referrer);
+    }
+
+    public function actionRechazar($id){
+
+        $usuario = User::findOne($id);
+        if($id !== Yii::$app->user->id){
+            $usuario->eliminarPeticion(Yii::$app->user->id);
         }
         
         return $this->redirect(Yii::$app->request->referrer);
