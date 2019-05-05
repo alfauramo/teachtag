@@ -43,5 +43,4 @@ $this->title = "Ha ocurrido un error";
             </div>
         </div>
     </div>
-
 </div>

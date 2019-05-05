@@ -1,0 +1,416 @@
+/* line 1, ../../../sass/plugins/simplecalendar.scss */
+*[class*="fontawesome-"]:before {
+  font-family: 'Font Awesome 5 Free', sans-serif;
+}
+
+/* line 5, ../../../sass/plugins/simplecalendar.scss */
+.calendar-container {
+  position: relative;
+  width: 100%;
+}
+
+/* line 10, ../../../sass/plugins/simplecalendar.scss */
+.calendar .card {
+  border-bottom: 1px solid #e6ecf5;
+}
+
+/* line 14, ../../../sass/plugins/simplecalendar.scss */
+.calendar .list {
+  border-radius: 0 0 5px 5px;
+  overflow: hidden;
+}
+
+/* line 19, ../../../sass/plugins/simplecalendar.scss */
+.calendar .place {
+  font-size: 11px;
+  padding: 0 25px 25px;
+}
+
+/* line 24, ../../../sass/plugins/simplecalendar.scss */
+.calendar .more-dropdown {
+  right: auto;
+  left: 0;
+}
+
+/* line 30, ../../../sass/plugins/simplecalendar.scss */
+.calendar .more-dropdown a {
+  font-size: 12px;
+}
+
+/* line 34, ../../../sass/plugins/simplecalendar.scss */
+.calendar .more-dropdown a:hover {
+  color: #08ddc1;
+}
+
+/* line 38, ../../../sass/plugins/simplecalendar.scss */
+.calendar .card-header svg {
+  float: none;
+  margin-left: 10px;
+}
+
+/* line 43, ../../../sass/plugins/simplecalendar.scss */
+.calendar .friends-harmonic {
+  padding: 0 25px 25px;
+}
+
+/* line 47, ../../../sass/plugins/simplecalendar.scss */
+.calendar .place svg {
+  margin-right: 10px;
+  fill: #c6c9db;
+}
+
+/* line 52, ../../../sass/plugins/simplecalendar.scss */
+.calendar .card:last-child {
+  border-bottom: none;
+}
+
+/* line 56, ../../../sass/plugins/simplecalendar.scss */
+.calendar-container table {
+  width: 100%;
+  margin-top: 15px;
+}
+
+/* line 61, ../../../sass/plugins/simplecalendar.scss */
+.calendar {
+  text-align: center;
+}
+
+/* line 65, ../../../sass/plugins/simplecalendar.scss */
+.calendar .card-header a {
+  font-size: 13px;
+}
+
+/* line 69, ../../../sass/plugins/simplecalendar.scss */
+.calendar .card-header {
+  padding: 25px;
+}
+
+/* line 73, ../../../sass/plugins/simplecalendar.scss */
+.calendar .card-body {
+  padding: 0 25px 25px;
+}
+
+/* line 77, ../../../sass/plugins/simplecalendar.scss */
+.calendar .card-header {
+  border-bottom: none;
+}
+
+/* line 81, ../../../sass/plugins/simplecalendar.scss */
+.calendar header {
+  position: relative;
+  padding: 25px;
+  border-bottom: 1px solid #e6ecf5;
+}
+
+/* line 87, ../../../sass/plugins/simplecalendar.scss */
+.calendar .month {
+  margin-bottom: 0;
+}
+
+/* line 91, ../../../sass/plugins/simplecalendar.scss */
+.calendar thead {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 9px;
+  color: #888da8;
+}
+
+/* line 98, ../../../sass/plugins/simplecalendar.scss */
+.calendar tbody {
+  color: #4b4e65;
+  font-size: 11px;
+}
+
+/* line 103, ../../../sass/plugins/simplecalendar.scss */
+.calendar td {
+  border: 2px solid transparent;
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  width: 30px;
+  border-radius: 100%;
+}
+
+/* line 113, ../../../sass/plugins/simplecalendar.scss */
+.current-day {
+  color: #08ddc1;
+}
+
+/* line 117, ../../../sass/plugins/simplecalendar.scss */
+.event {
+  cursor: pointer;
+  position: relative;
+}
+
+/* line 122, ../../../sass/plugins/simplecalendar.scss */
+.event:after,
+.event:before {
+  border-radius: 50%;
+  display: inline-block;
+  content: '';
+  height: 4px;
+  width: 4px;
+  position: absolute;
+  bottom: 0;
+}
+
+/* line 133, ../../../sass/plugins/simplecalendar.scss */
+.event-complited:after {
+  background-color: #08ddc1;
+  right: 50%;
+  margin-right: -2px;
+}
+
+/* line 139, ../../../sass/plugins/simplecalendar.scss */
+.event-uncomplited:before {
+  background-color: #9a9fbf;
+  left: 50%;
+  margin-left: -2px;
+}
+
+/* line 145, ../../../sass/plugins/simplecalendar.scss */
+.event-complited.event-uncomplited:after {
+  right: 7px;
+  margin-right: 0;
+}
+
+/* line 150, ../../../sass/plugins/simplecalendar.scss */
+.event-uncomplited.event-complited:before {
+  left: 7px;
+  margin-left: 0;
+}
+
+/* line 155, ../../../sass/plugins/simplecalendar.scss */
+.event-complited-2:after,
+.event-complited-2:before {
+  background-color: #08ddc1;
+}
+
+/* line 160, ../../../sass/plugins/simplecalendar.scss */
+.event-complited-2:after {
+  right: 7px;
+  margin-right: 0;
+}
+
+/* line 165, ../../../sass/plugins/simplecalendar.scss */
+.event-complited-2:before {
+  left: 7px;
+  margin-left: 0;
+}
+
+/* line 170, ../../../sass/plugins/simplecalendar.scss */
+.event-uncomplited-2:after,
+.event-uncomplited-2:before {
+  background-color: #9a9fbf;
+}
+
+/* line 175, ../../../sass/plugins/simplecalendar.scss */
+.event-uncomplited-2:after {
+  right: 7px;
+  margin-right: 0;
+}
+
+/* line 180, ../../../sass/plugins/simplecalendar.scss */
+.event-uncomplited-2:before {
+  left: 7px;
+  margin-left: 0;
+}
+
+/* line 185, ../../../sass/plugins/simplecalendar.scss */
+.calendar-btn-prev,
+.calendar-btn-next {
+  color: #d7d9e5;
+  font-size: 16px;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  width: 16px;
+}
+
+/* line 195, ../../../sass/plugins/simplecalendar.scss */
+.calendar-btn-prev {
+  left: 30px;
+}
+
+/* line 199, ../../../sass/plugins/simplecalendar.scss */
+.calendar-btn-next {
+  right: 35px;
+}
+
+/* line 203, ../../../sass/plugins/simplecalendar.scss */
+.list {
+  margin-top: 20px;
+}
+
+/* line 207, ../../../sass/plugins/simplecalendar.scss */
+.close {
+  color: #A4AAAB;
+  margin-top: -15px;
+  margin-right: 10px;
+  float: right;
+}
+
+/* line 214, ../../../sass/plugins/simplecalendar.scss */
+.day-event {
+  width: 100%;
+  padding-bottom: 0px;
+  display: none;
+  border-top: 1px solid #e6ecf5;
+  text-align: left;
+}
+
+/* line 222, ../../../sass/plugins/simplecalendar.scss */
+.day-event p {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+}
+
+/* line 228, ../../../sass/plugins/simplecalendar.scss */
+.day-event span {
+  font-size: 12px;
+}
+
+/* line 232, ../../../sass/plugins/simplecalendar.scss */
+.day-event button {
+  position: relative;
+  vertical-align: top;
+  width: 100%;
+  height: 50px;
+  padding: 0;
+  font-size: 18px;
+  color: white;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  background: #c0392b;
+  border: 0;
+  border-bottom: 2px solid #b53224;
+  cursor: pointer;
+  -webkit-box-shadow: inset 0 -2px #b53224;
+  box-shadow: inset 0 -2px #b53224;
+}
+
+/* line 250, ../../../sass/plugins/simplecalendar.scss */
+.check-btn {
+  width: 100%;
+}
+
+/* line 253, ../../../sass/plugins/simplecalendar.scss */
+input[type=checkbox] {
+  display: none;
+}
+
+/* line 255, ../../../sass/plugins/simplecalendar.scss */
+.print-btn {
+  padding: 1px 14px 5px 14px;
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  /* STYLES GO HERE */
+}
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width: 321px) {
+  /* STYLES GO HERE */
+}
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width: 320px) {
+  /* STYLES GO HERE */
+}
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  /* STYLES GO HERE */
+}
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+  /* STYLES GO HERE */
+}
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  /* STYLES GO HERE */
+}
+/* Desktops and laptops ----------- */
+@media only screen and (min-width: 1224px) {
+  /* STYLES GO HERE */
+}
+/* Large screens ----------- */
+@media only screen and (min-width: 1824px) {
+  /* STYLES GO HERE */
+}
+/* iPhone 5 (portrait & landscape)----------- */
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
+  /* STYLES GO HERE */
+}
+/* iPhone 5 (landscape)----------- */
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (orientation: landscape) {
+  /* STYLES GO HERE */
+}
+/* iPhone 5 (portrait)----------- */
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (orientation: portrait) {
+  /* STYLES GO HERE */
+}
+/* line 336, ../../../sass/plugins/simplecalendar.scss */
+[class*="fontawesome-"]::before {
+  font-family: 'Font Awesome 5 Free', sans-serif;
+}
+
+/* line 339, ../../../sass/plugins/simplecalendar.scss */
+.fontawesome-remove::before {
+  content: "\f00d";
+}
+
+/* line 343, ../../../sass/plugins/simplecalendar.scss */
+.fontawesome-angle-left::before {
+  content: "\f104";
+}
+
+/* line 347, ../../../sass/plugins/simplecalendar.scss */
+.fontawesome-angle-right::before {
+  content: "\f105";
+}
+
+/* line 351, ../../../sass/plugins/simplecalendar.scss */
+.event-time {
+  margin-bottom: 20px;
+}
+
+/* line 355, ../../../sass/plugins/simplecalendar.scss */
+.event-time .circle {
+  width: 8px;
+  height: 8px;
+  border: 2px solid #34eccd;
+  border-radius: 100%;
+  margin-right: 7px;
+  display: inline-block;
+}
+
+/* line 364, ../../../sass/plugins/simplecalendar.scss */
+.event-time time {
+  font-size: 10px;
+  color: #515365;
+  font-weight: bold;
+}
+
+/* line 370, ../../../sass/plugins/simplecalendar.scss */
+.event-time .more svg {
+  float: none;
+  color: #d7d9e5;
+  margin-left: 5px;
+}
+
+/* line 376, ../../../sass/plugins/simplecalendar.scss */
+.event-time .more {
+  display: inline-block;
+}
+
+/* line 380, ../../../sass/plugins/simplecalendar.scss */
+.check-all {
+  padding: 20px;
+  background-color: #08ddc1;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  display: block;
+  text-align: center;
+}

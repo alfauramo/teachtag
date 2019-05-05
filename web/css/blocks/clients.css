@@ -1,0 +1,44 @@
+/*------------- #CLIENTS --------------*/
+/* line 5, ../../../sass/blocks/clients.scss */
+.crumina-clients {
+  padding: 85px 0;
+  text-align: center;
+}
+
+/* line 10, ../../../sass/blocks/clients.scss */
+.clients-item {
+  position: relative;
+  display: inline-block;
+}
+/* line 15, ../../../sass/blocks/clients.scss */
+.clients-item:hover img {
+  opacity: 1;
+  filter: grayscale(0);
+}
+/* line 21, ../../../sass/blocks/clients.scss */
+.clients-item img {
+  transition: all .3s linear;
+  transform-style: preserve-3d;
+  opacity: 0.3;
+  filter: grayscale(100%);
+  max-width: 100%;
+}
+/* line 29, ../../../sass/blocks/clients.scss */
+.clients-item .clients-images {
+  position: relative;
+  display: block;
+  margin: auto;
+}
+
+/*================= Responsive Mode ============*/
+@media (max-width: 1200px) {
+  /* line 42, ../../../sass/blocks/clients.scss */
+  .crumina-clients {
+    padding: 40px 0;
+  }
+
+  /* line 46, ../../../sass/blocks/clients.scss */
+  .clients-item {
+    margin-bottom: 20px;
+  }
+}

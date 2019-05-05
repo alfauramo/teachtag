@@ -1,0 +1,31 @@
+/*------------- #FOLLOW-INSTAGRAMM --------------*/
+/* line 5, ../../../sass/blocks/follow-instagram.scss */
+.follow-instagram {
+  display: flex;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+}
+/* line 11, ../../../sass/blocks/follow-instagram.scss */
+.follow-instagram img {
+  width: 20%;
+}
+/* line 15, ../../../sass/blocks/follow-instagram.scss */
+.follow-instagram .btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+/* line 23, ../../../sass/blocks/follow-instagram.scss */
+.follow-instagram:hover .overlay {
+  opacity: 1;
+}
+
+/*================= Responsive Mode ============*/
+@media (max-width: 460px) {
+  /* line 34, ../../../sass/blocks/follow-instagram.scss */
+  .follow-instagram .btn {
+    width: 70%;
+  }
+}

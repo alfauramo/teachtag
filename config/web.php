@@ -57,23 +57,15 @@ $config = [
                 ],
             ],
         ],
-        'assetManager' => [
-            'bundles' => [
-                'yii\bootstrap\BootstrapPluginAsset' => [
-//                  'js' => []
-                ],
-                'yii\bootstrap\BootstrapAsset' => [
-                    'css' => [],
-                ],
-            ],
-        ],
         'db' => $db,
-        /*'urlManager' => [
-           'enablePrettyUrl' => true,
-           'showScriptName' => false,
-           'rules' => [
-           ],
-       ], */
+        /*
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'rules' => [
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'observacionapi', 'pluralize' => false],
+            ],
+        ],*/
     ],
     'params' => $params,
     'modules' => [

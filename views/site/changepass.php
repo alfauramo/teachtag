@@ -47,5 +47,3 @@ $this->title = 'Cambia tu contraseña';
             </div>
         </div>
     </div>
-
-</div>

@@ -90,9 +90,9 @@ class UserController extends BaseController
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionPerfil($id)
     {
-        return $this->render('view', [
+        return $this->render('perfil', [
             'model' => $this->findModel($id),
         ]);
     }
@@ -340,6 +340,7 @@ class UserController extends BaseController
             }
         }
     }
+<<<<<<< HEAD
 
     public function actionConfiguracion(){
         $model = User::findOne(Yii::$app->user->id);
@@ -453,4 +454,6 @@ class UserController extends BaseController
         }
         die();
     }
+=======
+>>>>>>> a4a57ed7f06edf6bb32002bbbd598461617cb8f6
 }
