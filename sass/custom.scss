@@ -24,7 +24,7 @@
 }
 
 #fila {
-	margin-left: 16%;
+	margin-left: 25%;
 }
 
 #amistades{
@@ -104,8 +104,9 @@ p.more{
 	}
 
 	#friends_pro{
-		width: 75px !important;
-		height: 75px !important;
+		margin-top: 50% !important;
+		width: 50px !important;
+		height: 50px !important;
 	}
 }
 
@@ -113,6 +114,11 @@ p.more{
 @media (min-width: 768px) { 
 	.header .page-title {
     	display: block !important;
+	}
+
+	#friends_pro{
+		width: 75px !important;
+		height: 75px !important;
 	}
 }
 

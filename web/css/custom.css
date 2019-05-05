@@ -30,7 +30,7 @@
 
 /* line 26, ../../sass/custom.scss */
 #fila {
-  margin-left: 16%;
+  margin-left: 25%;
 }
 
 /* line 30, ../../sass/custom.scss */
@@ -127,18 +127,25 @@ p.more {
 
   /* line 106, ../../sass/custom.scss */
   #friends_pro {
+    margin-top: 50% !important;
+    width: 50px !important;
+    height: 50px !important;
+  }
+}
+@media (min-width: 768px) {
+  /* line 115, ../../sass/custom.scss */
+  .header .page-title {
+    display: block !important;
+  }
+
+  /* line 119, ../../sass/custom.scss */
+  #friends_pro {
     width: 75px !important;
     height: 75px !important;
   }
 }
-@media (min-width: 768px) {
-  /* line 114, ../../sass/custom.scss */
-  .header .page-title {
-    display: block !important;
-  }
-}
 @media (min-width: 1200px) {
-  /* line 120, ../../sass/custom.scss */
+  /* line 126, ../../sass/custom.scss */
   .profile-menu #btn_logout {
     display: block !important;
   }

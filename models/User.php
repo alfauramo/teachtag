@@ -424,7 +424,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
                     <div class='friend-item-content'>
                 
                         <div class='more'>
-                            <svg class='olymp-three-dots-icon'><use xlink:href='svg-icons/sprites/icons.svg#olymp-three-dots-icon'></use></svg>
+                            <svg class='olymp-three-dots-icon'><use xlink:href='./theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon'></use></svg>
                             <ul class='more-dropdown'>
                                 <li>". Html::a('Bloquear',['user/bloquear','id' => $f->id])."
                                 </li>
