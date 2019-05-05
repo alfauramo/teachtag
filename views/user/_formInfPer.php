@@ -43,7 +43,7 @@ use kartik\select2\Select2;
                             'pluginOptions' => [
                                 'allowClear' => true
                             ],
-                        ]);?>
+                        ])->label('Privacidad');?>
 				</div>
 					
 				<div class="col col-lg-6 col-md-6 col-sm-12 col-12">
