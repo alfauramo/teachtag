@@ -187,8 +187,7 @@
                 "url": "https://api.github.com/repos/blueimp/JavaScript-Canvas-to-Blob/zipball/9f3deb2e710d39c72a988559609d9dc9a319de0b",
                 "reference": "9f3deb2e710d39c72a988559609d9dc9a319de0b"
             },
-            "type": "bower-asset",
-            "time": "2017-08-27T22:53:19+00:00"
+            "type": "bower-asset"
         },
         {
             "name": "bower-asset/blueimp-file-upload",
@@ -242,8 +241,7 @@
                 "url": "https://api.github.com/repos/blueimp/JavaScript-Load-Image/zipball/e9a4fc2f0e8019ded69178c5b74d090cc6d8051c",
                 "reference": "e9a4fc2f0e8019ded69178c5b74d090cc6d8051c"
             },
-            "type": "bower-asset",
-            "time": "2019-04-05T16:05:32+00:00"
+            "type": "bower-asset"
         },
         {
             "name": "bower-asset/blueimp-tmpl",
@@ -258,8 +256,7 @@
                 "url": "https://api.github.com/repos/blueimp/JavaScript-Templates/zipball/da7647cb93fff2030e73a701db22c66de76a9919",
                 "reference": "da7647cb93fff2030e73a701db22c66de76a9919"
             },
-            "type": "bower-asset",
-            "time": "2017-08-27T22:51:02+00:00"
+            "type": "bower-asset"
         },
         {
             "name": "bower-asset/bootstrap",
@@ -521,12 +518,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-grid.git",
-                "reference": "61c60dd7339972e8bace73a7679f9fc8db3307c6"
+                "reference": "6744723ac538a8f525fd39bbadcbe86a2a442817"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-grid/zipball/61c60dd7339972e8bace73a7679f9fc8db3307c6",
-                "reference": "61c60dd7339972e8bace73a7679f9fc8db3307c6",
+                "url": "https://api.github.com/repos/kartik-v/yii2-grid/zipball/6744723ac538a8f525fd39bbadcbe86a2a442817",
+                "reference": "6744723ac538a8f525fd39bbadcbe86a2a442817",
                 "shasum": ""
             },
             "require": {
@@ -565,7 +562,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2019-04-03T02:09:14+00:00"
+            "time": "2019-04-28T13:33:04+00:00"
         },
         {
             "name": "kartik-v/yii2-krajee-base",
