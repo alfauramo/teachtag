@@ -39,93 +39,99 @@
 }
 
 /* line 34, ../../sass/custom.scss */
+#listado_amigos {
+  width: 35px !important;
+  height: 35px !important;
+}
+
+/* line 39, ../../sass/custom.scss */
 #aceptar.accept-request {
   background-color: #47f026 !important;
 }
 
-/* line 38, ../../sass/custom.scss */
+/* line 43, ../../sass/custom.scss */
 #rechazar.accept-request {
   background-color: #de5c39 !important;
 }
 
-/* line 42, ../../sass/custom.scss */
+/* line 47, ../../sass/custom.scss */
 #img_pet {
   width: 34px;
 }
 
-/* line 46, ../../sass/custom.scss */
+/* line 51, ../../sass/custom.scss */
 .profile-menu li a.btn {
   color: white !important;
 }
-/* line 49, ../../sass/custom.scss */
+/* line 54, ../../sass/custom.scss */
 .profile-menu li a.btn:hover {
   color: #515365 !important;
 }
 
-/* line 54, ../../sass/custom.scss */
+/* line 59, ../../sass/custom.scss */
 #svg_cupcake {
   width: 26px;
   height: 20px;
 }
 
-/* line 59, ../../sass/custom.scss */
+/* line 64, ../../sass/custom.scss */
 #shite-header.fixed-logo {
   position: fixed;
   z-index: 22;
   width: 70px;
 }
 
-/* line 65, ../../sass/custom.scss */
+/* line 70, ../../sass/custom.scss */
 .fixed-logo .logo {
   height: 70px;
   background-color: #ff5e3a;
   padding: 15px;
 }
 
-/* line 71, ../../sass/custom.scss */
+/* line 76, ../../sass/custom.scss */
 #btn_logout {
   display: none;
 }
 
-/* line 75, ../../sass/custom.scss */
+/* line 80, ../../sass/custom.scss */
 p.more {
   font-size: 100% !important;
 }
 
-/* line 79, ../../sass/custom.scss */
+/* line 84, ../../sass/custom.scss */
 #foto_perfil {
   width: 120px;
   height: 120px;
 }
 
-/* line 84, ../../sass/custom.scss */
+/* line 89, ../../sass/custom.scss */
 #liked, #compartido.post-add-icon, span#compartido {
   color: #ff5e3a !important;
   fill: #ff5e3a !important;
 }
-/* line 87, ../../sass/custom.scss */
+/* line 92, ../../sass/custom.scss */
 #liked:hover, #compartido.post-add-icon:hover, span#compartido:hover {
   fill: #c2c5d9 !important;
   color: #c2c5d9 !important;
 }
 
-/* line 93, ../../sass/custom.scss */
+/* line 98, ../../sass/custom.scss */
 .buttons {
   margin-left: 30%;
 }
 
-/* line 97, ../../sass/custom.scss */
+/* line 102, ../../sass/custom.scss */
 .post-control-button #compartido_but, .post-control-button #liked_but {
   background: #ff5e3a !important;
 }
 
 @media (max-width: 768px) {
-  /* line 102, ../../sass/custom.scss */
+  /* line 107, ../../sass/custom.scss */
   #cabecera_perfil {
     height: 225px !important;
   }
 
-  /* line 106, ../../sass/custom.scss */
+  /* line 111, ../../sass/custom.scss */
   #friends_pro {
     margin-top: 50% !important;
     width: 50px !important;
@@ -133,19 +139,19 @@ p.more {
   }
 }
 @media (min-width: 768px) {
-  /* line 115, ../../sass/custom.scss */
+  /* line 120, ../../sass/custom.scss */
   .header .page-title {
     display: block !important;
   }
 
-  /* line 119, ../../sass/custom.scss */
+  /* line 124, ../../sass/custom.scss */
   #friends_pro {
     width: 75px !important;
     height: 75px !important;
   }
 }
 @media (min-width: 1200px) {
-  /* line 126, ../../sass/custom.scss */
+  /* line 131, ../../sass/custom.scss */
   .profile-menu #btn_logout {
     display: block !important;
   }

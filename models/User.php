@@ -404,7 +404,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             $f = User::findOne($f);
             $img = $f->img_perfil == null ?  './img/perfil.png' : $f->img_perfil;
             echo "<li>";
-            echo Html::a("<img src=$img >", ['user/perfil','id' => $f->id]);
+            echo Html::a("<img id='listado_amigos' src=$img >", ['user/perfil','id' => $f->id]);
             echo "</li>";
         }
     }
