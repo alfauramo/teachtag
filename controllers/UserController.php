@@ -12,6 +12,9 @@ use yii\filters\VerbFilter;
 use Date;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\web\UploadedFile;
+use yii\helpers\FileHelper;
+use yii\helpers\Json;
 /**
  * UserController implements the CRUD actions for User model.
  */
@@ -499,6 +502,92 @@ class UserController extends BaseController
         }
         
         return $this->redirect(Yii::$app->request->referrer);
+    }
+
+    public function actionChangeAvatar() {
+        $model = $this->findModel(Yii::$app->user->id);
+
+
+        $imageFile = UploadedFile::getInstance($model, 'img_perfil');
+
+        $directory = Yii::getAlias('./img/'.$model->id.'/');
+        if (!is_dir($directory)) {
+            FileHelper::createDirectory($directory);
+        }
+
+        if ($imageFile) {
+            $uid = uniqid(time(), true);
+            $fileName = $uid . '.' . $imageFile->extension;
+            $filePath = $directory . $fileName;
+            if ($imageFile->saveAs($filePath)) {
+                $filePath = substr($filePath, 1);
+                $model->deleteAvatar();
+                $model->img_perfil = $filePath;
+            if ($model->save())
+                return Json::encode([
+                    'name' => $fileName,
+                    'size' => $imageFile->size,
+                    'url' => $filePath,
+                    'thumbnailUrl' => $filePath,
+                    'deleteUrl' => 'image-delete?name=' . $fileName,
+                    'deleteType' => 'POST',
+                ]);
+            else
+                var_dump($model->getErrors());
+            }
+        }
+
+        return '';
+    }
+
+    public function actionChangeCabecera() {
+        $model = $this->findModel(Yii::$app->user->id);
+
+
+        $imageFile = UploadedFile::getInstance($model, 'img_cabecera');
+
+        $directory = Yii::getAlias('./img/'.$model->id.'/');
+        if (!is_dir($directory)) {
+            FileHelper::createDirectory($directory);
+        }
+
+        if ($imageFile) {
+            $uid = uniqid(time(), true);
+            $fileName = $uid . '.' . $imageFile->extension;
+            $filePath = $directory . $fileName;
+            if ($imageFile->saveAs($filePath)) {
+                $filePath = substr($filePath, 1);
+                $model->deleteCabecera();
+                $model->img_cabecera = $filePath;
+            if ($model->save())
+                return Json::encode([
+                    'name' => $fileName,
+                    'size' => $imageFile->size,
+                    'url' => $filePath,
+                    'thumbnailUrl' => $filePath,
+                    'deleteUrl' => 'image-delete?name=' . $fileName,
+                    'deleteType' => 'POST',
+                ]);
+            else
+                var_dump($model->getErrors());
+            }
+        }
+
+        return '';
+    }
+
+    public function actionDeleteAvatar() {
+        $model = $this->findModel(Yii::$app->user->id);
+        $model->deleteAvatar();
+        Yii::$app->session->setFlash('success', "Imagen de perfil eliminada correctamente. ");
+        return $this->redirect(['user/perfil']);
+    }
+
+    public function actionDeleteCabecera() {
+        $model = $this->findModel(Yii::$app->user->id);
+        $model->deleteCabecera();
+        Yii::$app->session->setFlash('success', "Imagen de perfil eliminada correctamente. ");
+        return $this->redirect(['user/perfil']);
     }
 
     public function actionFotos($id){

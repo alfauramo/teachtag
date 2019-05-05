@@ -172,6 +172,20 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return $this->hasOne(Center::className(), ['id' => 'centerCode']); 
     }
 
+    public function getAvatarUrl() {
+        if (strlen($this->img_perfil) > 0)
+            return $this->img_perfil;
+        else
+            return '/img/perfil.png';
+    }
+
+    public function getCabeceraUrl() {
+        if (strlen($this->img_cabecera) > 0)
+            return $this->img_cabecera;
+        else
+            return 'theme/img/top-header1.jpg';
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -456,6 +470,20 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
                 </span>
             </li>";
         }
+    }
+
+    public function deleteAvatar() {
+        if (strlen($this->img_perfil) > 0 && $this->img_perfil !== null)
+            @unlink('.' . $this->img_perfil);
+        $this->img_perfil = '';
+        return $this->save();
+    }
+
+    public function deleteCabecera() {
+        if (strlen($this->img_perfil) > 0 && $this->img_cabecera !== null)
+            @unlink('.' . $this->img_cabecera);
+        $this->img_cabecera = '';
+        return $this->save();
     }
 
 }

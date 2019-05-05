@@ -26,8 +26,7 @@ if(isset($_GET['id'])){
 			<div class="ui-block">
 				<div class="top-header">
 					<div class="top-header-thumb">
-						<img src="<?= $model->img_cabecera === null ?  'theme/img/top-header1.jpg' : $model->img_cabecera ?>
-						" alt="nature">
+						<img id="cabecera_perfil" src="<?= $model->getCabeceraUrl()?>">
 					</div>
 					<div class="profile-section">
 						<div class="row">
@@ -45,7 +44,7 @@ if(isset($_GET['id'])){
 									?>
 									<li>
 										<?=
-										Html::a('Fotos',['user/fotos','id' => $model->id]);
+										Html::a('Galería',['user/fotos','id' => $model->id]);
 										?>
 									</li>
 									<?php
@@ -60,7 +59,7 @@ if(isset($_GET['id'])){
 								?>
 									<li>
 										<?=
-											Html::a('Fotos',['user/fotos','id' => $model->id]);	
+											Html::a('Galería',['user/fotos','id' => $model->id]);	
 										?>
 									</li>
 									<?php
@@ -136,12 +135,6 @@ if(isset($_GET['id'])){
 
 								<ul class="more-dropdown more-with-triangle triangle-bottom-right">
 									<li>
-										<a href="#" data-toggle="modal" data-target="#update-header-photo">Actualizar foto del perfil</a>
-									</li>
-									<li>
-										<a href="#" data-toggle="modal" data-target="#update-header-photo">Actualizar cabecera</a>
-									</li>
-									<li>
 										<?= Html::a('Configuración',['user/configuracion']);
 										?>
 									</li>
@@ -157,7 +150,7 @@ if(isset($_GET['id'])){
 					</div>
 					<div class="top-header-author">
 						<a href="02-ProfilePage.html" class="author-thumb">
-							<img id="foto_perfil" src="<?= $model->img_perfil === null ?  './img/perfil.png' : $model->img_perfil ?>" alt="author">
+							<img id="foto_perfil" src="<?= $model->getAvatarUrl()?>" alt="author">
 						</a>
 						<div class="author-content">
 							<a href="02-ProfilePage.html" class="h4 author-name"><?= $model->name; ?></a>

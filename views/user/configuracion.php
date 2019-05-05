@@ -29,6 +29,16 @@ if(isset($_GET['id'])){
 			        'model' => $model,
 			        'centro' => $centro
 			    ]);
+			} else if(isset($_GET['ci'])){
+				echo $this->render('_formChangeImage', [
+			        'model' => $model,
+			        'centro' => $centro
+			    ]);
+			} else if(isset($_GET['cc'])){
+				echo $this->render('_formChangeCabe', [
+			        'model' => $model,
+			        'centro' => $centro
+			    ]);
 			}else{
 				echo $this->render('_formInfPer', [
 			        'model' => $model,
@@ -73,6 +83,16 @@ if(isset($_GET['id'])){
 									<li>
 										<?=
 										Html::a('Sobre mí', ['user/configuracion', 'am' => 1])
+										?>
+									</li>
+									<li>
+										<?=
+										Html::a('Cambiar imagen perfil', ['user/configuracion', 'ci' => 1])
+										?>
+									</li>
+									<li>
+										<?=
+										Html::a('Cambiar imagen cabecera', ['user/configuracion', 'cc' => 1])
 										?>
 									</li>
 								</ul>
