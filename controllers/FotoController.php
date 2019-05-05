@@ -52,20 +52,9 @@ class FotoController extends BaseController
      */
     public function actionIndex($id = false)
     {
-        $searchModel = new fotoSearch();
-
-        if(Yii::$app->controller->isAdminUser() && $id != false){
-            $searchModel->user_id = $id;
-        }else if(Yii::$app->controller->isAdminUser() && $id == false){
-            return $this->redirect(['user/index']);
-        }else{
-            $searchModel->user_id = Yii::$app->user->id;
-        }
-
-
+        $searchModel = new FotoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        $dataProvider->setSort(['defaultOrder' => ['fecha'=>SORT_DESC]]);
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -94,7 +83,7 @@ class FotoController extends BaseController
     public function loadModel($id) {
         $model = foto::findOne($id);
         if ($model === null)
-            throw new Exception(404, 'foto no encontrado');
+            throw new Exception(404, 'Foto no encontrada');
         return $model;
     }
 
@@ -104,21 +93,9 @@ class FotoController extends BaseController
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate($destinatario = null)
+    public function actionCreate()
     {
-        $model = new foto();
-        $searchModel = new fotoSearch();
-
-        if(Yii::$app->controller->isAdminUser()){
-            $searchModel->user_id = Yii::$app->user->id;
-            $searchModel->destinatario = $destinatario;
-            $cliente = User::findOne($destinatario);
-            if ($cliente === null)
-                return $this->redirect(['user/index']);
-        } else {
-            $cliente = false;
-            $searchModel->user_id = Yii::$app->user->id;
-        }
+        $model = new Foto();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -126,10 +103,7 @@ class FotoController extends BaseController
 
         return $this->render('create', [
             'model' => $model,
-            'cliente' => $cliente
         ]);
-        
-        
     }
 
     /**
@@ -167,8 +141,6 @@ class FotoController extends BaseController
 
         $model = $this->loadModel($id);
         $uid = $model->user_id;
-        $destinatario = $model->destinatario;
-        $fileName = $model->getFileName();
         $model->delete();
         if($output == "JSON"){
             return Json::encode([
@@ -177,14 +149,10 @@ class FotoController extends BaseController
                 ]
             ]);
         }else{
-            Yii::$app->session->setFlash('info', "Documento eliminado correctamente.");
-            if($destinatario !== null){
-                return $this->redirect(['foto/asignados','id' => $destinatario]);
-            } else {
-                return $this->redirect(['foto/index','id' => $uid]);
-            }
-        }
+            Yii::$app->session->setFlash('info', "Foto eliminada correctamente.");
 
+            return $this->redirect(['foto/index','id' => $uid]);
+        }
     }
 
 

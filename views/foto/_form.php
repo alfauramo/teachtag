@@ -4,17 +4,19 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Fichero */
+/* @var $model app\models\Center */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="fichero-form">
+<div class="foto-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'titulo')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'ruta')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'notas')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'fecha')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'user_id')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>

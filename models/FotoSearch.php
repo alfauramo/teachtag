@@ -17,8 +17,8 @@ class FotoSearch extends Foto
     public function rules()
     {
         return [
-            [['id', 'user_id', 'destinatario'], 'integer'],
-            [['titulo', 'notas', 'nombre', 'fecha'], 'safe'],
+            [['id', 'user_id'], 'integer'],
+            [['ruta', 'fecha',], 'safe'],
         ];
     }
 
@@ -60,14 +60,11 @@ class FotoSearch extends Foto
         $query->andFilterWhere([
             'id' => $this->id,
             'fecha' => $this->fecha,
-            'fecha_descarga' => $this->fecha_descarga,
             'user_id' => $this->user_id,
-            'destinatario' => $this->destinatario
         ]);
 
-        $query->andFilterWhere(['like', 'titulo', $this->titulo])
-            ->andFilterWhere(['like', 'notas', $this->notas])
-            ->andFilterWhere(['like', 'nombre', $this->nombre]);
+        $query
+            ->andFilterWhere(['like', 'ruta', $this->ruta]);
 
         return $dataProvider;
     }

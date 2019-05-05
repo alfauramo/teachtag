@@ -3,11 +3,13 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Fichero */
+/* @var $model app\models\Foto */
 
-$this->title = 'Editar Fichero: ' . $model->nombre;
+$this->title = 'Modificar ';
+$this->params['breadcrumbs'][] = ['label' => 'Fotos', 'url' => ['index']];
+$this->params['breadcrumbs'][] = 'Modificar';
 ?>
-<div class="fichero-update">
+<div class="foto-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

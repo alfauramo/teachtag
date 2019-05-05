@@ -172,6 +172,14 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return $this->hasOne(Center::className(), ['id' => 'centerCode']); 
     }
 
+    /** 
+    * @return \yii\db\ActiveQuery 
+    */ 
+    public function getFotos() 
+    { 
+        return $this->hasMany(Foto::className(), ['user_id' => 'id']); 
+    }
+
     public function getAvatarUrl() {
         if (strlen($this->img_perfil) > 0)
             return $this->img_perfil;

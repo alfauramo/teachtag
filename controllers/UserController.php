@@ -621,14 +621,13 @@ class UserController extends BaseController
     }
 
     public function actionTest(){
-        //Probando cómo relacionar tags y usuarios a la hora de compartir.
-        //Si añado un id de tag al array de editableTags del usuario, y mando un safe, éste se guarda. Ésto se puede interpretar como compartido si creamos un $model de tag con el id del array de editable tags y el user_id no es el mismo que lo creó, entonces es un tag compartido.
+        //Compruebo que la relación con fotos funciona.
         $model = User::findOne(128);
-        $tags = $model->tags;
-        foreach($tags as $t){
-            $t->dibujar();
-            
+        $fotos = $model->fotos;
+        foreach($fotos as $f){
+            var_dump($f->ruta);
         }
+
         die();
     }
 }

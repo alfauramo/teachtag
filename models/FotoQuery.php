@@ -7,7 +7,7 @@ namespace app\models;
  *
  * @see Fichero
  */
-class FicheroQuery extends \yii\db\ActiveQuery
+class FotoQuery extends \yii\db\ActiveQuery
 {
     /*public function active()
     {

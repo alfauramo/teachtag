@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\FicheroSearch */
+/* @var $model app\models\FotoSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="fichero-search">
+<div class="foto-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -17,19 +17,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'titulo') ?>
-
-    <?= $form->field($model, 'notas') ?>
-
-    <?= $form->field($model, 'nombre') ?>
+    <?= $form->field($model, 'ruta') ?>
 
     <?= $form->field($model, 'fecha') ?>
 
-    <?php // echo $form->field($model, 'user_id') ?>
+    <?= $form->field($model, 'user_id') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>
+        <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
