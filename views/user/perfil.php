@@ -33,7 +33,10 @@ if(isset($_GET['id'])){
 							<div class="col col-lg-5 col-md-5 col-sm-12 col-12">
 								<ul class="profile-menu">
 									<li>
-										<a href="#" class="active">Timeline</a>
+										<?= Html::a('Timeline',['user/timeline'])?>
+									</li>
+									<li>
+										<?= Html::a('Perfil',['user/perfil', 'id' => $model->id],['class' => 'active'])?>
 									</li>
 									<li>
 										<?= Html::a('Amigos',['user/ver-amigos', 'id' => $model->id])

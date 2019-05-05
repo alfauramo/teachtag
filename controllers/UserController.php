@@ -101,6 +101,28 @@ class UserController extends BaseController
         ]);
     }
 
+    public function actionVerAmigos($id = false)
+    {
+
+        if($id !== false){
+            $model = User::findOne($id);
+        } else {
+            if(Yii::$app->user->isGuest){
+                $model = User::findOne(121);
+            }else{
+                $model = User::findOne(Yii::$app->user->id);
+            }
+            
+        }
+
+        $centro = Center::findOne($model->centerCode);
+        
+        return $this->render('amigos', [
+            'model' => $model,
+            'centro' => $centro
+        ]);
+    }
+
     /**
      * Displays a single User model.
      * @param integer $id
@@ -410,12 +432,6 @@ class UserController extends BaseController
         $model->dejarCompartir($id);
         $model->save();
         $this->goBack();
-    }
-
-    public function actionVerAmigos($id){
-        $model = User::findOne($id);
-        var_dump("Amigos de ".$model->name);
-        die();
     }
 
     public function actionEliminar($id){

@@ -18,6 +18,19 @@
 	
 }
 
+#friends_pro{
+	width: 100px !important;
+	height: 100px !important;
+}
+
+#fila {
+	margin-left: 16%;
+}
+
+#amistades{
+	margin-right: 35%;
+}
+
 #aceptar.accept-request{
 	background-color: #47f026 !important;
 }
@@ -84,6 +97,18 @@ p.more{
 .post-control-button #compartido_but, .post-control-button #liked_but {
 	background: #ff5e3a !important;
 }
+
+@media (max-width: 768px) { 
+	#cabecera_perfil {
+		height: 225px !important;
+	}
+
+	#friends_pro{
+		width: 75px !important;
+		height: 75px !important;
+	}
+}
+
 
 @media (min-width: 768px) { 
 	.header .page-title {
