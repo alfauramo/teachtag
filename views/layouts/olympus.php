@@ -201,7 +201,8 @@ if(Yii::$app->user->isGuest){
                 <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
                 <?php
                 if(count($model->peticiones) > 0) {
-                    echo "<div class='label-avatar bg-blue'>count($model->peticiones)</div>";
+                    echo "<div class='label-avatar bg-blue'>
+                    ".count($model->peticiones)."</div>";
                 }
                 ?>
                 <div class="more-dropdown more-with-triangle triangle-top-center">
@@ -285,7 +286,12 @@ if(Yii::$app->user->isGuest){
                 <a class="nav-link" data-toggle="tab" href="#request" role="tab">
                     <div class="control-icon has-items">
                         <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-                        <div class="label-avatar bg-blue"><?=count($model->peticiones)?></div>
+                        <?php
+                        if(count($model->peticiones) > 0) {
+                            echo "<div class='label-avatar bg-blue'>
+                            ".count($model->peticiones)."</div>";
+                        }
+                        ?>
                     </div>
                 </a>
             </li>

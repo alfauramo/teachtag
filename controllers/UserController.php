@@ -15,6 +15,7 @@ use yii\helpers\Url;
 use yii\web\UploadedFile;
 use yii\helpers\FileHelper;
 use yii\helpers\Json;
+use app\models\Tag;
 /**
  * UserController implements the CRUD actions for User model.
  */
@@ -428,9 +429,14 @@ class UserController extends BaseController
     }
 
     public function actionDejarCompartir($id){
-        $model = User::findOne(Yii::$app->user->id);
-        $model->dejarCompartir($id);
-        $model->save();
+        
+        $tag = Tag::findOne($id);
+        if($tag->creator_id !== Yii::$app->user->id){
+            $model = User::findOne(Yii::$app->user->id);
+            $model->dejarCompartir($id);
+            $model->save();
+        }
+        
         $this->goBack();
     }
 

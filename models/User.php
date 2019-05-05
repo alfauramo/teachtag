@@ -412,6 +412,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function mostrarAmigosPlantilla(){
 
         foreach($this->friends as $f){
+            $f = User::findOne($f);
             if($f->id !== Yii::$app->user->id){
                 $f = User::findOne($f);
                 $center = Center::findOne($f->centerCode);
