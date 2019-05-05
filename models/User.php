@@ -412,51 +412,53 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function mostrarAmigosPlantilla(){
 
         foreach($this->friends as $f){
-            $f = User::findOne($f);
-            $center = Center::findOne($f->centerCode);
-            echo "<div class='col col-xl-3 col-lg-6 col-md-6 col-sm-6 col-6'>
-                <div class='ui-block'>
-                <div class='friend-item'>
-                    <div class='friend-header-thumb'>
-                        <img src='".$f->getCabeceraUrl()."' alt='friend'>
-                    </div>
-                
-                    <div class='friend-item-content'>
-                
-                        <div class='more'>
-                            <svg class='olymp-three-dots-icon'><use xlink:href='./theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon'></use></svg>
-                            <ul class='more-dropdown'>
-                                <li>". Html::a('Bloquear',['user/bloquear','id' => $f->id])."
-                                </li>
-                            </ul>
+            if($f->id !== Yii::$app->user->id){
+                $f = User::findOne($f);
+                $center = Center::findOne($f->centerCode);
+                echo "<div class='col col-xl-3 col-lg-6 col-md-6 col-sm-6 col-6'>
+                    <div class='ui-block'>
+                    <div class='friend-item'>
+                        <div class='friend-header-thumb'>
+                            <img src='".$f->getCabeceraUrl()."' alt='friend'>
                         </div>
-                        <div class='friend-avatar'>
-                            <div class='author-thumb'>
-                                <img id='friends_pro' src='".$f->getAvatarUrl()."' alt='author'>
+                    
+                        <div class='friend-item-content'>
+                    
+                            <div class='more'>
+                                <svg class='olymp-three-dots-icon'><use xlink:href='./theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon'></use></svg>
+                                <ul class='more-dropdown'>
+                                    <li>". Html::a('Bloquear',['user/bloquear','id' => $f->id])."
+                                    </li>
+                                </ul>
                             </div>
-                            <div class='author-content'>".Html::a($f->name,['user/perfil', 'id' => $f->id],['class' => 'active'])."
-                                <div class='country'>".$center->nombre."</div>
+                            <div class='friend-avatar'>
+                                <div class='author-thumb'>
+                                    <img id='friends_pro' src='".$f->getAvatarUrl()."' alt='author'>
+                                </div>
+                                <div class='author-content'>".Html::a($f->name,['user/perfil', 'id' => $f->id],['class' => 'active'])."
+                                    <div class='country'>".$center->nombre."</div>
+                                </div>
                             </div>
-                        </div>
-                
-                        <div class='swiper-container' data-slide='fade'>
-                            <div class='swiper-wrapper'>
-                                <div class='swiper-slide'>
-                                    <div id='fila' class='friend-count row' data-swiper-parallax='-500'>".
-                                    Html::a("<div class='h6'>".count($f->friends)."</div>
-                                            <div class='title'>Amigos</div>",['user/ver-amigos', 'id' => $f->id], ['id' => 'amistades'])
-                                    ."
-                                        <a href='#' class='friend-count-item'>
-                                            <div class='h6'>200</div>
-                                            <div class='title'>Fotos</div>
-                                        </a>
+                    
+                            <div class='swiper-container' data-slide='fade'>
+                                <div class='swiper-wrapper'>
+                                    <div class='swiper-slide'>
+                                        <div id='fila' class='friend-count row' data-swiper-parallax='-500'>".
+                                        Html::a("<div class='h6'>".count($f->friends)."</div>
+                                                <div class='title'>Amigos</div>",['user/ver-amigos', 'id' => $f->id], ['id' => 'amistades'])
+                                        ."
+                                            <a href='#' class='friend-count-item'>
+                                                <div class='h6'>200</div>
+                                                <div class='title'>Fotos</div>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div></div></div>";
-        }
+                    </div></div></div>";
+            }
+            }
     }
 
     public function eliminar($id)
