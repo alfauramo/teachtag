@@ -104,8 +104,10 @@ class Foto extends \yii\db\ActiveRecord
         return $bytes;
     }
 
-    public function getFilePath() {
-        return '/' . $this->ruta;
+    public function getFilePath($id = false) {
+        if($id == false)
+            $id = Yii::$app->user->id;
+        return './img/' . $id . '/galeria/' . $this->ruta;
     }
 
     public function afterFind(){

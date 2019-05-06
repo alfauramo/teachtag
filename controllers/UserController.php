@@ -625,7 +625,7 @@ class UserController extends BaseController
         $model = User::findOne(Yii::$app->user->id);
         $fotos = $model->fotos;
         foreach($fotos as $f){
-            var_dump($f->ruta);
+            var_dump($f->getFilePath());
         }
 
         die();

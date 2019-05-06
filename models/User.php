@@ -5,8 +5,10 @@ namespace app\models;
 use Yii;
 use yii\web\IdentityInterface;
 use app\models\Center;
+use app\models\Foto;
 use arogachev\ManyToMany\behaviors\ManyToManyBehavior;
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 /**
  * This is the model class for table "user".
@@ -547,4 +549,24 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return $this->save();
     }
 
+    public function mostrarFotos() {
+        $fotos = $this->fotos;
+        $max = 0;
+        $i = 1;
+        if(count($fotos) > 9){
+            $max = 9;
+        } else {
+            $max = count($fotos);
+        }
+        foreach($fotos as $f){
+            echo "<li>
+                    <a href='".Url::to($f->getFilePath())."'>
+                        <img id='slider' src=" . $f->getFilePath() ." alt='photo'>
+                    </a>
+                </li>";
+            $i++;
+            if($i > $max)
+                break;
+        }
+    }
 }
