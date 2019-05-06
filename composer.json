@@ -23,7 +23,8 @@
         "kartik-v/yii2-grid": "^3.3@dev",
         "arogachev/yii2-many-to-many": "dev-master",
         "kartik-v/yii2-widget-datetimepicker": "*",
-        "2amigos/yii2-file-upload-widget": "~1.0"
+        "2amigos/yii2-file-upload-widget": "~1.0",
+        "2amigos/yii2-file-input-widget": "~1.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

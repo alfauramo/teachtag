@@ -172,8 +172,9 @@ class FotoController extends BaseController
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
-    public function actionUpload($destinatario = false)
+    public function actionUpload($id = false)
     {
+        return "hola";
         $model = new Foto();
         $file = UploadedFile::getInstance($model, 'ruta');
         $directory = './img/'.Yii::$app->user->id;

@@ -18,13 +18,37 @@
 	
 }
 
+.table-striped tbody tr:nth-of-type(2n+1) {
+    background-color: rgba(255, 223, 223, 0.36);
+}
+
+#init, #cancel, #delete{
+	color: #fff !important;
+}
+
+#init{
+	background: #9bcb2f !important;
+}
+
+#cancel {
+	background: #1e0707c9 !important;
+}
+
+#delete {
+	background: red;
+}
+
+.fade {
+	opacity: 1 !important;
+}
+
 #friends_pro{
 	width: 100px !important;
 	height: 100px !important;
 }
 
 #fila {
-	margin-left: 25%;
+	margin-left: 18% !important;
 }
 
 #amistades{

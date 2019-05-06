@@ -16,6 +16,14 @@ $config = [
         'formatter' => [
             'dateFormat' => 'Y-m-d',
        ],
+       'i18n' => [
+          'translations' => [
+              'file-input*' => [
+                  'class' => 'yii\i18n\PhpMessageSource',
+                  'basePath' => dirname(__FILE__).'/../vendor/2amigos/yii2-file-input-widget/src/messages/',
+              ],
+          ],
+      ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '_ZXrn1mMinsPJFZAzO69XfVzyaXZE6tw',
