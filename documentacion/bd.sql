@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-05-2019 a las 14:35:46
+-- Tiempo de generación: 07-05-2019 a las 01:27:03
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -57,6 +57,15 @@ CREATE TABLE `fotos` (
   `fecha` datetime NOT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `fotos`
+--
+
+INSERT INTO `fotos` (`id`, `ruta`, `fecha`, `user_id`) VALUES
+(37, 'cabecera.jpg.jpg', '2019-05-07 03:13:11', 128),
+(38, 'perfil.png', '2019-05-07 03:13:11', 128),
+(39, '15344206335212.png', '2019-05-07 03:13:11', 128);
 
 -- --------------------------------------------------------
 
@@ -275,7 +284,7 @@ ALTER TABLE `center`
 -- AUTO_INCREMENT de la tabla `fotos`
 --
 ALTER TABLE `fotos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT de la tabla `tag`

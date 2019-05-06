@@ -551,6 +551,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 
     public function mostrarFotos() {
         $fotos = $this->fotos;
+        $fotos = array_reverse($fotos);
         $max = 0;
         $i = 1;
         if(count($fotos) > 9){
