@@ -61,9 +61,13 @@ if(Yii::$app->user->isGuest){
             <span class="material-input"></span></div>
         </form>
 
-        <div class="buttons form-inline">
-            <?= Html::a('Iniciar sesión', ['site/login'], ['class' => 'btn btn-primary btn-md-2 login-btn-responsive']) ?>
-            <?= Html::a('Regístrate', ['site/registro'], ['class' => 'btn btn-blue btn-md-2 login-btn-responsive']) ?>
+        <div class="row" style='margin-left: 15%; margin-top:1%;'>
+            <div class='col-md-6'>
+                <?= Html::a('Iniciar sesión', ['site/login'], ['class' => 'btn btn-primary btn-md-2 login-btn-responsive']) ?>
+            </div>
+            <div class='col-md-6'>
+                <?= Html::a('Regístrate', ['site/registro'], ['class' => 'btn btn-blue btn-md-2 login-btn-responsive']) ?>
+            </div>
         </div>
     </div></header>
 <!-- ... end Header logout-->

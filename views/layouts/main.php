@@ -36,16 +36,17 @@ $this->registerCss("
     <div class="header--standard header--standard-landing" id="header--standard">
                     <div class="container">
                         <div class="header--standard-wrap">
-
-                            <a href="#" class="logo">
-                                <div class="img-wrap">
+                            <?= Html::a('<div class="img-wrap">
                                     <img src="theme/img/logo.png" alt="Olympus">
                                     <img src="theme/img/logo-colored-small.png" alt="Olympus" class="logo-colored">
                                 </div>
                                 <div class="title-block">
                                     <h6 class="logo-title">TeachTag</h6>
                                     <div class="sub-title">LA RED SOCIAL DEL PROFESORADO</div>
-                                </div>
+                                </div>',['site/index'],['class' => 'logo'])?>
+                            <a href="#" class="logo">
+                                
+                                
                             </a>
 
                             <a href="#" class="open-responsive-menu js-open-responsive-menu">

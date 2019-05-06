@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 use yii\helpers\Html;
 use app\models\User;
@@ -31,6 +31,9 @@ if(isset($_GET['id'])){
 					<div class="profile-section">
 						<div class="row">
 							<div class="col col-lg-5 col-md-5 col-sm-12 col-12">
+								<?php
+								if(!Yii::$app->user->isGuest){
+								?>
 								<ul class="profile-menu">
 									<li>
 										<?= Html::a('Timeline',['user/timeline'])?>
@@ -54,8 +57,14 @@ if(isset($_GET['id'])){
 									}
 									?>
 								</ul>
+								<?php
+								}
+								?>
 							</div>
 							<div class="col col-lg-5 ml-auto col-md-5 col-sm-12 col-12">
+								<?php
+								if(!Yii::$app->user->isGuest){
+								?>
 								<ul class="profile-menu">
 								<?php
 									if($model->id != Yii::$app->user->id){
@@ -92,10 +101,13 @@ if(isset($_GET['id'])){
 										}
 									?>
 								</ul>
+								<?php
+								}
+								?>
 							</div>
 						</div>
 						<?php
-						if(!Yii::$app->user->isGuest  || !in_array($id, $usuario->blockeds)){
+						if(!Yii::$app->user->isGuest  || (isset($usuario) && !in_array($id, $usuario->blockeds))){
 						?>
 						<div class="control-block-button">
 							<?php
@@ -183,7 +195,7 @@ if(Yii::$app->user->isGuest || (Yii::$app->user->id != $id && !in_array(Yii::$ap
 						<h6>¿Quieres ver el perfil de <?=$model->name?>?</h6>
 						<?php
 						if(Yii::$app->user->isGuest){
-							echo "<p>" . Html::a('Inicia sesión',['site/login']) . " o ¡" . Html::a('regístrate',['user/signup']) . " ahora y crea tu propio perfil y disfruta de las increíbles características de TeachTag!";
+							echo "<p>" . Html::a('Inicia sesión',['site/login']) . " o ¡" . Html::a('regístrate',['site/registro']) . " ahora y crea tu propio perfil y disfruta de las increíbles características de TeachTag!";
 						} else if(in_array(Yii::$app->user->id,$model->peticiones)){
 							echo "<p>¡Espera a que acepte tu solicitud!</p>";
 						}else if(in_array($id, $usuario->blockeds)) {
