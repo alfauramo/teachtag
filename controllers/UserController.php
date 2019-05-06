@@ -622,7 +622,7 @@ class UserController extends BaseController
 
     public function actionTest(){
         //Compruebo que la relación con fotos funciona.
-        $model = User::findOne(128);
+        $model = User::findOne(Yii::$app->user->id);
         $fotos = $model->fotos;
         foreach($fotos as $f){
             var_dump($f->ruta);

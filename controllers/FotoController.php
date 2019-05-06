@@ -174,15 +174,15 @@ class FotoController extends BaseController
 
     public function actionUpload($destinatario = false)
     {
-        $model = new foto();
-        $file = UploadedFile::getInstance($model, 'nombre');
-        $directory = 'uploads/';
-
+        $model = new Foto();
+        $file = UploadedFile::getInstance($model, 'ruta');
+        $directory = './img/'.Yii::$app->user->id;
+        
         if (!is_dir($directory))
             FileHelper::createDirectory($directory);
 
         if ($file) {
-            $fileName = $file->name;
+            $fileName = $file->ruta;
             $fileName = mb_ereg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $fileName);
             $fileName = mb_ereg_replace("([\.]{2,})", '', $fileName);
             $filePath = $directory . $fileName;
