@@ -77,7 +77,7 @@ if(isset($_GET['id'])){
 								</li>
 								<li>
 									<?=
-									Html::a('Subir foto',['foto/upload','id'=>$model->id],['class' => 'btn btn-blue btn-xs']);
+									Html::a('Subir foto',['foto/create','id'=>$model->id],['class' => 'btn btn-blue btn-xs']);
 									?>
 								</li>
 								<li id="btn_logout">

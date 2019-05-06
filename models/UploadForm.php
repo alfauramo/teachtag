@@ -21,7 +21,7 @@ class UploadForm extends Model
 	public function upload()
 	{
 		if ($this->validate()) {
-			$this->fichero->saveAs('uploads/' . $this->fichero->baseName . '.' . $this->fichero->extension);
+			$this->fichero->saveAs('img/' . $this->fichero->baseName . '.' . $this->fichero->extension);
 			return true;
 		} else {
 			return false;

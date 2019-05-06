@@ -174,21 +174,19 @@ class FotoController extends BaseController
 
     public function actionUpload($id = false)
     {
-        return "hola";
         $model = new Foto();
         $file = UploadedFile::getInstance($model, 'ruta');
-        $directory = './img/'.Yii::$app->user->id;
+        $directory = './img/'.Yii::$app->user->id.'/galeria/';
         
         if (!is_dir($directory))
             FileHelper::createDirectory($directory);
 
         if ($file) {
-            $fileName = $file->ruta;
+            $fileName = $file;
             $fileName = mb_ereg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $fileName);
             $fileName = mb_ereg_replace("([\.]{2,})", '', $fileName);
             $filePath = $directory . $fileName;
-
-            //comprobación de que el foto existe
+            //comprobación de que la foto existe
             if (file_exists($filePath)) {
                 $fileInfo = pathinfo($filePath);
                 do {
@@ -202,11 +200,8 @@ class FotoController extends BaseController
 
             if ($file->saveAs($filePath)) {
                 $fileModel = new Foto();
-                $fileModel->nombre = $fileName;
-                if($destinatario != false)
-                    $fileModel->destinatario = $destinatario;
+                $fileModel->ruta = $fileName;
                 $fileModel->user_id = Yii::$app->user->id;
-                $fileModel->ruta_foto = $filePath;
                 $fileModel->fecha = date("Y-m-d H:i:s");
 
                 if (!$fileModel->save())
@@ -217,9 +212,8 @@ class FotoController extends BaseController
                 return Json::encode([
                     'files' => [
                         [
-                            'name' => $fileModel->nombre,
-                            'size' => $fileModel->getFileSize(),
-                            'url' => $descarga,
+                            'name' => $fileModel->ruta,
+                            //'size' => $fileModel->getFileSize(),
                             'cancel' => "",
                             'deleteUrl' => $url,
                             'deleteType' => 'POST',

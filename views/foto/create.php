@@ -20,27 +20,29 @@ $this->title = 'Subir documentos';
 				    <p>Pulse en 'Agregar archivos...' y seleccione los ficheros que desea enviar. A continuación, <strong>pulse en "iniciar subida"</strong>.</p>
 				    <p>Una vez subidas las fotos, pulsa en el siguiente enlace para verlas: <?=  Html::a("Galería",['user/galería','id' => Yii::$app->user->id])?></p>
 				    <h3><strong>Fotografías</strong></h3>
+				    <p id='msg_ok'style="color:blue; display:none;">¡ÉXITO AL SUBIR LAS IMÁGENES</p>
+				    <p id='msg_ko'style="color:red; display:none;">¡HÁ HABIDO UN ERROR!</p>
 					<?= FileUploadUI::widget([
 						'model' => $model,
 						'attribute' => 'ruta',
-						'url' => ['fichero/upload', 'id' => Yii::$app->user->id],
+						'url' => ['foto/upload', 'id' => Yii::$app->user->id],
 						'gallery' => false,
-						//	'fieldOptions' => [
-						//		'accept' => 'image/*'
-						//	],
+						'fieldOptions' => [
+								'accept' => 'image/*'
+						],
 						'clientOptions' => [
 							'maxFileSize' => 200000000
 						],
 						// ...
 						'clientEvents' => [
-							'fileuploaddone' => 'function(e, data) {
-			                console.log(e);
-			                console.log(data);
-			            }',
-							'fileuploadfail' => 'function(e, data) {
-			                console.log(e);
-			                console.log(data);
-			            }',
+							'fileuploaddone' => "function(e, data) {
+			                 document.getElementById('msg_ok').style.display = 'block';
+			                 document.getElementById('msg_ko').style.display = 'none';
+			            	}",
+							'fileuploadfail' => "function(e, data) {
+			                document.getElementById('msg_ko').style.display = 'block';
+			                document.getElementById('msg_ok').style.display = 'none';
+			            }",
 					],
 				]); ?>
 		    </div>

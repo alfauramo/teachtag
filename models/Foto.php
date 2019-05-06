@@ -83,7 +83,7 @@ class Foto extends \yii\db\ActiveRecord
     }
 
     public function getFileSize() {
-        return $this->formatBytes(filesize($this->ruta_Foto));
+        return $this->formatBytes(filesize($this->ruta));
     }
 
     public function formatBytes($bytes) {
@@ -105,7 +105,7 @@ class Foto extends \yii\db\ActiveRecord
     }
 
     public function getFilePath() {
-        return '/' . $this->ruta_Foto;
+        return '/' . $this->ruta;
     }
 
     public function afterFind(){
