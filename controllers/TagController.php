@@ -73,9 +73,8 @@ class TagController extends BaseController
     public function actionCreate()
     {
         $model = new Tag();
-
         if ($model->load(Yii::$app->request->post())){
-            
+
             $model->editableUsers[] = Yii::$app->user->identity->id;
             $fecha = new DateTime('now');
             

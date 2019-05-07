@@ -10,6 +10,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use app\models\User;
+use app\models\Tag;
 
 $model = User::findOne(Yii::$app->user->id);
 
@@ -567,6 +568,15 @@ if(Yii::$app->user->isGuest){
     </div>
     </div>
 </main>
+<div id='crear_tag' style="display:none">
+    <?php
+    $tag = new Tag();
+    
+    echo $this->render('/tag/_form', [
+        'model' => $tag,
+    ]);
+    ?>
+</div>
 <a class="back-to-top" href="#">
     <img src="theme/svg-icons/back-to-top.svg" alt="arrow" class="back-icon">
 </a>

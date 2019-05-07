@@ -84,7 +84,7 @@ if(isset($_GET['id'])){
 									?>
 								<li>
 									<?=
-									Html::a('Crear tag',['','id'=>$model->id],['class' => 'btn btn-primary btn-xs']);
+									Html::a('Crear tag',['','id'=>$model->id],['class' => 'btn btn-primary btn-xs fbox_quick_start']);
 									?>
 								</li>
 								<li>

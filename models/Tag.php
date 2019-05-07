@@ -67,12 +67,27 @@ class Tag extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id'], 'integer'],
+            [['id', 'pdf'], 'integer'],
             [['texto'], 'string'],
             [['id'], 'unique'],
             [['fecha'], 'required'],
             [['fecha'], 'safe'],
         ];
+    }
+
+    /**
+     * Creo unas constantes, las cuales identificarán el rol.
+     */
+    const NO_DESCARGABLE = 0;
+    const DESCARGABLE = 1;
+
+    static $pdf = [
+        self::DESCARGABLE => 'Descargar como PDF',
+        self::NO_DESCARGABLE => 'No descargable',
+    ];
+
+    public function getRolToString() {
+        return self::$pdf[$this->pdf];
     }
 
     /**

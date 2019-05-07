@@ -83,9 +83,7 @@ if(isset($_GET['id'])){
 									} else {
 									?>
 								<li>
-									<?=
-									Html::a('Crear tag',['','id'=>$model->id],['class' => 'btn btn-primary btn-xs']);
-									?>
+									<a id='abrir' href='#crear_tag' class='btn btn-primary btn-xs fbox_quick_start'>Crear tag</a>
 								</li>
 								<li>
 									<?=

@@ -17,7 +17,7 @@ class TagSearch extends Tag
     public function rules()
     {
         return [
-            [['id'], 'integer'],
+            [['id', 'pdf'], 'integer'],
             [['texto','fecha'], 'safe'],
         ];
     }

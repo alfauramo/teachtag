@@ -27,6 +27,7 @@ class AppAsset extends AssetBundle
         'theme/Bootstrap/dist/css/bootstrap-grid.css',
         'theme/css/main.css',
         'theme/css/fonts.min.css',
+        'css/jquery.fancybox.css',
         
     ];
     public $js = [
@@ -66,6 +67,7 @@ class AppAsset extends AssetBundle
         'theme/fonts/fontawesome-all.js',
         'theme/Bootstrap/dist/js/bootstrap.bundle.js',
         'js/custom.js',
+        'js/jquery.fancybox.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

@@ -1,4 +1,10 @@
 var hora = document.getElementById("hora");
+$(document).ready(function(){
+
+	//cualquier enlace con la clase fbox va a ser un fancy automático
+	$("a.fbox_quick_start").fancybox();
+});
+
 var x = 0;
 if(hora){
 
