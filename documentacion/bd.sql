@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 07-05-2019 a las 01:27:03
--- Versión del servidor: 10.1.35-MariaDB
--- Versión de PHP: 7.2.9
+-- Servidor: localhost
+-- Tiempo de generación: 07-05-2019 a las 19:52:48
+-- Versión del servidor: 10.1.38-MariaDB
+-- Versión de PHP: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -65,7 +65,8 @@ CREATE TABLE `fotos` (
 INSERT INTO `fotos` (`id`, `ruta`, `fecha`, `user_id`) VALUES
 (37, 'cabecera.jpg.jpg', '2019-05-07 03:13:11', 128),
 (38, 'perfil.png', '2019-05-07 03:13:11', 128),
-(39, '15344206335212.png', '2019-05-07 03:13:11', 128);
+(39, '15344206335212.png', '2019-05-07 03:13:11', 128),
+(40, '15570468265ccea62a134c77.07140393.png', '2019-05-07 14:08:10', 128);
 
 -- --------------------------------------------------------
 
@@ -77,16 +78,20 @@ CREATE TABLE `tag` (
   `id` int(11) NOT NULL,
   `texto` text,
   `fecha` datetime NOT NULL,
-  `creator_id` int(11) NOT NULL
+  `creator_id` int(11) NOT NULL,
+  `pdf` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tag`
 --
 
-INSERT INTO `tag` (`id`, `texto`, `fecha`, `creator_id`) VALUES
-(2, 'ads', '0000-00-00 00:00:00', 121),
-(5, 'Estoy probando a editar ', '2019-05-04 08:49:20', 128);
+INSERT INTO `tag` (`id`, `texto`, `fecha`, `creator_id`, `pdf`) VALUES
+(2, 'ads', '0000-00-00 00:00:00', 121, 0),
+(5, 'Estoy probando a editar ', '2019-05-04 08:49:20', 128, 0),
+(6, 'asd', '2019-05-07 13:12:51', 128, 1),
+(7, 'Probando a crear un tag con fancy', '2019-05-07 13:15:46', 121, 1),
+(8, 'alsidhadhlasd', '2019-05-07 18:34:18', 128, 1);
 
 -- --------------------------------------------------------
 
@@ -184,7 +189,11 @@ CREATE TABLE `user_has_tag` (
 INSERT INTO `user_has_tag` (`tag_id`, `user_id`) VALUES
 (2, 121),
 (5, 121),
-(5, 128);
+(5, 128),
+(6, 128),
+(7, 121),
+(7, 128),
+(8, 128);
 
 -- --------------------------------------------------------
 
@@ -203,7 +212,8 @@ CREATE TABLE `user_like_tag` (
 
 INSERT INTO `user_like_tag` (`tag_id`, `user_id`) VALUES
 (5, 121),
-(5, 128);
+(5, 128),
+(8, 128);
 
 --
 -- Índices para tablas volcadas
@@ -284,13 +294,13 @@ ALTER TABLE `center`
 -- AUTO_INCREMENT de la tabla `fotos`
 --
 ALTER TABLE `fotos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT de la tabla `tag`
 --
 ALTER TABLE `tag`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `user`

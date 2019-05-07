@@ -205,6 +205,14 @@ class Tag extends \yii\db\ActiveRecord
                     </svg>
                     <span>".count($this->likeUsers)."</span>",['user/like', 'id' => $this->id], ['class' => 'post-add-icon inline-items']);
                 }
+                if($this->pdf == Tag::DESCARGABLE){
+                    echo Html::a('<i class="fa fa-download"></i> Descargar Tag', ['/tag/descargar','id' => $this->id], [
+                        'class'=>'', 
+                        'target'=>'_blank', 
+                        'data-toggle'=>'tooltip', 
+                        'title'=>'Abre el Tag como un PDF en otra pestaña'
+                    ]);
+                }
                 echo "<div class='comments-shared'>";
                 if(array_search(Yii::$app->user->id, $this->editableUsers)){
                     echo Html::a("<svg class='olymp-share-icon'>
