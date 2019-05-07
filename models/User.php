@@ -570,4 +570,14 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
                 break;
         }
     }
+
+    public function imprimirAlbum(){
+        $fotos = $this->fotos;
+        $fotos = array_reverse($fotos);
+        foreach($fotos as $f){
+            echo "<div class='photo-item col-4-width'>
+                    <img id='galeria' src='" . $f->getFilePath() . "' alt='photo'>
+                </div>";
+        }
+    }
 }

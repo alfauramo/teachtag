@@ -50,7 +50,7 @@ if(isset($_GET['id'])){
 									?>
 									<li>
 										<?=
-										Html::a('Galería',['user/fotos','id' => $model->id]);
+										Html::a('Galería',['user/galeria','id' => $model->id]);
 										?>
 									</li>
 									<?php
@@ -71,7 +71,7 @@ if(isset($_GET['id'])){
 								?>
 									<li>
 										<?=
-											Html::a('Galería',['user/fotos','id' => $model->id]);	
+											Html::a('Galería',['user/galeria','id' => $model->id]);	
 										?>
 									</li>
 									<?php

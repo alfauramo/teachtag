@@ -5,7 +5,7 @@ use app\models\User;
 /* @var $this yii\web\View */
 /* @var $model app\models\User */
 
-$this->title = "Mi perfil";
+$this->title = "Galería";
 
 if(isset($_GET['id'])){
 	if($_GET['id'] != Yii::$app->user->id){
@@ -16,7 +16,10 @@ if(isset($_GET['id'])){
 } else {
 	$id = Yii::$app->user->id;
 }
+
+
 ?>
+
 <div class="container">
 	<div class="row">
 		<div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -28,6 +31,9 @@ if(isset($_GET['id'])){
 					<div class="profile-section">
 						<div class="row">
 							<div class="col col-lg-5 col-md-5 col-sm-12 col-12">
+								<?php
+								if(!Yii::$app->user->isGuest){
+								?>
 								<ul class="profile-menu">
 									<li>
 										<?= Html::a('Timeline',['user/timeline'])?>
@@ -36,7 +42,7 @@ if(isset($_GET['id'])){
 										<?= Html::a('Perfil',['user/perfil', 'id' => $model->id])?>
 									</li>
 									<li>
-										<?= Html::a('Amigos',['user/ver-amigos', 'id' => $model->id], ['class' => 'active'])
+										<?= Html::a('Amigos',['user/ver-amigos', 'id' => $model->id])
 										?>
 									</li>
 									<?php 
@@ -44,22 +50,28 @@ if(isset($_GET['id'])){
 									?>
 									<li>
 										<?=
-										Html::a('Galería',['user/galeria','id' => $model->id]);
+										Html::a('Galería',['user/galeria','id' => $model->id],['class' => 'active']);
 										?>
 									</li>
 									<?php
 									}
 									?>
 								</ul>
+								<?php
+								}
+								?>
 							</div>
 							<div class="col col-lg-5 ml-auto col-md-5 col-sm-12 col-12">
+								<?php
+								if(!Yii::$app->user->isGuest){
+								?>
 								<ul class="profile-menu">
 								<?php
 									if($model->id != Yii::$app->user->id){
 								?>
 									<li>
 										<?=
-											Html::a('Galería',['user/galeria','id' => $model->id]);	
+											Html::a('Galería',['user/galeria','id' => $model->id],['class' => 'active']);	
 										?>
 									</li>
 									<?php
@@ -89,10 +101,13 @@ if(isset($_GET['id'])){
 										}
 									?>
 								</ul>
+								<?php
+								}
+								?>
 							</div>
 						</div>
 						<?php
-						if(!Yii::$app->user->isGuest  || !in_array($id, $usuario->blockeds)){
+						if(!Yii::$app->user->isGuest  || (isset($usuario) && !in_array($id, $usuario->blockeds))){
 						?>
 						<div class="control-block-button">
 							<?php
@@ -163,12 +178,19 @@ if(isset($_GET['id'])){
 	</div>
 </div>
 
-<!-- Friends -->
-
 <div class="container">
 	<div class="row">
-		<?= $model->mostrarAmigosPlantilla()?>
+		<div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+			<!-- Tab panes -->
+			<div class="tab-content">
+
+					<div class="photo-album-wrapper">
+
+						<?= $model->imprimirAlbum() ?>
+					</div>
+
+			</div>
+
+		</div>
 	</div>
 </div>
-
-<!-- ... end Friends -->

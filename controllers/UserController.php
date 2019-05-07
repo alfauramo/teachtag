@@ -612,12 +612,20 @@ class UserController extends BaseController
         return $this->redirect(['user/perfil']);
     }
 
-    public function actionFotos($id){
-        $model = User::findOne($id);
-        //Puede que ésto lo sustituya creando un controlador y modelo llamado fotos.
+    public function actionGaleria($id = false){
 
-        var_dump("Fotos de ".$model->name);
-        die();
+        if($id == false) 
+            $id == Yii::$app->user->id;
+
+        $model = User::findOne($id);
+        
+
+        $centro = Center::findOne($model->centerCode);
+
+        return $this->render('galeria', [
+            'model' => $model,
+            'centro' => $centro,
+        ]);
     }
 
     public function actionTest(){
