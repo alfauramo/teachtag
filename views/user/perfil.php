@@ -114,37 +114,34 @@ if(isset($_GET['id'])){
 									if(!in_array(Yii::$app->user->id,$model->friends)){
 										if(in_array($model->id, $usuario->peticiones)){
 											echo Html::a('<span class="icon-add without-text">
-		                                    <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+		                                    <svg class="olymp-happy-face-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
 		                                </span>', ['user/aceptar', 'id' => $id], ['class' => 'accept-request','id' => 'aceptar']);
 											echo Html::a('<span class="icon-minus">
-	                                            <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+	                                            <svg class="olymp-happy-face-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
 	                                        </span>', ['user/rechazar', 'id' => $id], ['class' => 'accept-request','id' => 'rechazar']);
 
 										} else if(!in_array(Yii::$app->user->id, $model->peticiones)){
 											echo Html::a('<span class="icon-add without-text">
-		                                    <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+		                                    <svg class="olymp-happy-face-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
 		                                </span>', ['user/enviar-peticion', 'id' => $id], ['class' => 'accept-request']);
 										}else {
 											echo Html::a('<span class="icon-minus">
-	                                            <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+	                                            <svg class="olymp-happy-face-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
 	                                        </span>', ['user/eliminar-peticion', 'id' => $id], ['class' => 'accept-request']);
 										}
 									
 	                            	} else {
 	                                        
 	                            		echo Html::a('<span class="icon-minus">
-	                                            <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+	                                            <svg class="olymp-happy-face-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
 	                                        </span>', ['user/eliminar', 'id' => $id], ['class' => 'accept-request']);
 	                            	}
 								}
 							} else if(Yii::$app->user->id == $model->id ){
 							?>
-							<a href="35-YourAccount-FriendsRequests.html" class="btn btn-control bg-blue">
-								<svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-							</a>
 
 							<div class="btn btn-control bg-primary more">
-								<svg class="olymp-settings-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-settings-icon"></use></svg>
+								<svg class="olymp-settings-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-settings-icon"></use></svg>
 
 								<ul class="more-dropdown more-with-triangle triangle-bottom-right">
 									<li>
@@ -225,7 +222,7 @@ if(Yii::$app->user->isGuest || (Yii::$app->user->id != $id && !in_array(Yii::$ap
 
 			<a id="load-more-button" href="#" class="btn btn-control btn-more" data-load-link="items-to-load.html" data-container="newsfeed-items-grid">
 				<svg class="olymp-three-dots-icon">
-					<use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
+					<use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
 				</svg>
 			</a>
 		</div>

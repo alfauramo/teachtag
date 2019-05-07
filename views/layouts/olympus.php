@@ -44,7 +44,7 @@ if(Yii::$app->user->isGuest){
 <header class="header header--logout" id="site-header">
     <a href="02-ProfilePage.html" class="logo">
         <div class="img-wrap">
-            <img src="theme/img/logo.png" alt="TeachTag">
+            <img src="/theme/img/logo.png" alt="TeachTag">
         </div>
     </a>
 
@@ -80,7 +80,7 @@ if(Yii::$app->user->isGuest){
 
     <div class="fixed-sidebar-left sidebar--small" id="sidebar-left-responsive">
         <a href="#" class="logo js-sidebar-open">
-            <img src="theme/img/logo.png" alt="TeachTag">
+            <img src="/theme/img/logo.png" alt="TeachTag">
         </a>
 
     </div>
@@ -88,7 +88,7 @@ if(Yii::$app->user->isGuest){
     <div class="fixed-sidebar-left sidebar--large" id="sidebar-left-1-responsive">
         <a href="#" class="logo">
             <div class="img-wrap">
-                <img src="theme/img/logo.png" alt="TeachTag">
+                <img src="/theme/img/logo.png" alt="TeachTag">
             </div>
             <div class="title-block">
                 <h6 class="logo-title">TeachTag</h6>
@@ -106,7 +106,7 @@ if(Yii::$app->user->isGuest){
                         <div class="author-title">
                             <?=
                             Yii::$app->user->identity->name;
-                            ?><svg class="olymp-dropdown-arrow-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-dropdown-arrow-icon"></use></svg>
+                            ?><svg class="olymp-dropdown-arrow-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-dropdown-arrow-icon"></use></svg>
                         </div>
                         <span class="author-subtitle"><?= Yii::$app->user->identity->center->nombre ?></span>
                     </a>
@@ -120,7 +120,7 @@ if(Yii::$app->user->isGuest){
             <ul class="left-menu">
                 <li>
                     <a href="#" class="js-sidebar-open">
-                        <svg class="olymp-close-icon left-menu-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
+                        <svg class="olymp-close-icon left-menu-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
                         <span class="left-menu-title">Cerrar menú</span>
                     </a>
                 </li>
@@ -134,13 +134,13 @@ if(Yii::$app->user->isGuest){
             <ul class="account-settings">
                 <li>
                     <?=
-                    Html::a('<svg class="olymp-menu-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-menu-icon"></use></svg>
+                    Html::a('<svg class="olymp-menu-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-menu-icon"></use></svg>
                         <span>Configuración</span>', ['user/configuracion'])
                     ?>
                 </li>
                 <li>
                     <?=
-                    Html::a('<svg class="olymp-logout-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-logout-icon"></use></svg>
+                    Html::a('<svg class="olymp-logout-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-logout-icon"></use></svg>
 
                         <span>Cerrar sesión</span>',['site/logout'],['method' => 'post'])
                     ?>
@@ -180,7 +180,7 @@ if(Yii::$app->user->isGuest){
         <div class="fixed-logo-left sidebar--small" id="sidebar-left">
             <?=
             Html::a('<div class="img-wrap">
-                    <img src="theme/img/logo.png" alt="TeachTag">
+                    <img src="/theme/img/logo.png" alt="TeachTag">
                 </div>',['site/index'],['class' => 'logo']);
             ?>
         </div>
@@ -195,7 +195,7 @@ if(Yii::$app->user->isGuest){
             <div class="form-group with-button">
                 <input class="form-control js-user-search" placeholder="Buscar amigos..." type="text">
                 <button>
-                    <svg class="olymp-magnifying-glass-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-magnifying-glass-icon"></use></svg>
+                    <svg class="olymp-magnifying-glass-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-magnifying-glass-icon"></use></svg>
                 </button>
             </div>
         </form>
@@ -203,7 +203,7 @@ if(Yii::$app->user->isGuest){
         <div class="control-block">
 
             <div class="control-icon more has-items">
-                <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+                <svg class="olymp-happy-face-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
                 <?php
                 if(count($model->peticiones) > 0) {
                     echo "<div class='label-avatar bg-blue'>
@@ -234,13 +234,13 @@ if(Yii::$app->user->isGuest){
                             <ul class="account-settings">
                                 <li>
                                     <?=
-                                    Html::a('<svg class="olymp-menu-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-menu-icon"></use></svg>
+                                    Html::a('<svg class="olymp-menu-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-menu-icon"></use></svg>
                                         <span>Configuración</span>',['user/configuracion'])
                                     ?>
                                 </li>
                                 <li>
                                     <?=
-                                    Html::a('<svg class="olymp-logout-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-logout-icon"></use></svg><span>Cerrar sesión</span>',['site/logout'],['method' => 'post']);
+                                    Html::a('<svg class="olymp-logout-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-logout-icon"></use></svg><span>Cerrar sesión</span>',['site/logout'],['method' => 'post']);
                                     ?>
                                     
                                 </li>
@@ -273,7 +273,7 @@ if(Yii::$app->user->isGuest){
                 </div>
                 <a href="02-ProfilePage.html" class="author-name fn">
                     <div class="author-title">
-                        <?= Yii::$app->user->identity->name ?><svg class="olymp-dropdown-arrow-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-dropdown-arrow-icon"></use></svg>
+                        <?= Yii::$app->user->identity->name ?><svg class="olymp-dropdown-arrow-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-dropdown-arrow-icon"></use></svg>
                     </div>
                     <span class="author-subtitle"><?= Yii::$app->user->identity->center->nombre ?></span>
                 </a>
@@ -290,7 +290,7 @@ if(Yii::$app->user->isGuest){
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#request" role="tab">
                     <div class="control-icon has-items">
-                        <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+                        <svg class="olymp-happy-face-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
                         <?php
                         if(count($model->peticiones) > 0) {
                             echo "<div class='label-avatar bg-blue'>
@@ -302,26 +302,9 @@ if(Yii::$app->user->isGuest){
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#chat" role="tab">
-                    <div class="control-icon has-items">
-                        <svg id="svg_cupcake" class="olymp-cupcake-icon" ><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-cupcake-icon"></use></svg>
-                    </div>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#notification" role="tab">
-                    <div class="control-icon has-items">
-                        <svg class="olymp-thunder-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-thunder-icon"></use></svg>
-                        <div class="label-avatar bg-primary">8</div>
-                    </div>
-                </a>
-            </li>
-
-            <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#search" role="tab">
-                    <svg class="olymp-magnifying-glass-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-magnifying-glass-icon"></use></svg>
-                    <svg class="olymp-close-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
+                    <svg class="olymp-magnifying-glass-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-magnifying-glass-icon"></use></svg>
+                    <svg class="olymp-close-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
                 </a>
             </li>
         </ul>
@@ -355,7 +338,7 @@ if(Yii::$app->user->isGuest){
                 <ul class="notification-list chat-message">
                     <li class="message-unread">
                         <div class="author-thumb">
-                            <img src="theme/img/avatar59-sm.jpg" alt="author">
+                            <img src="/theme/img/avatar59-sm.jpg" alt="author">
                         </div>
                         <div class="notification-event">
                             <a href="#" class="h6 notification-friend">Diana Jameson</a>
@@ -363,16 +346,16 @@ if(Yii::$app->user->isGuest){
                             <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">4 hours ago</time></span>
                         </div>
                                     <span class="notification-icon">
-                                        <svg class="olymp-chat---messages-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-chat---messages-icon"></use></svg>
+                                        <svg class="olymp-chat---messages-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-chat---messages-icon"></use></svg>
                                     </span>
                         <div class="more">
-                            <svg class="olymp-three-dots-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
+                            <svg class="olymp-three-dots-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
                         </div>
                     </li>
 
                     <li>
                         <div class="author-thumb">
-                            <img src="theme/img/avatar60-sm.jpg" alt="author">
+                            <img src="/theme/img/avatar60-sm.jpg" alt="author">
                         </div>
                         <div class="notification-event">
                             <a href="#" class="h6 notification-friend">Jake Parker</a>
@@ -380,16 +363,16 @@ if(Yii::$app->user->isGuest){
                             <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">4 hours ago</time></span>
                         </div>
                                     <span class="notification-icon">
-                                        <svg class="olymp-chat---messages-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-chat---messages-icon"></use></svg>
+                                        <svg class="olymp-chat---messages-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-chat---messages-icon"></use></svg>
                                     </span>
 
                         <div class="more">
-                            <svg class="olymp-three-dots-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
+                            <svg class="olymp-three-dots-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
                         </div>
                     </li>
                     <li>
                         <div class="author-thumb">
-                            <img src="theme/img/avatar61-sm.jpg" alt="author">
+                            <img src="/theme/img/avatar61-sm.jpg" alt="author">
                         </div>
                         <div class="notification-event">
                             <a href="#" class="h6 notification-friend">Elaine Dreyfuss</a>
@@ -397,19 +380,19 @@ if(Yii::$app->user->isGuest){
                             <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">Yesterday at 9:56pm</time></span>
                         </div>
                                         <span class="notification-icon">
-                                            <svg class="olymp-chat---messages-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-chat---messages-icon"></use></svg>
+                                            <svg class="olymp-chat---messages-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-chat---messages-icon"></use></svg>
                                         </span>
                         <div class="more">
-                            <svg class="olymp-three-dots-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
+                            <svg class="olymp-three-dots-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
                         </div>
                     </li>
 
                     <li class="chat-group">
                         <div class="author-thumb">
-                            <img src="theme/img/avatar11-sm.jpg" alt="author">
-                            <img src="theme/img/avatar12-sm.jpg" alt="author">
-                            <img src="theme/img/avatar13-sm.jpg" alt="author">
-                            <img src="theme/img/avatar10-sm.jpg" alt="author">
+                            <img src="/theme/img/avatar11-sm.jpg" alt="author">
+                            <img src="/theme/img/avatar12-sm.jpg" alt="author">
+                            <img src="/theme/img/avatar13-sm.jpg" alt="author">
+                            <img src="/theme/img/avatar10-sm.jpg" alt="author">
                         </div>
                         <div class="notification-event">
                             <a href="#" class="h6 notification-friend">You, Faye, Ed &amp; Jet +3</a>
@@ -418,10 +401,10 @@ if(Yii::$app->user->isGuest){
                             <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">March 16th at 10:23am</time></span>
                         </div>
                                         <span class="notification-icon">
-                                            <svg class="olymp-chat---messages-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-chat---messages-icon"></use></svg>
+                                            <svg class="olymp-chat---messages-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-chat---messages-icon"></use></svg>
                                         </span>
                         <div class="more">
-                            <svg class="olymp-three-dots-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
+                            <svg class="olymp-three-dots-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
                         </div>
                     </li>
                 </ul>
@@ -443,96 +426,96 @@ if(Yii::$app->user->isGuest){
                 <ul class="notification-list">
                     <li>
                         <div class="author-thumb">
-                            <img src="theme/img/avatar62-sm.jpg" alt="author">
+                            <img src="/theme/img/avatar62-sm.jpg" alt="author">
                         </div>
                         <div class="notification-event">
                             <div><a href="#" class="h6 notification-friend">Mathilda Brinker</a> commented on your new <a href="#" class="notification-link">profile status</a>.</div>
                             <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">4 hours ago</time></span>
                         </div>
                                         <span class="notification-icon">
-                                            <svg class="olymp-comments-post-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-comments-post-icon"></use></svg>
+                                            <svg class="olymp-comments-post-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-comments-post-icon"></use></svg>
                                         </span>
 
                         <div class="more">
-                            <svg class="olymp-three-dots-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
-                            <svg class="olymp-little-delete"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-little-delete"></use></svg>
+                            <svg class="olymp-three-dots-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
+                            <svg class="olymp-little-delete"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-little-delete"></use></svg>
                         </div>
                     </li>
 
                     <li class="un-read">
                         <div class="author-thumb">
-                            <img src="theme/img/avatar63-sm.jpg" alt="author">
+                            <img src="/theme/img/avatar63-sm.jpg" alt="author">
                         </div>
                         <div class="notification-event">
                             <div>You and <a href="#" class="h6 notification-friend">Nicholas Grissom</a> just became friends. Write on <a href="#" class="notification-link">his wall</a>.</div>
                             <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">9 hours ago</time></span>
                         </div>
                                         <span class="notification-icon">
-                                            <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+                                            <svg class="olymp-happy-face-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
                                         </span>
 
                         <div class="more">
-                            <svg class="olymp-three-dots-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
-                            <svg class="olymp-little-delete"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-little-delete"></use></svg>
+                            <svg class="olymp-three-dots-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
+                            <svg class="olymp-little-delete"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-little-delete"></use></svg>
                         </div>
                     </li>
 
                     <li class="with-comment-photo">
                         <div class="author-thumb">
-                            <img src="theme/img/avatar64-sm.jpg" alt="author">
+                            <img src="/theme/img/avatar64-sm.jpg" alt="author">
                         </div>
                         <div class="notification-event">
                             <div><a href="#" class="h6 notification-friend">Sarah Hetfield</a> commented on your <a href="#" class="notification-link">photo</a>.</div>
                             <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">Yesterday at 5:32am</time></span>
                         </div>
                                         <span class="notification-icon">
-                                            <svg class="olymp-comments-post-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-comments-post-icon"></use></svg>
+                                            <svg class="olymp-comments-post-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-comments-post-icon"></use></svg>
                                         </span>
 
                         <div class="comment-photo">
-                            <img src="theme/img/comment-photo1.jpg" alt="photo">
+                            <img src="/theme/img/comment-photo1.jpg" alt="photo">
                             <span>“She looks incredible in that outfit! We should see each...”</span>
                         </div>
 
                         <div class="more">
-                            <svg class="olymp-three-dots-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
-                            <svg class="olymp-little-delete"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-little-delete"></use></svg>
+                            <svg class="olymp-three-dots-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
+                            <svg class="olymp-little-delete"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-little-delete"></use></svg>
                         </div>
                     </li>
 
                     <li>
                         <div class="author-thumb">
-                            <img src="theme/img/avatar65-sm.jpg" alt="author">
+                            <img src="/theme/img/avatar65-sm.jpg" alt="author">
                         </div>
                         <div class="notification-event">
                             <div><a href="#" class="h6 notification-friend">Green Goo Rock</a> invited you to attend to his event Goo in <a href="#" class="notification-link">Gotham Bar</a>.</div>
                             <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">March 5th at 6:43pm</time></span>
                         </div>
                                         <span class="notification-icon">
-                                            <svg class="olymp-happy-face-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+                                            <svg class="olymp-happy-face-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
                                         </span>
 
                         <div class="more">
-                            <svg class="olymp-three-dots-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
-                            <svg class="olymp-little-delete"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-little-delete"></use></svg>
+                            <svg class="olymp-three-dots-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
+                            <svg class="olymp-little-delete"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-little-delete"></use></svg>
                         </div>
                     </li>
 
                     <li>
                         <div class="author-thumb">
-                            <img src="theme/img/avatar66-sm.jpg" alt="author">
+                            <img src="/theme/img/avatar66-sm.jpg" alt="author">
                         </div>
                         <div class="notification-event">
                             <div><a href="#" class="h6 notification-friend">James Summers</a> commented on your new <a href="#" class="notification-link">profile status</a>.</div>
                             <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">March 2nd at 8:29pm</time></span>
                         </div>
                                         <span class="notification-icon">
-                                            <svg class="olymp-heart-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-heart-icon"></use></svg>
+                                            <svg class="olymp-heart-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-heart-icon"></use></svg>
                                         </span>
 
                         <div class="more">
-                            <svg class="olymp-three-dots-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
-                            <svg class="olymp-little-delete"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-little-delete"></use></svg>
+                            <svg class="olymp-three-dots-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
+                            <svg class="olymp-little-delete"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-little-delete"></use></svg>
                         </div>
                     </li>
                 </ul>
@@ -578,7 +561,7 @@ if(Yii::$app->user->isGuest){
     ?>
 </div>
 <a class="back-to-top" href="#">
-    <img src="theme/svg-icons/back-to-top.svg" alt="arrow" class="back-icon">
+    <img src="/theme/svg-icons/back-to-top.svg" alt="arrow" class="back-icon">
 </a>
 <div class="header-spacer"></div>
 <?php $this->endBody() ?>

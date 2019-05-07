@@ -63,7 +63,7 @@ if(isset($_GET['id'])){
 								<h6 class="mb-0">
 									<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
 										Configuración
-										<svg class="olymp-dropdown-arrow-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-dropdown-arrow-icon"></use></svg>
+										<svg class="olymp-dropdown-arrow-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-dropdown-arrow-icon"></use></svg>
 									</a>
 								</h6>
 							</div>

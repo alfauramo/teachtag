@@ -77,7 +77,7 @@ use kartik\select2\Select2;
 							'pickerPosition' => 'left',
 						],
 						'layout' => "{remove}{input}<span class='input-group-addon'>
-							<svg class='olymp-month-calendar-icon icon'><use xlink:href='theme/svg-icons/sprites/icons.svg#olymp-month-calendar-icon'></use></svg>
+							<svg class='olymp-month-calendar-icon icon'><use xlink:href='/theme/svg-icons/sprites/icons.svg#olymp-month-calendar-icon'></use></svg>
 						</span>"
 					])->label(false); 
 					?>

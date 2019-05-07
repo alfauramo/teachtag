@@ -179,7 +179,7 @@ class Tag extends \yii\db\ActiveRecord
             if(!isset($user_c) && $this->creator_id == Yii::$app->user->id){
                 echo "<div class='more'>
                     <svg class='olymp-three-dots-icon'>
-                        <use xlink:href='theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon'></use>
+                        <use xlink:href='/theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon'></use>
                     </svg>
                 <ul class='more-dropdown'>
                     <li>";
@@ -196,12 +196,12 @@ class Tag extends \yii\db\ActiveRecord
             <div class='post-additional-info inline-items'>";
                 if(array_search(Yii::$app->user->id, $this->likeUsers) !== false){
                     echo Html::a("<svg class='olymp-heart-icon'>
-                        <use xlink:href='theme/svg-icons/sprites/icons.svg#olymp-heart-icon'></use>
+                        <use xlink:href='/theme/svg-icons/sprites/icons.svg#olymp-heart-icon'></use>
                     </svg>
                     <span id='liked'>".count($this->likeUsers)."</span>",['user/dislike', 'id' => $this->id], ['class' => 'post-add-icon inline-items', 'id' => 'liked']);
                 }else{
                     echo Html::a("<svg class='olymp-heart-icon'>
-                        <use xlink:href='theme/svg-icons/sprites/icons.svg#olymp-heart-icon'></use>
+                        <use xlink:href='/theme/svg-icons/sprites/icons.svg#olymp-heart-icon'></use>
                     </svg>
                     <span>".count($this->likeUsers)."</span>",['user/like', 'id' => $this->id], ['class' => 'post-add-icon inline-items']);
                 }
@@ -216,12 +216,12 @@ class Tag extends \yii\db\ActiveRecord
                 echo "<div class='comments-shared'>";
                 if(array_search(Yii::$app->user->id, $this->editableUsers)){
                     echo Html::a("<svg class='olymp-share-icon'>
-                        <use xlink:href='theme/svg-icons/sprites/icons.svg#olymp-share-icon'></use>
+                        <use xlink:href='/theme/svg-icons/sprites/icons.svg#olymp-share-icon'></use>
                     </svg>
                     <span id='compartido'>".(count($this->editableUsers)-1)."</span>",['user/dejar-compartir', 'id' => $this->id], ['class' => 'post-add-icon inline-items', 'id' => 'compartido']);
                 }else{
                     echo Html::a("<svg class='olymp-share-icon'>
-                        <use xlink:href='theme/svg-icons/sprites/icons.svg#olymp-share-icon'></use>
+                        <use xlink:href='/theme/svg-icons/sprites/icons.svg#olymp-share-icon'></use>
                     </svg>
                     <span>".(count($this->editableUsers)-1)."</span>",['user/compartir', 'id' => $this->id], ['class' => 'post-add-icon inline-items']);
                 }
@@ -230,11 +230,11 @@ class Tag extends \yii\db\ActiveRecord
             <div class='control-block-button post-control-button'>";
             if(array_search(Yii::$app->user->id, $this->likeUsers) !== false){
                 echo Html::a("<svg class='olymp-like-post-icon'>
-                    <use xlink:href='theme/svg-icons/sprites/icons.svg#olymp-like-post-icon'></use>
+                    <use xlink:href='/theme/svg-icons/sprites/icons.svg#olymp-like-post-icon'></use>
                 </svg>",['user/dislike', 'id' => $this->id], ['class' => 'btn btn-control', 'id' => 'liked_but']);
             }else{
                 echo Html::a("<svg class='olymp-like-post-icon'>
-                    <use xlink:href='theme/svg-icons/sprites/icons.svg#olymp-like-post-icon'></use>
+                    <use xlink:href='/theme/svg-icons/sprites/icons.svg#olymp-like-post-icon'></use>
                 </svg>",['user/like', 'id' => $this->id], ['class' => 'btn btn-control']);
             }
             if(array_search(Yii::$app->user->id, $this->editableUsers)){
@@ -243,7 +243,7 @@ class Tag extends \yii\db\ActiveRecord
                 </svg>",['user/dejar-compartir', 'id' => $this->id], ['class' => 'btn btn-control', 'id' => 'compartido_but']);
             }else{
                 echo Html::a("<svg class='olymp-share-icon'>
-                    <use xlink:href='theme/svg-icons/sprites/icons.svg#olymp-share-icon'></use>
+                    <use xlink:href='/theme/svg-icons/sprites/icons.svg#olymp-share-icon'></use>
                 </svg>",['user/compartir', 'id' => $this->id], ['class' => 'btn btn-control']);
             }
             echo "</div>

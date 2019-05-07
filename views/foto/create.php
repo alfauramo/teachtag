@@ -18,7 +18,7 @@ $this->title = 'Subir documentos';
 			<div class="col col-lg-6 col-md-6 col-sm-12 col-12">
 				<div id="centered">
 				    <p>Pulse en 'Agregar archivos...' y seleccione los ficheros que desea enviar. A continuación, <strong>pulse en "iniciar subida"</strong>.</p>
-				    <p>Una vez subidas las fotos, pulsa en el siguiente enlace para verlas: <?=  Html::a("Galería",['user/galería','id' => Yii::$app->user->id])?></p>
+				    <p>Una vez subidas las fotos, pulsa en el siguiente enlace para verlas: <?=  Html::a("Galería",['user/galeria','id' => Yii::$app->user->id])?></p>
 				    <h3><strong>Fotografías</strong></h3>
 				    <p id='msg_ok'style="color:blue; display:none;">¡ÉXITO AL SUBIR LAS IMÁGENES</p>
 				    <p id='msg_ko'style="color:red; display:none;">¡HÁ HABIDO UN ERROR!</p>

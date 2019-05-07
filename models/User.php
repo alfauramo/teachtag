@@ -193,7 +193,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         if (strlen($this->img_cabecera) > 0)
             return $this->img_cabecera;
         else
-            return 'theme/img/top-header1.jpg';
+            return '/theme/img/top-header1.jpg';
     }
 
     /**
