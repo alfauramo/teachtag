@@ -614,8 +614,8 @@ class UserController extends BaseController
 
     public function actionGaleria($id = false){
 
-        if($id == false) 
-            $id == Yii::$app->user->id;
+        if($id === false) 
+            $id = Yii::$app->user->id;
 
         $model = User::findOne($id);
         

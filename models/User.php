@@ -561,8 +561,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         }
         foreach($fotos as $f){
             echo "<li>
-                    <a href='".Url::to($f->getFilePath())."'>
-                        <img id='slider' src=" . $f->getFilePath() ." alt='photo'>
+                    <a href='".Url::to($f->getFilePath($this->id))."'>
+                        <img id='slider' src=" . $f->getFilePath($this->id) ." alt='photo'>
                     </a>
                 </li>";
             $i++;
@@ -576,7 +576,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         $fotos = array_reverse($fotos);
         foreach($fotos as $f){
             echo "<div class='photo-item col-4-width'>
-                    <img id='galeria' src='" . $f->getFilePath() . "' alt='photo'>
+                    <img id='galeria' src='" . $f->getFilePath($this->id) . "' alt='photo'>
                 </div>";
         }
     }
