@@ -117,7 +117,7 @@ $(document).ready(function(){
 	    }else{
 	    	/*Si no existe el mensaje de error de psswd1, lo añado*/
 	    	if(!$("#pass1_error").length){
-			   	$("#psswd1").after("<div id='pass1_error' class='error-registro'>La contraseña debe contener mínimo 8 caracteres alfanuméricos. </div>");
+			   	$("#psswd1").after("<div id='pass1_error' class='error-registro'>La contraseña debe estar formada de un mínimo de 8 caractares alfanuméricos, mayúsculas, minúsculas y caracter especial. </div>");
 			   	$("#psswd1").css("border","1px solid red");
 			}
 	        return false;

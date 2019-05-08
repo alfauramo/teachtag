@@ -52,22 +52,11 @@ if(Yii::$app->user->isGuest){
     </div>
 
     <div class="header-content-wrapper">
-        <?php 
-        $user = new BusquedaForm();
-        echo $this->render('//user/_form_search', [
-            'user' => $user,
-        ]);
-        ?>
+        <?= Html::a('Iniciar sesión', ['site/login'], ['class' => 'btn btn-primary btn-md-2 login-btn-responsive', 'style' => 'margin-left:10%; margin-top: 1%;']) ?>
 
-        <div class="row" style='margin-left: 15%; margin-top:1%;'>
-            <div class='col-md-6'>
-                <?= Html::a('Iniciar sesión', ['site/login'], ['class' => 'btn btn-primary btn-md-2 login-btn-responsive']) ?>
-            </div>
-            <div class='col-md-6'>
-                <?= Html::a('Regístrate', ['site/registro'], ['class' => 'btn btn-blue btn-md-2 login-btn-responsive']) ?>
-            </div>
-        </div>
-    </div></header>
+        <?= Html::a('Regístrate', ['user/registro'], ['class' => 'btn btn-blue btn-md-2 login-btn-responsive', 'style' => 'margin-right: 10%; margin-left: 5%; margin-top: 1%']) ?>
+    </div>
+</header>
 <!-- ... end Header logout-->
 <?php
 } else if(Yii::$app->controller->isAdminUser()){

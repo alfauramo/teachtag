@@ -1,10 +1,11 @@
 <?php 
 $this->title = 'TeachTag - FAQs';
 ?>
+<div class="header-spacer"></div>
 <div class="row justify-content-center">
     <div class="col-md-10">
         <div class="card-group">
-            <div class="card p-10 login-form">
+            <div class="card p-10 login-form" style="padding: 3%; color: #686868;">
             	<h2 align='center'><strong>TeachTag</strong><h2>
 				<h4><strong>¿Qué es TeachTag?</strong></h4>
 
