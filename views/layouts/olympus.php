@@ -71,7 +71,47 @@ if(Yii::$app->user->isGuest){
     </div></header>
 <!-- ... end Header logout-->
 <?php
-}else{
+} else if(Yii::$app->controller->isAdminUser()){
+    ?>
+    <!--Header logout-->
+<header class="header header--logout" id="site-header">
+    <?= Html::a('<div class="img-wrap">
+            <img src="/theme/img/logo.png" alt="TeachTag">
+        </div>',['user/index'],['class' => 'logo']) ?>
+
+    <div class="header-content-wrapper">
+
+        <div class="row" style='margin-left: 15%; margin-top:1%;'>
+            <ul class="left-menu">
+                <li>
+                    <?= Html::a('Usuarios', ['user/index'], ['id' => 'menu_admin'])?>
+                </li>
+            </ul>
+            <ul class="left-menu">
+                <li>
+                    <?= Html::a('Centros', ['center/index'], ['id' => 'menu_admin'])?>
+                </li>
+            </ul>
+            <ul class="left-menu">
+                <li>
+                    <?= Html::a('Fotografías', ['foto/index'], ['id' => 'menu_admin'])?>
+                </li>
+            </ul>
+            <ul class="left-menu">
+                <li>
+                    <?= Html::a('Tags', ['tag/index'], ['id' => 'menu_admin'])?>
+                </li>
+            </ul>
+            <ul class="left-menu">
+                <li>
+                    <?= Html::a('Cerrar sesión',['site/logout'],['id' => 'menu_admin', 'method' => 'post'])?>
+                </li>
+            </ul>
+        </div>
+    </div></header>
+<!-- ... end Header logout-->
+<?php
+} else{
 ?>
 <!-- Fixed Sidebar Left -->
 <div class="fixed-sidebar fixed-sidebar-responsive">

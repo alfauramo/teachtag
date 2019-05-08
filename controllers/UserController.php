@@ -99,7 +99,7 @@ class UserController extends BaseController
         }
 
         $centro = Center::findOne($model->centerCode);
-        if(Yii::$app->controller->isNormalUser()){
+        if(Yii::$app->controller->isNormalUser() || Yii::$app->user->isGuest){
             return $this->render('perfil', [
                 'model' => $model,
                 'centro' => $centro

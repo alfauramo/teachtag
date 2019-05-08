@@ -33,199 +33,204 @@
 }
 
 /* line 29, ../../sass/custom.scss */
+#menu_admin:hover {
+  color: white !important;
+}
+
+/* line 33, ../../sass/custom.scss */
 #slider {
   width: 75.73px !important;
   height: 75.73px !important;
 }
 
-/* line 34, ../../sass/custom.scss */
+/* line 38, ../../sass/custom.scss */
 #galeria {
   width: 300px !important;
   height: 300px !important;
 }
 
-/* line 39, ../../sass/custom.scss */
+/* line 43, ../../sass/custom.scss */
 .table-striped tbody tr:nth-of-type(2n+1) {
   background-color: rgba(255, 223, 223, 0.36);
 }
 
-/* line 43, ../../sass/custom.scss */
+/* line 47, ../../sass/custom.scss */
 #init, #cancel, #delete {
   color: #fff !important;
 }
 
-/* line 47, ../../sass/custom.scss */
+/* line 51, ../../sass/custom.scss */
 #init {
   background: #9bcb2f !important;
 }
 
-/* line 51, ../../sass/custom.scss */
+/* line 55, ../../sass/custom.scss */
 #cancel {
   background: #1e0707c9 !important;
 }
 
-/* line 55, ../../sass/custom.scss */
+/* line 59, ../../sass/custom.scss */
 #delete {
   background: red;
 }
 
-/* line 59, ../../sass/custom.scss */
+/* line 63, ../../sass/custom.scss */
 .fade {
   opacity: 1 !important;
 }
 
-/* line 63, ../../sass/custom.scss */
+/* line 67, ../../sass/custom.scss */
 #friends_pro {
   width: 100px !important;
   height: 100px !important;
 }
 
-/* line 68, ../../sass/custom.scss */
+/* line 72, ../../sass/custom.scss */
 #fila {
   margin-left: 18% !important;
 }
 
-/* line 72, ../../sass/custom.scss */
+/* line 76, ../../sass/custom.scss */
 #amistades {
   margin-right: 35%;
 }
 
-/* line 76, ../../sass/custom.scss */
+/* line 80, ../../sass/custom.scss */
 #listado_amigos {
   width: 35px !important;
   height: 35px !important;
 }
 
-/* line 81, ../../sass/custom.scss */
+/* line 85, ../../sass/custom.scss */
 #aceptar.accept-request {
   background-color: #47f026 !important;
 }
 
-/* line 85, ../../sass/custom.scss */
+/* line 89, ../../sass/custom.scss */
 #rechazar.accept-request {
   background-color: #de5c39 !important;
 }
 
-/* line 89, ../../sass/custom.scss */
+/* line 93, ../../sass/custom.scss */
 #img_pet {
   width: 34px;
 }
 
-/* line 93, ../../sass/custom.scss */
+/* line 97, ../../sass/custom.scss */
 .profile-menu li a.btn {
   color: white !important;
 }
-/* line 96, ../../sass/custom.scss */
+/* line 100, ../../sass/custom.scss */
 .profile-menu li a.btn:hover {
   color: #515365 !important;
 }
 
-/* line 101, ../../sass/custom.scss */
+/* line 105, ../../sass/custom.scss */
 #svg_cupcake {
   width: 26px;
   height: 20px;
 }
 
-/* line 106, ../../sass/custom.scss */
+/* line 110, ../../sass/custom.scss */
 #shite-header.fixed-logo {
   position: fixed;
   z-index: 22;
   width: 70px;
 }
 
-/* line 112, ../../sass/custom.scss */
+/* line 116, ../../sass/custom.scss */
 .fixed-logo .logo {
   height: 70px;
   background-color: #ff5e3a;
   padding: 15px;
 }
 
-/* line 118, ../../sass/custom.scss */
+/* line 122, ../../sass/custom.scss */
 #btn_logout {
   display: none;
 }
 
-/* line 122, ../../sass/custom.scss */
+/* line 126, ../../sass/custom.scss */
 p.more {
   font-size: 100% !important;
 }
 
-/* line 126, ../../sass/custom.scss */
+/* line 130, ../../sass/custom.scss */
 #foto_perfil {
   width: 120px;
   height: 120px;
 }
 
-/* line 131, ../../sass/custom.scss */
+/* line 135, ../../sass/custom.scss */
 #liked, #compartido.post-add-icon, span#compartido {
   color: #ff5e3a !important;
   fill: #ff5e3a !important;
 }
-/* line 134, ../../sass/custom.scss */
+/* line 138, ../../sass/custom.scss */
 #liked:hover, #compartido.post-add-icon:hover, span#compartido:hover {
   fill: #c2c5d9 !important;
   color: #c2c5d9 !important;
 }
 
-/* line 140, ../../sass/custom.scss */
+/* line 144, ../../sass/custom.scss */
 .buttons {
   margin-left: 30%;
 }
 
-/* line 144, ../../sass/custom.scss */
+/* line 148, ../../sass/custom.scss */
 .post-control-button #compartido_but, .post-control-button #liked_but {
   background: #ff5e3a !important;
 }
 
-/* line 148, ../../sass/custom.scss */
+/* line 152, ../../sass/custom.scss */
 .friend-item-content {
   padding: 0 25px 0px 25px;
 }
 
 @media (max-width: 768px) {
-  /* line 153, ../../sass/custom.scss */
+  /* line 157, ../../sass/custom.scss */
   #cabecera_perfil {
     height: 225px !important;
   }
 
-  /* line 157, ../../sass/custom.scss */
+  /* line 161, ../../sass/custom.scss */
   #friends_pro {
     margin-top: 10% !important;
   }
 }
 @media (min-width: 768px) {
-  /* line 164, ../../sass/custom.scss */
+  /* line 168, ../../sass/custom.scss */
   .header .page-title {
     display: block !important;
   }
 }
 @media (min-width: 1200px) {
-  /* line 170, ../../sass/custom.scss */
+  /* line 174, ../../sass/custom.scss */
   .profile-menu #btn_logout {
     display: block !important;
   }
 }
 @media (min-width: 576px) {
-  /* line 176, ../../sass/custom.scss */
+  /* line 180, ../../sass/custom.scss */
   #friends_pro {
     width: 75px !important;
     height: 75px !important;
   }
 }
 @media (max-width: 576px) {
-  /* line 183, ../../sass/custom.scss */
+  /* line 187, ../../sass/custom.scss */
   .friend-avatar .author-thumb {
     width: 98px;
   }
 
-  /* line 186, ../../sass/custom.scss */
+  /* line 190, ../../sass/custom.scss */
   #friends_pro {
     margin-top: 20% !important;
     width: 60px !important;
     height: 60px !important;
   }
 
-  /* line 193, ../../sass/custom.scss */
+  /* line 197, ../../sass/custom.scss */
   .friend-count {
     margin-bottom: 0px !important;
   }
