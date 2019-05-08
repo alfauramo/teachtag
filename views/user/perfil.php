@@ -159,11 +159,11 @@ if(isset($_GET['id'])){
 						?>
 					</div>
 					<div class="top-header-author">
-						<a href="02-ProfilePage.html" class="author-thumb">
-							<img id="foto_perfil" src="<?= $model->getAvatarUrl()?>" alt="author">
-						</a>
+						<?=
+						Html::a('<img id="foto_perfil" src="'.$model->getAvatarUrl().'" alt="author">', ['user/perfil'], ['class' => 'author-thumb'])
+						?>
 						<div class="author-content">
-							<a href="02-ProfilePage.html" class="h4 author-name"><?= $model->name; ?></a>
+							<?= Html::a($model->name,['user/perfil'],['class' => 'h4 author-name'])?>
 							<div class="country"><?=$centro->getNombreCompleto()?></div>
 						</div>
 					</div>
@@ -236,9 +236,9 @@ if(Yii::$app->user->isGuest || (Yii::$app->user->id != $id && !in_array(Yii::$ap
 
 			<div class="ui-block">
 				<div class="ui-block-title">
-					<h6 class="title">Quizás te interese</h6>
+					<h6 class="title">Quizás te interese <a id='cuadro' href='#' class="author-subtitle">(Esconder)</a></h6>
 				</div>
-				<div class="ui-block-content">
+				<div id='fantasma' class="ui-block-content">
 
 					<!-- W-Personal-Info -->
 					
@@ -266,8 +266,14 @@ if(Yii::$app->user->isGuest || (Yii::$app->user->id != $id && !in_array(Yii::$ap
 					
 					<div class="widget w-socials">
 						<h6 class="title">Otras redes sociales:</h6>
+						<?php if($model->facebook !== ""){ ?>
 						<?= Html::a("<i class='fab fa-facebook' aria-hidden='true'></i> Facebook", $model->facebook, ['class' => 'social-item bg-facebook']) ?>
+					<?php }
+					if($model->twitter !== ""){ ?>
 						<?= Html::a("<i class='fab fa-twitter' aria-hidden='true'></i> Twitter", $model->twitter, ['class' => 'social-item bg-twitter']) ?>
+					<?php
+					}
+					?>
 					</div>
 					
 					

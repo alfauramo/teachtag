@@ -80,16 +80,26 @@ $this->params['breadcrumbs'][] = $this->title;
                                 ], 
                             ]),
                         ],
-                        /*[
-                            'class' => 'app\classes\CustomActionColumn',
-                            'template' => '{update} {delete}' 
-                        ],*/
+                        [
+                            'class' => 'yii\grid\ActionColumn',
+                            'template' => '{update} {delete}',
+                            'buttons' => 
+                            [
+                                'update' => function ($url, $model) {
+                                    return Html::a('<span class="fa fa-edit"></span>', $url, [
+                                                'title' => Yii::t('app', 'lead-update'),
+                                    ]);
+                                },
+                                'delete' => function ($url, $model) {
+                                    return Html::a('<span class="fa fa-trash"></span>', $url, [
+                                                'title' => Yii::t('app', 'lead-delete'),
+                                    ]);
+                                }
+
+                              ],
+                        ],
                         ],
                 ]); ?>
-            </div>
-
-            <div class="card-footer">
-                <?= Html::a('Crear Usuario', ['create'], ['class' => 'btn btn-success', 'data-shortcut' => 'c']) ?>
             </div>
         </div>
     </div>

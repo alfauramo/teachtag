@@ -69,10 +69,7 @@ $this->registerCss("
                                             ?>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="#" class="nav-link">Términos y condiciones</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link">Política de privacidad</a>
+                                            <?= Html::a('FAQs',['site/faqs'])?>
                                         </li>
                                         <li class="close-responsive-menu js-close-responsive-menu">
                                             <svg class="olymp-close-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>

@@ -412,7 +412,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 
         foreach($this->friends as $f){
             $f = User::findOne($f);
-            $img = $f->img_perfil == null ?  './img/perfil.png' : $f->img_perfil;
+            $img = $f->img_perfil == null ?  '/img/perfil.png' : $f->img_perfil;
             echo "<li>";
             echo Html::a("<img id='listado_amigos' src=$img >", ['user/perfil','id' => $f->id]);
             echo "</li>";
@@ -515,7 +515,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         foreach($peticiones as $p){
             $model = User::findOne($p);
             $centro = $model->center;
-            $img = $model->img_perfil === null ? './img/perfil.png' : $model->img_perfil;
+            $img = $model->img_perfil === null ? '/img/perfil.png' : $model->img_perfil;
             echo "<li>
                 <div class='author-thumb'>
                     <img id='img_pet' src='$img' alt='author'>
@@ -526,9 +526,9 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
                 </div>
                 <span class='notification-icon'>".
                 Html::a("<span class='icon-add without-text'>
-                        <svg class='olymp-happy-face-icon'><use xlink:href='theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon'></use></svg>
+                        <svg class='olymp-happy-face-icon'><use xlink:href='/theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon'></use></svg>
                         </span>", ['user/aceptar','id' => $model->id], ['class' => 'accept-request']). Html::a("<span class='icon-minus'>
-                            <svg class='olymp-happy-face-icon'><use xlink:href='theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon'></use></svg>
+                            <svg class='olymp-happy-face-icon'><use xlink:href='/theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon'></use></svg>
                         </span>", ['user/rechazar','id' => $model->id], ['class' => 'accept-request request-del' ])."
                 </span>
             </li>";

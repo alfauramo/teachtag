@@ -29,12 +29,25 @@ class TagController extends BaseController
                 'rules' => [
                     [
                         'allow' => true,
-                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                           return $this->isAdminUser();
+                       }
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['create', 'update', 'delete'],
+                        'matchCallback' => function ($rule, $action) {
+                           return $this->isNormalUser();
+                       }
                     ],
                     [
                         'allow' => false,
+                        'roles' => ['*']
                     ],
                 ],
+                'denyCallback' => function () {
+                    return Yii::$app->response->redirect(['site/index']);
+                },
             ],
         ];
     }
@@ -53,20 +66,7 @@ class TagController extends BaseController
             'dataProvider' => $dataProvider,
         ]);
     }
-
-    /**
-     * Displays a single Tag model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-
+    
     /**
      * Creates a new Tag model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -106,16 +106,20 @@ class TagController extends BaseController
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success', "Tag modificado satisfactoriamente");
-            return $this->goBack();
+        if(Yii::$app->controller->isAdminUser() || $model->creator_id == Yii::$app->user->id){
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                Yii::$app->session->setFlash('success', "Tag modificado satisfactoriamente");
+                return $this->goBack();
+            }
+            
+            if($model->creator_id == Yii::$app->user->id){
+                return $this->render('update', [
+                    'model' => $model,
+                ]);
+            }
         }
-        
-        if($model->creator_id == Yii::$app->user->id){
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }
+
+        return $this->redirect(['user/perfil']);
         
     }
 
@@ -129,14 +133,14 @@ class TagController extends BaseController
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
-
-        if($model->creator_id == Yii::$app->user->id){
-            $model->delete();
+        if(Yii::$app->controller->isAdminUser() || $model->creator_id == Yii::$app->user->id){
+            if($model->creator_id == Yii::$app->user->id){
+                $model->delete();
+            }
+            return $this->goBack();
         }
 
-        
-
-        return $this->goBack();
+        return $this->redirect(['user/perfil']);
     }
 
     /**

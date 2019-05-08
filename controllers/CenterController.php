@@ -45,13 +45,17 @@ class CenterController extends BaseController
      */
     public function actionIndex()
     {
-        $searchModel = new CenterSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if(Yii::$app->controller->isAdminUser()){
+            $searchModel = new CenterSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
+        
+        return $this->redirect(['user/perfil']);
     }
 
     /**
@@ -62,9 +66,13 @@ class CenterController extends BaseController
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        if(Yii::$app->controller->isAdminUser()){
+            return $this->render('view', [
+                'model' => $this->findModel($id),
+            ]);
+        }
+        
+        return $this->redirect(['user/perfil']);
     }
 
     /**
@@ -74,15 +82,19 @@ class CenterController extends BaseController
      */
     public function actionCreate()
     {
-        $model = new Center();
+        if(Yii::$app->controller->isAdminUser()){
+            $model = new Center();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+
+            return $this->render('create', [
+                'model' => $model,
+            ]);
         }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+        
+        return $this->redirect(['user/perfil']);
     }
 
     /**
@@ -94,15 +106,19 @@ class CenterController extends BaseController
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        if(Yii::$app->controller->isAdminUser()){
+            $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+
+            return $this->render('update', [
+                'model' => $model,
+            ]);
         }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+        
+        return $this->redirect(['user/perfil']);
     }
 
     /**
@@ -114,9 +130,12 @@ class CenterController extends BaseController
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        if(Yii::$app->controller->isAdminUser()){
+            $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+            return $this->redirect(['index']);
+        }
+        return $this->redirect(['user/perfil']);
     }
 
     /**

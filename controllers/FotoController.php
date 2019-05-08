@@ -68,15 +68,20 @@ class FotoController extends BaseController
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id) {
-        $model = $this->loadModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('alert', "Descripción actualizada correctamente.");
-            Yii::$app->session->setFlash('alert-class', "alert-success");
+        if(Yii::$app->controller->isAdminUser()){
+            $model = $this->loadModel($id);
+
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                Yii::$app->session->setFlash('alert', "Descripción actualizada correctamente.");
+                Yii::$app->session->setFlash('alert-class', "alert-success");
+            }
+            return $this->render('view', [
+                'model' => $model
+            ]);
         }
-        return $this->render('view', [
-            'model' => $model
-        ]);
+
+        return $this->redirect(['user/perfil']);
     }
 
 
@@ -115,19 +120,24 @@ class FotoController extends BaseController
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        if(Yii::$app->controller->isAdminUser()){
+            $model = $this->findModel($id);
 
-        if(Yii::$app->controller->isAdminUser() || $model->user_id == Yii::$app->user->id){
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                return $this->redirect(['create', 'destinatario' => $model->destinatario]);
+            if(Yii::$app->controller->isAdminUser() || $model->user_id == Yii::$app->user->id){
+                if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                    return $this->redirect(['create', 'destinatario' => $model->destinatario]);
+                }
+
+                return $this->render('update', [
+                    'model' => $model,
+                ]);
             }
 
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+            return $this->redirect(['index']);
+
         }
 
-        return $this->redirect(['index']);
+        return $this->redirect(['user/perfil']);
     }
 
     /**
@@ -139,20 +149,24 @@ class FotoController extends BaseController
      */
     public function actionDelete($id, $output = false) {
 
-        $model = $this->loadModel($id);
-        $uid = $model->user_id;
-        $model->delete();
-        if($output == "JSON"){
-            return Json::encode([
-                'files' => [
-                    'name' => $fileName
-                ]
-            ]);
-        }else{
-            Yii::$app->session->setFlash('info', "Foto eliminada correctamente.");
+        if(Yii::$app->controller->isAdminUser()){
+            $model = $this->loadModel($id);
+            $uid = $model->user_id;
+            $model->delete();
+            if($output == "JSON"){
+                return Json::encode([
+                    'files' => [
+                        'name' => $fileName
+                    ]
+                ]);
+            }else{
+                Yii::$app->session->setFlash('info', "Foto eliminada correctamente.");
 
-            return $this->redirect(['foto/index','id' => $uid]);
+                return $this->redirect(['foto/index','id' => $uid]);
+            }
         }
+
+        return $this->redirect(['user/perfil']);
     }
 
 
@@ -176,7 +190,7 @@ class FotoController extends BaseController
     {
         $model = new Foto();
         $file = UploadedFile::getInstance($model, 'ruta');
-        $directory = './img/'.Yii::$app->user->id.'/galeria/';
+        $directory = '/img/'.Yii::$app->user->id.'/galeria/';
         
         if (!is_dir($directory))
             FileHelper::createDirectory($directory);

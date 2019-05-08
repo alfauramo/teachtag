@@ -4,6 +4,7 @@ var res_nombre;
 var res_fecha;
 var res_correo;
 var res_centro;
+var origin   = window.location.origin; 
 
 $(document).ready(function(){
 	$("#prep1").on("click",function(){
@@ -128,7 +129,7 @@ $(document).ready(function(){
 		var alias = $("#alias").val();
 		//comprobar por ajax la disponibilidad del alias
 		if(alias !== "" || alias !== " "){
-			$.get("http://teachtag.loc/index.php?r=user/comprobar-alias", { alias: alias } )
+			$.get(origin + "/user/comprobar-alias", { alias: alias } )
 			  .done(function( data ) {
 			    if(data == true){
 			    	res_alias = true;
@@ -189,7 +190,7 @@ $(document).ready(function(){
 			    $("#email_error2").remove();
 			}
 			$.ajax({
-			  url: "http://teachtag.loc/index.php?r=user/comprobar-correo",
+			  url: origin + "/user/comprobar-correo",
 			  data: {correo: correo},
 			  dataType: 'JSON',
 			  cache: false,
@@ -231,7 +232,7 @@ $(document).ready(function(){
 		//COMPROBAR CÓDIGO DEL CENTRO
 		if(centerCode !== "" || centerCode !== " "){
 			//Si el código existe, devuelve true
-			$.get("http://teachtag.loc/index.php?r=center/comprobar-codigo", { codigo: centerCode } )
+			$.get(origin + "/center/comprobar-codigo", { codigo: centerCode } )
 			.done(function( data ) {
 				if(data == true){
 					res_centro = true;

@@ -2,7 +2,11 @@ var hora = document.getElementById("hora");
 $(document).ready(function(){
 
 	//cualquier enlace con la clase fbox va a ser un fancy automático
-	$("a.fbox_quick_start").fancybox();
+	$("#abrir.fbox_quick_start").fancybox();
+
+	$("#cuadro").on('click',function(){
+		$('#fantasma').toggle();
+	})
 });
 
 var x = 0;

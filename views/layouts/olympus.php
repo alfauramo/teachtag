@@ -42,11 +42,9 @@ if(Yii::$app->user->isGuest){
 ?>
 <!--Header logout-->
 <header class="header header--logout" id="site-header">
-    <a href="02-ProfilePage.html" class="logo">
-        <div class="img-wrap">
+    <?=Html::a('<div class="img-wrap">
             <img src="/theme/img/logo.png" alt="TeachTag">
-        </div>
-    </a>
+        </div>',['user/perfil'],['class' => 'logo']) ?>
 
     <div class="page-title">
         <h6 id='hora'>HORA</h6>
@@ -102,14 +100,9 @@ if(Yii::$app->user->isGuest){
                     <div class="author-thumb">
                         <img id="ava_per" alt="author" src="<?= Yii::$app->user->identity->getAvatarUrl()?>" class="avatar">
                     </div>
-                    <a href="02-ProfilePage.html" class="author-name fn">
-                        <div class="author-title">
-                            <?=
-                            Yii::$app->user->identity->name;
-                            ?><svg class="olymp-dropdown-arrow-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-dropdown-arrow-icon"></use></svg>
-                        </div>
-                        <span class="author-subtitle"><?= Yii::$app->user->identity->center->nombre ?></span>
-                    </a>
+                    <?= Html::a('<div class="author-title">'.Yii::$app->user->identity->name . '<svg class="olymp-dropdown-arrow-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-dropdown-arrow-icon"></use></svg>
+                        </div><span class="author-subtitle">'. Yii::$app->user->identity->center->nombre .'
+                         </span>',['user/perfil'], ['class' => 'author-name fn'])?>
                 </div>
             </div>
 
@@ -154,17 +147,7 @@ if(Yii::$app->user->isGuest){
             <ul class="about-olympus">
                 <li>
                 <?=
-                Html::a('Términos y condiciones',['site/terms'])
-                ?>
-                </li>
-                <li>
-                <?=
                 Html::a('FAQs',['site/faqs']);
-                ?>
-                </li>
-                <li>
-                <?=
-                Html::a('Contacto',['site/contact']);
                 ?>
                 </li>
             </ul>
@@ -253,17 +236,7 @@ if(Yii::$app->user->isGuest){
                             <ul>
                                 <li>
                                     <?=
-                                    Html::a('<span>Términos y condiciones</span>',['site/terms']);
-                                    ?>
-                                </li>
-                                <li>
-                                    <?=
                                     Html::a('<span>FAQs</span>',['site/faqs']);
-                                    ?>
-                                </li>
-                                <li>
-                                    <?=
-                                    Html::a('<span>Contacto</span',['site/contact']);
                                     ?>
                                 </li>
                             </ul>
@@ -271,12 +244,7 @@ if(Yii::$app->user->isGuest){
 
                     </div>
                 </div>
-                <a href="02-ProfilePage.html" class="author-name fn">
-                    <div class="author-title">
-                        <?= Yii::$app->user->identity->name ?><svg class="olymp-dropdown-arrow-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-dropdown-arrow-icon"></use></svg>
-                    </div>
-                    <span class="author-subtitle"><?= Yii::$app->user->identity->center->nombre ?></span>
-                </a>
+                <?= Html::a('<div class="author-title">' . Yii::$app->user->identity->name . '<svg class="olymp-dropdown-arrow-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-dropdown-arrow-icon"></use></svg></div><span class="author-subtitle">' . Yii::$app->user->identity->center->nombre . '</span>', ['user/perfil'], ['class' => 'author-name fn']) ?>
             </div>
 
         </div>

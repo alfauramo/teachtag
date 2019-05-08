@@ -83,9 +83,7 @@ if(isset($_GET['id'])){
 									} else {
 									?>
 								<li>
-									<?=
-									Html::a('Crear tag',['','id'=>$model->id],['class' => 'btn btn-primary btn-xs fbox_quick_start']);
-									?>
+									<a id='abrir' href='#crear_tag' class='btn btn-primary btn-xs fbox_quick_start'>Crear tag</a>
 								</li>
 								<li>
 									<?=
@@ -160,11 +158,11 @@ if(isset($_GET['id'])){
 						?>
 					</div>
 					<div class="top-header-author">
-						<a href="02-ProfilePage.html" class="author-thumb">
-							<img id="foto_perfil" src="<?= $model->getAvatarUrl()?>" alt="author">
-						</a>
+						<?=
+						Html::a('<img id="foto_perfil" src="'.$model->getAvatarUrl().'" alt="author">', ['user/perfil'], ['class' => 'author-thumb'])
+						?>
 						<div class="author-content">
-							<a href="02-ProfilePage.html" class="h4 author-name"><?= $model->name; ?></a>
+							<?= Html::a($model->name,['user/perfil'],['class' => 'h4 author-name'])?>
 							<div class="country"><?=$centro->getNombreCompleto()?></div>
 						</div>
 					</div>

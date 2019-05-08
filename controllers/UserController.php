@@ -29,11 +29,11 @@ class UserController extends BaseController
         return [
             'access' => [
                 'class' => \yii\filters\AccessControl::className(),
-                'only' => ['signup','perfil'],
+                'only' => ['perfil'],
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['perfil', 'signup'],
+                        'actions' => ['perfil', 'registro', 'create'],
                         'matchCallback' => function ($rule, $action) {
                            return Yii::$app->user->isGuest;
                        }
@@ -74,10 +74,14 @@ class UserController extends BaseController
         $searchModel->rol = User::ROL_USUARIO;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        if(Yii::$app->controller->isAdminUser()){
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
+
+        return Yii::$app->response->redirect(['site/index']);
     }
 
     public function actionPerfil($id = false)
@@ -95,11 +99,14 @@ class UserController extends BaseController
         }
 
         $centro = Center::findOne($model->centerCode);
-        
-        return $this->render('perfil', [
-            'model' => $model,
-            'centro' => $centro
-        ]);
+        if(Yii::$app->controller->isNormalUser()){
+            return $this->render('perfil', [
+                'model' => $model,
+                'centro' => $centro
+            ]);
+        }
+
+        return Yii::$app->response->redirect(['site/index']);
     }
 
     public function actionVerAmigos($id = false)
@@ -118,10 +125,14 @@ class UserController extends BaseController
 
         $centro = Center::findOne($model->centerCode);
         
-        return $this->render('amigos', [
-            'model' => $model,
-            'centro' => $centro
-        ]);
+        if(Yii::$app->controller->isNormalUser()){
+            return $this->render('amigos', [
+                'model' => $model,
+                'centro' => $centro
+            ]);
+        }
+
+        return Yii::$app->response->redirect(['site/index']);
     }
 
     /**
@@ -132,9 +143,11 @@ class UserController extends BaseController
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        if(Yii::$app->controller->isAdminUser()){
+            return $this->render('view', [
+                'model' => $this->findModel($id),
+            ]);
+        }
     }
 
     public function actionCreate() {
@@ -186,8 +199,8 @@ class UserController extends BaseController
 
                     $subject = "Confirmar registro";
                     $body = "<h3>Bienvenido a Teachtag, $model->username</h3>";
-                    $body .= "Por favor, haz clic en el siguiente enlace para confirmar tu cuenta. :)";
-                    $body .= "<a href='http://teachtag.loc/index.php?r=user/confirm&id=".$id."&authKey=".$authKey."'>Confirmar</a>";
+                    $body .= "Por favor, haz clic en el siguiente enlace para confirmar tu cuenta. :) ";
+                    $body .= "<a href='" . Url::base(true) . Url::to(['user/confirm', 'id' => $id, 'authkey' => $authkey]) . "'>Confirmar</a>";
 
 
                     //Enviamos el correo
@@ -220,23 +233,29 @@ class UserController extends BaseController
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if(Yii::$app->controller->isAdminUser()){
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
             
-            if($model->save()){
-                Yii::$app->session->setFlash('success', "Perfil modificado correctamente.");
-            } else {
-                Yii::$app->session->setFlash('error', "Perfil NO modificado.");
+                if($model->save()){
+                    Yii::$app->session->setFlash('success', "Perfil modificado correctamente.");
+                } else {
+                    Yii::$app->session->setFlash('error', "Perfil NO modificado.");
+                }
+
+                if(isset($_GET['name'])){
+                    return $this->redirect(['perfil']);
+                }
+                return $this->redirect(['index', 'id' => $model->id]);
             }
 
-            if(isset($_GET['name'])){
-                return $this->redirect(['perfil']);
-            }
-            return $this->redirect(['index', 'id' => $model->id]);
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+
         }
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+        return Yii::$app->response->redirect(['site/index']);
+        
     }
 
     /**
@@ -248,8 +267,13 @@ class UserController extends BaseController
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-        return $this->goBack();
+        if(Yii::$app->controlller->isAdminUser()){
+            $this->findModel($id)->delete();
+            return $this->goBack();
+
+        }
+
+        return Yii::$app->response->redirect(['site/index']);
     }
 
 
@@ -275,8 +299,6 @@ class UserController extends BaseController
 
      */
     public function actionRegistro(){
-
-        
 
         $model = new User();
 
@@ -382,16 +404,20 @@ class UserController extends BaseController
     }
 
     public function actionConfiguracion(){
-        $model = User::findOne(Yii::$app->user->id);
+
+        if(Yii::$app->controller->isNormalUser()){
+            $model = User::findOne(Yii::$app->user->id);
+
+            $centro = Center::findOne($model->centerCode);
+
+            return $this->render('configuracion', [
+                'model' => $model,
+                'centro' => $centro,
+                'changePasswordModel' => new ChangePasswordForm(),
+            ]);
+        }
         
-
-        $centro = Center::findOne($model->centerCode);
-
-        return $this->render('configuracion', [
-            'model' => $model,
-            'centro' => $centro,
-            'changePasswordModel' => new ChangePasswordForm(),
-        ]);
+        return Yii::$app->response->redirect(['site/index']);
     }
 
     public function actionChangePassword() {
@@ -408,44 +434,55 @@ class UserController extends BaseController
     }
 
     public function actionLike($id){
-        $model = User::findOne(Yii::$app->user->id);
-        $model->likeTags[] = $id;
-        $model->save();
-        $this->goBack();
-    }
-
-    public function actionDislike($id){
-        $model = User::findOne(Yii::$app->user->id);
-        $model->dislike($id);
-        $model->save();
-        $this->goBack();
-    }
-
-    public function actionCompartir($id){
-        $model = User::findOne(Yii::$app->user->id);
-        $model->editableTags[] = $id;
-        $model->save();
-        $this->goBack();
-    }
-
-    public function actionDejarCompartir($id){
-        
-        $tag = Tag::findOne($id);
-        if($tag->creator_id !== Yii::$app->user->id){
+        if(Yii::$app->controller->isNormalUser()){
             $model = User::findOne(Yii::$app->user->id);
-            $model->dejarCompartir($id);
+            $model->likeTags[] = $id;
             $model->save();
         }
         
-        $this->goBack();
+        return $this->redirect(Yii::$app->request->referrer);
+    }
+
+    public function actionDislike($id){
+        if(Yii::$app->controller->isNormalUser()){
+            $model = User::findOne(Yii::$app->user->id);
+            $model->dislike($id);
+            $model->save();
+        }
+        
+        return $this->redirect(Yii::$app->request->referrer);
+    }
+
+    public function actionCompartir($id){
+        if(Yii::$app->controller->isNormalUser()){
+            $model = User::findOne(Yii::$app->user->id);
+            $model->editableTags[] = $id;
+            $model->save();
+        }
+        
+        return $this->redirect(Yii::$app->request->referrer);
+    }
+
+    public function actionDejarCompartir($id){
+        if(Yii::$app->controller->isNormalUser()){
+            $tag = Tag::findOne($id);
+            if($tag->creator_id !== Yii::$app->user->id){
+                $model = User::findOne(Yii::$app->user->id);
+                $model->dejarCompartir($id);
+                $model->save();
+            }
+        }
+        
+        return $this->redirect(Yii::$app->request->referrer);
     }
 
     public function actionEliminar($id){
+        if(Yii::$app->controller->isNormalUser()){
+            $model = User::findOne(Yii::$app->user->id);
 
-        $model = User::findOne(Yii::$app->user->id);
-
-        if($id !== Yii::$app->user->id){
-            $model->eliminar($id);
+            if($id !== Yii::$app->user->id){
+                $model->eliminar($id);
+            }
         }
 
         return $this->redirect(Yii::$app->request->referrer);
@@ -453,189 +490,211 @@ class UserController extends BaseController
     }
 
     public function actionBloquear($id){
-        $model = User::findOne(Yii::$app->user->id);
+        if(Yii::$app->controller->isNormalUser()){
+            $model = User::findOne(Yii::$app->user->id);
 
-        if($id !== Yii::$app->user->id){
-            $model->blockeds[] = $id;
-            if(in_array($id,$model->friends)){
-                $model->eliminar($id);
+            if($id !== Yii::$app->user->id){
+                $model->blockeds[] = $id;
+                if(in_array($id,$model->friends)){
+                    $model->eliminar($id);
+                }
+                $model->save();
             }
-            $model->save();
         }
         
         return $this->redirect(Yii::$app->request->referrer);
     }
 
     public function actionDesbloquear($id){
-        $model = User::findOne(Yii::$app->user->id);
+        if(Yii::$app->controller->isNormalUser()){
+            $model = User::findOne(Yii::$app->user->id);
 
-        if($id !== Yii::$app->user->id){
-            $model->desbloquear($id);
-            $model->save();
+            if($id !== Yii::$app->user->id){
+                $model->desbloquear($id);
+                $model->save();
+            }
         }
         
         return $this->redirect(Yii::$app->request->referrer);
     }
 
     public function actionEnviarPeticion($id){
-        $model = User::findOne($id);
+        if(Yii::$app->controller->isNormalUser()){
+            $model = User::findOne($id);
 
-        if($id !== Yii::$app->user->id){
-            $model->peticiones[] = Yii::$app->user->id;
-            $model->save();
+            if($id !== Yii::$app->user->id){
+                $model->peticiones[] = Yii::$app->user->id;
+                $model->save();
+            }
         }
-        
+
         return $this->redirect(Yii::$app->request->referrer);
     }
 
     public function actionEliminarPeticion($id){
-        $model = User::findOne(Yii::$app->user->id);
+        if(Yii::$app->controller->isNormalUser()){
+            $model = User::findOne(Yii::$app->user->id);
 
-        if($id !== Yii::$app->user->id){
-            $model->eliminarPeticion($id);
-            $model->save();
+            if($id !== Yii::$app->user->id){
+                $model->eliminarPeticion($id);
+                $model->save();
+            }
         }
         
         return $this->redirect(Yii::$app->request->referrer);
     }
 
     public function actionAceptar($id){
-        $model = User::findOne(Yii::$app->user->id);
-        $usuario = User::findOne($id);
-        if($id !== Yii::$app->user->id){
-            if(!in_array($id,$model->friends)){
-                $model->friends[] = $id;
-                $usuario->friends[] = $model->id;
-                $usuario->eliminarPeticion(Yii::$app->user->id);
+        if(Yii::$app->controller->isNormalUser()){
+            $model = User::findOne(Yii::$app->user->id);
+            $usuario = User::findOne($id);
+            if($id !== Yii::$app->user->id){
+                if(!in_array($id,$model->friends)){
+                    $model->friends[] = $id;
+                    $usuario->friends[] = $model->id;
+                    $usuario->eliminarPeticion(Yii::$app->user->id);
 
+                }
+                $usuario->save();
+                $model->save();
             }
-            $usuario->save();
-            $model->save();
         }
         
         return $this->redirect(Yii::$app->request->referrer);
     }
 
     public function actionRechazar($id){
+        if(Yii::$app->controller->isNormalUser()){
+            $usuario = User::findOne($id);
+            if($id !== Yii::$app->user->id){
+                $usuario->eliminarPeticion(Yii::$app->user->id);
+            }
+        }
 
-        $usuario = User::findOne($id);
-        if($id !== Yii::$app->user->id){
-            $usuario->eliminarPeticion(Yii::$app->user->id);
+        return $this->redirect(Yii::$app->request->referrer);
+    }
+
+    public function actionChangeAvatar() {
+        if(Yii::$app->controller->isNormalUser()){
+            $model = $this->findModel(Yii::$app->user->id);
+
+
+            $imageFile = UploadedFile::getInstance($model, 'img_perfil');
+
+            $directory = Yii::getAlias('./img/'.$model->id.'/');
+            if (!is_dir($directory)) {
+                FileHelper::createDirectory($directory);
+            }
+
+            if ($imageFile) {
+                $uid = uniqid(time(), true);
+                $fileName = $uid . '.' . $imageFile->extension;
+                $filePath = $directory . $fileName;
+                if ($imageFile->saveAs($filePath)) {
+                    $filePath = substr($filePath, 1);
+                    $model->deleteAvatar();
+                    $model->img_perfil = $filePath;
+                if ($model->save())
+                    return Json::encode([
+                        'name' => $fileName,
+                        'size' => $imageFile->size,
+                        'url' => $filePath,
+                        'thumbnailUrl' => $filePath,
+                        'deleteUrl' => 'image-delete?name=' . $fileName,
+                        'deleteType' => 'POST',
+                    ]);
+                else
+                    var_dump($model->getErrors());
+                }
+            }
+
+            return '';
+        }
+
+        return $this->redirect(Yii::$app->request->referrer);
+        
+    }
+
+    public function actionChangeCabecera() {
+        if(Yii::$app->controller->isNormalUser()){
+            $model = $this->findModel(Yii::$app->user->id);
+
+            $imageFile = UploadedFile::getInstance($model, 'img_cabecera');
+
+            $directory = Yii::getAlias('./img/'.$model->id.'/');
+            if (!is_dir($directory)) {
+                FileHelper::createDirectory($directory);
+            }
+
+            if ($imageFile) {
+                $uid = uniqid(time(), true);
+                $fileName = $uid . '.' . $imageFile->extension;
+                $filePath = $directory . $fileName;
+                if ($imageFile->saveAs($filePath)) {
+                    $filePath = substr($filePath, 1);
+                    $model->deleteCabecera();
+                    $model->img_cabecera = $filePath;
+                if ($model->save())
+                    return Json::encode([
+                        'name' => $fileName,
+                        'size' => $imageFile->size,
+                        'url' => $filePath,
+                        'thumbnailUrl' => $filePath,
+                        'deleteUrl' => 'image-delete?name=' . $fileName,
+                        'deleteType' => 'POST',
+                    ]);
+                else
+                    var_dump($model->getErrors());
+                }
+            }
+
+            return '';
         }
         
         return $this->redirect(Yii::$app->request->referrer);
     }
 
-    public function actionChangeAvatar() {
-        $model = $this->findModel(Yii::$app->user->id);
-
-
-        $imageFile = UploadedFile::getInstance($model, 'img_perfil');
-
-        $directory = Yii::getAlias('./img/'.$model->id.'/');
-        if (!is_dir($directory)) {
-            FileHelper::createDirectory($directory);
-        }
-
-        if ($imageFile) {
-            $uid = uniqid(time(), true);
-            $fileName = $uid . '.' . $imageFile->extension;
-            $filePath = $directory . $fileName;
-            if ($imageFile->saveAs($filePath)) {
-                $filePath = substr($filePath, 1);
-                $model->deleteAvatar();
-                $model->img_perfil = $filePath;
-            if ($model->save())
-                return Json::encode([
-                    'name' => $fileName,
-                    'size' => $imageFile->size,
-                    'url' => $filePath,
-                    'thumbnailUrl' => $filePath,
-                    'deleteUrl' => 'image-delete?name=' . $fileName,
-                    'deleteType' => 'POST',
-                ]);
-            else
-                var_dump($model->getErrors());
-            }
-        }
-
-        return '';
-    }
-
-    public function actionChangeCabecera() {
-        $model = $this->findModel(Yii::$app->user->id);
-
-
-        $imageFile = UploadedFile::getInstance($model, 'img_cabecera');
-
-        $directory = Yii::getAlias('./img/'.$model->id.'/');
-        if (!is_dir($directory)) {
-            FileHelper::createDirectory($directory);
-        }
-
-        if ($imageFile) {
-            $uid = uniqid(time(), true);
-            $fileName = $uid . '.' . $imageFile->extension;
-            $filePath = $directory . $fileName;
-            if ($imageFile->saveAs($filePath)) {
-                $filePath = substr($filePath, 1);
-                $model->deleteCabecera();
-                $model->img_cabecera = $filePath;
-            if ($model->save())
-                return Json::encode([
-                    'name' => $fileName,
-                    'size' => $imageFile->size,
-                    'url' => $filePath,
-                    'thumbnailUrl' => $filePath,
-                    'deleteUrl' => 'image-delete?name=' . $fileName,
-                    'deleteType' => 'POST',
-                ]);
-            else
-                var_dump($model->getErrors());
-            }
-        }
-
-        return '';
-    }
-
     public function actionDeleteAvatar() {
-        $model = $this->findModel(Yii::$app->user->id);
-        $model->deleteAvatar();
-        Yii::$app->session->setFlash('success', "Imagen de perfil eliminada correctamente. ");
+        if(Yii::$app->controller->isNormalUser()){
+            $model = $this->findModel(Yii::$app->user->id);
+            $model->deleteAvatar();
+            Yii::$app->session->setFlash('success', "Imagen de perfil eliminada correctamente. ");
+        }
+        
         return $this->redirect(['user/perfil']);
     }
 
     public function actionDeleteCabecera() {
-        $model = $this->findModel(Yii::$app->user->id);
-        $model->deleteCabecera();
-        Yii::$app->session->setFlash('success', "Imagen de perfil eliminada correctamente. ");
+        if(Yii::$app->controller->isNormalUser()){
+            $model = $this->findModel(Yii::$app->user->id);
+            $model->deleteCabecera();
+            Yii::$app->session->setFlash('success', "Imagen de perfil eliminada correctamente. ");
+        }
+        
         return $this->redirect(['user/perfil']);
     }
 
     public function actionGaleria($id = false){
 
-        if($id === false) 
-            $id = Yii::$app->user->id;
+        if(Yii::$app->controller->isNormalUser()){
+            if($id === false) 
+                $id = Yii::$app->user->id;
 
-        $model = User::findOne($id);
-        
+            $model = User::findOne($id);
+            
 
-        $centro = Center::findOne($model->centerCode);
+            $centro = Center::findOne($model->centerCode);
 
-        return $this->render('galeria', [
-            'model' => $model,
-            'centro' => $centro,
-        ]);
+            return $this->render('galeria', [
+                'model' => $model,
+                'centro' => $centro,
+            ]);
+        }
+
+        return $this->redirect(Yii::$app->request->referrer);
     }
 
     public function actionTest(){
-        //Compruebo que la relación con fotos funciona.
-        $model = User::findOne(Yii::$app->user->id);
-        $fotos = $model->fotos;
-        foreach($fotos as $f){
-            var_dump($f->getFilePath());
-        }
-
-        die();
+        
     }
 }

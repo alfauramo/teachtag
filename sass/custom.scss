@@ -4,6 +4,14 @@
 	margin-bottom: 10px;
 }
 
+.datepicker {
+	left: 26px !important;
+}
+
+.datepicker.dropdown-menu {
+	width: 50% !important;
+}
+
 #ava_per{
 	width: 36px !important;
 	height: 36px !important;
@@ -137,15 +145,17 @@ p.more{
 	background: #ff5e3a !important;
 }
 
+.friend-item-content {
+    padding: 0 25px 0px 25px;
+}
+
 @media (max-width: 768px) { 
 	#cabecera_perfil {
 		height: 225px !important;
 	}
 
 	#friends_pro{
-		margin-top: 50% !important;
-		width: 50px !important;
-		height: 50px !important;
+		margin-top: 10% !important;
 	}
 }
 
@@ -154,16 +164,36 @@ p.more{
 	.header .page-title {
     	display: block !important;
 	}
-
-	#friends_pro{
-		width: 75px !important;
-		height: 75px !important;
-	}
 }
 
 @media (min-width: 1200px) {
 	.profile-menu #btn_logout {
     	display: block !important;
+	}
+}
+
+@media (min-width: 576px) {
+	#friends_pro {
+	    width: 75px !important;
+		height: 75px !important;
+	}
+}
+
+@media (max-width: 576px) {
+	.friend-avatar .author-thumb {
+	    width: 98px;
+	}
+	#friends_pro {
+		margin-top: 20% !important;
+	    width: 60px !important;
+		height: 60px !important;
+
+	}
+
+	.friend-count {
+
+	    margin-bottom: 0px !important;
+
 	}
 }
 

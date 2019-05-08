@@ -205,7 +205,7 @@ class Tag extends \yii\db\ActiveRecord
                     </svg>
                     <span>".count($this->likeUsers)."</span>",['user/like', 'id' => $this->id], ['class' => 'post-add-icon inline-items']);
                 }
-                if($this->pdf == Tag::DESCARGABLE){
+                if($this->pdf == Tag::DESCARGABLE && (in_array(Yii::$app->user->id, $user->friends) || $user->privado == User::PUBLICO)){
                     echo Html::a('<i class="fa fa-download"></i> Descargar Tag', ['/tag/descargar','id' => $this->id], [
                         'class'=>'', 
                         'target'=>'_blank', 
@@ -239,7 +239,7 @@ class Tag extends \yii\db\ActiveRecord
             }
             if(array_search(Yii::$app->user->id, $this->editableUsers)){
                 echo Html::a("<svg class='olymp-share-icon'>
-                    <use xlink:href='theme/svg-icons/sprites/icons.svg#olymp-share-icon'></use>
+                    <use xlink:href='/theme/svg-icons/sprites/icons.svg#olymp-share-icon'></use>
                 </svg>",['user/dejar-compartir', 'id' => $this->id], ['class' => 'btn btn-control', 'id' => 'compartido_but']);
             }else{
                 echo Html::a("<svg class='olymp-share-icon'>

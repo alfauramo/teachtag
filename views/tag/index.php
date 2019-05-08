@@ -10,26 +10,29 @@ use yii\grid\GridView;
 $this->title = 'Tags';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="tag-index">
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <strong><?= Html::encode($this->title) ?></strong>
+                <div class="card-actions">
+                    <?= Html::a('Crear Tag', ['create'], ['class' => 'btn btn-success']) ?>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Crear Tag', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            'id',
-            //Agregar aquí la relación de un usuario con sus tags
-            //En el index solamente se verán los tags relacionados con el user logueado
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
-
-
+        <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'columns' => [
+                'id',
+                //Agregar aquí la relación de un usuario con sus tags
+                //En el index solamente se verán los tags relacionados con el user logueado
+                ['class' => 'yii\grid\ActionColumn'],
+            ],
+        ]); ?>
+            </div>
+        </div>
+    </div>
 </div>
