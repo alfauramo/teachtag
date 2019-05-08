@@ -8,7 +8,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = "Ha ocurrido un error";
+$this->title = "TeachTag - La red social del profesorado";
 ?>
 <div class="row justify-content-center">
     <div class="col-md-8">

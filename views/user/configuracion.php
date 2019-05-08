@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\User */
 
-$this->title = "Configuración de la cuenta";
+$this->title = "TeachTag - Configuración de la cuenta";
 
 if(isset($_GET['id'])){
 	if($_GET['id'] != Yii::$app->user->id){

@@ -31,4 +31,9 @@ class UserQuery extends \yii\db\ActiveQuery
     {
         return parent::one($db);
     }
+
+    public function ordenado($db = null)
+    {
+        return $this->orderBy(['username' => SORT_ASC]);
+    }
 }

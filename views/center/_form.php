@@ -8,22 +8,32 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="center-form">
+<div class="ui-block">
+	<div class="ui-block-title">
+		<h6 class="title"><?= Html::encode($this->title) ?></h6>
+	</div>
+	<div class="ui-block-content">				
+		<!-- Personal Information Form  -->
+    	<?php $form = ActiveForm::begin(['action' => ['tag/create']]); ?>
+		<div class="row">
+			<div class="col-6">
+    			<?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
+    		</div>
+    		<div class="col-6">
+    			<?= $form->field($model, 'poblacion')->textInput(['maxlength' => true]) ?>
+    		</div>
+    		<div class="col-6">
+    			<?= $form->field($model, 'provincia')->textInput(['maxlength' => true]) ?>
+    		</div>
 
-    <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'poblacion')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'provincia')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'centerCode')->textInput(['maxlength' => true]) ?>
-
-    <div class="form-group">
-        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
-    </div>
+    		<div class='col-6'>
+    			<?= $form->field($model, 'centerCode')->textInput(['maxlength' => true]) ?>
+    		</div>
+    		<div class='col-6'>
+    			<?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
+    		</div>
+		</div>
 
     <?php ActiveForm::end(); ?>
-
+</div></div>
 </div>

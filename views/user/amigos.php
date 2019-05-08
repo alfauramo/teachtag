@@ -5,7 +5,7 @@ use app\models\User;
 /* @var $this yii\web\View */
 /* @var $model app\models\User */
 
-$this->title = "Mi perfil";
+$this->title = "TeachTag - Amistades";
 
 if(isset($_GET['id'])){
 	if($_GET['id'] != Yii::$app->user->id){

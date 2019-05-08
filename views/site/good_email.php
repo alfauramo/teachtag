@@ -8,7 +8,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = "Correcto";
+$this->title = "TeachTag - Recuperar contraseña - Email correcto";
 ?>
 <div class="row justify-content-center">
     <div class="col-md-8">

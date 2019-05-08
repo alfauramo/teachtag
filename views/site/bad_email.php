@@ -8,7 +8,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = "Error";
+$this->title = "TeachTag - Recuperar contraseña - Error";
 ?>
 <div class="row justify-content-center">
     <div class="col-md-8">

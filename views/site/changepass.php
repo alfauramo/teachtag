@@ -7,7 +7,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Cambia tu contraseña';
+$this->title = 'TeachTag - Cambio de contraseña';
 ?>
 <div class="row justify-content-center">
     <div class="col-md-8">

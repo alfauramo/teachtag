@@ -1,3 +1,6 @@
+<?php 
+$this->title = 'TeachTag - FAQs';
+?>
 <div class="row justify-content-center">
     <div class="col-md-10">
         <div class="card-group">

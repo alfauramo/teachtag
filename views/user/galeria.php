@@ -5,11 +5,11 @@ use app\models\User;
 /* @var $this yii\web\View */
 /* @var $model app\models\User */
 
-$this->title = "Galería";
+$this->title = "TeachTag - Mi galería";
 
 if(isset($_GET['id'])){
 	if($_GET['id'] != Yii::$app->user->id){
-		$this->title = "Perfil de ".$model->name;
+		$this->title = "TeachTag - Galería de ".$model->name;
 	}
 	$id = $_GET['id'];
 	$usuario = User::findOne(Yii::$app->user->id);

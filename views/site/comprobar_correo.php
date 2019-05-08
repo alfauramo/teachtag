@@ -7,7 +7,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Recuperar contraseña';
+$this->title = 'TeachTag - Recuperar contraseña - Comprobar email';
 
 ?>
 <div class="row justify-content-center">

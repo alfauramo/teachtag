@@ -7,7 +7,7 @@ use app\models\User;
 use dosamigos\fileupload\FileUploadUI;
 use yii\helpers\Html;
 
-$this->title = 'Subir documentos';
+$this->title = 'TeachTag - Subir documentos';
 ?>
 <div class="ui-block">
 	<div class="ui-block-title ">

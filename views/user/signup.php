@@ -7,7 +7,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Registro';
+$this->title = 'TeachTag - Registro de usuario';
 $this->params['breadcrumbs'][] = $this->title;
 
 $this->registerJsFile("@web/js/ValidarRegistro.js",[

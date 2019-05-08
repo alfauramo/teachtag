@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\User */
 
-$this->title = 'Editar ' . $model->username;
+$this->title = 'TeachTag - Modificar usuario: ' . $model->username;
 $this->params['breadcrumbs'][] = ['label' => 'Usuarios', 'url' => ['index']];
 $this->params['breadcrumbs'][] = 'Editar';
 ?>

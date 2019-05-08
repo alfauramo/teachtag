@@ -5,11 +5,11 @@ use app\models\User;
 /* @var $this yii\web\View */
 /* @var $model app\models\User */
 
-$this->title = "Mi perfil";
+$this->title = "TeachTag - Mi perfil";
 
 if(isset($_GET['id'])){
 	if($_GET['id'] != Yii::$app->user->id){
-		$this->title = "Perfil de ".$model->name;
+		$this->title = " TeachTag - Perfil de ".$model->name;
 	}
 	$id = $_GET['id'];
 	$usuario = User::findOne(Yii::$app->user->id);
@@ -292,9 +292,9 @@ if(Yii::$app->user->isGuest || (Yii::$app->user->id != $id && !in_array(Yii::$ap
 
 			<div class="ui-block">
 				<div class="ui-block-title">
-					<h6 class="title">Últimas fotos:</h6>
+					<h6 class="title">Últimas fotos: <a id='fotillis' href='#' class="author-subtitle">(Esconder)</a></h6>
 				</div>
-				<div class="ui-block-content">
+				<div id='feos' class="ui-block-content">
 
 					<!-- W-Latest-Photo -->
 					
@@ -309,9 +309,9 @@ if(Yii::$app->user->isGuest || (Yii::$app->user->id != $id && !in_array(Yii::$ap
 
 			<div class="ui-block">
 				<div class="ui-block-title">
-					<h6 class="title">Amigos (<?= count($model->friends)?>)</h6>
+					<h6 class="title">Amigos (<?= count($model->friends)?>) <a id='amiguis' href='#' class="author-subtitle">(Esconder)</a></h6>
 				</div>
-				<div class="ui-block-content">
+				<div id='talue'class="ui-block-content">
 
 					<!-- W-Faved-Page -->
 					

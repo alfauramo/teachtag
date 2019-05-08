@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Tag */
 $user = User::findOne($model->creator_id);
-$this->title = 'Modificar Tag: ' . $model->id . ' del usuario @'.$user->username;
+$this->title = 'TeachTag - Editar Tag: ' . $model->id . ' del usuario @'.$user->username;
 $this->params['breadcrumbs'][] = ['label' => 'Tags', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Editar';

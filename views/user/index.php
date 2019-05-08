@@ -13,7 +13,7 @@ use yii\helpers\ArrayHelper;
 /* @var $searchModel app\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Usuarios';
+$this->title = 'TeachTag - Administración de usuarios';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -22,9 +22,6 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="card">
             <div class="card-header">
                 <strong><?= Html::encode($this->title) ?></strong>
-                <div class="card-actions">
-                    <?= Html::a('<i class="icon-plus icons font-2xl d-block"></i>', ['create'], ['class' => 'btn btn-success', 'title' => 'Agregar Usuario']) ?>
-                </div>
             </div>
 
             <div class="card-body">

@@ -7,7 +7,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Iniciar sesión';
+$this->title = 'TeachTag - La red social del profesorado - Iniciar sesión';
 $this->registerCss(" 
     .content-bg-wrap, html { 
         background:url(./theme/img/landing-bg.jpg);

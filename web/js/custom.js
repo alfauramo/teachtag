@@ -5,7 +5,18 @@ $(document).ready(function(){
 	$("#abrir.fbox_quick_start").fancybox();
 
 	$("#cuadro").on('click',function(){
+		event.preventDefault();
 		$('#fantasma').toggle();
+	})
+
+	$("#fotillis").on('click',function(){
+		event.preventDefault();
+		$('#feos').toggle();
+	})
+
+	$("#amiguis").on('click',function(){
+		event.preventDefault();
+		$('#talue').toggle();
 	})
 });
 

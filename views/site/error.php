@@ -7,7 +7,7 @@
 
 use yii\helpers\Html;
 
-$this->title = $name;
+$this->title = "TeachTag - Error";
 ?>
 <div class="site-error">
 
