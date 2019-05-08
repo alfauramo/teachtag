@@ -694,7 +694,22 @@ class UserController extends BaseController
         return $this->redirect(Yii::$app->request->referrer);
     }
 
-    public function actionTest(){
+    public function actionBuscar($q = null, $id = null) {
+
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        $out = User::buscarRelacion($q,$id);
         
+        
+        return $out;
+    }
+
+    public function actionTest($q = null, $id = null){
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        $out = User::buscarRelacion($q,$id);
+        
+        
+        return $out;
     }
 }

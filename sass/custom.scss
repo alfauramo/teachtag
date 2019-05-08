@@ -4,8 +4,15 @@
 	margin-bottom: 10px;
 }
 
+.kv-plugin-loading.loading-busquedaform-busqueda{
+	display: none;
+}
 .datepicker {
 	left: 26px !important;
+}
+
+#buscador {
+	display:block !important;
 }
 
 .datepicker.dropdown-menu {

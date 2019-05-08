@@ -380,6 +380,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function imprimir($id = false, $cant = false){
         if($id == false)
             $id = Yii::$app->user->id;
+        if($cant == false)
+            $cant = 5;
         $model = User::findOne($id);
         $tags = $model->tags;
         $tags = array_reverse($tags);
@@ -579,5 +581,53 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
                     <img id='galeria' src='" . $f->getFilePath($this->id) . "' alt='photo'>
                 </div>";
         }
+    }
+
+    public static function buscarRelacion($q = null, $id = null){
+        $resultado = [];
+        $palabras = [];
+        $users = [];
+        $out = ['results' => ['id' => '', 'text' => '']];
+        $usuario_final = [];
+        if ($q === null)
+            return $out;
+
+        trim($q);
+        if (strpos($q, ' ') !== false) {
+            $palabras = explode(" ",$q);
+        }else{
+            $palabras[] = $q;
+        }
+
+        $cont = 0;
+        foreach($palabras as $p){
+            if((strlen($p) > 2 && $palabras[0] == $p) || (strlen($p) > 0 && $p == $palabras[$cont])){
+                $users = User::find()->where(['rol' => 0])
+                    ->where(['like', 'username', $p,])
+                    ->all();
+            }
+        }
+
+        foreach ($users as $u) {
+            if($u->id !== Yii::$app->user->identity->id){
+                $nombre = "<div class='author-page author vcard inline-items more'>
+                    <div class='author-thumb'>
+                        <img id='ava_per'alt='author' src='" . $u->getAvatarUrl(). "' class='avatar'>
+                    </div> ";
+                $nombre .= Html::a("<div class='author-title'> @" . $u->username . "</div><span class='author-subtitle'> " . $u->center->nombre . '</span>', ['user/perfil', 'id' => $u->id], ['class' => 'author-name fn']). '</div>';
+                $usuario_final[] = [
+                    'id' => $u->id,
+                    'nombre' => $nombre,
+                    //'centro' => $u->center->nombre,
+                    //'avatar' => $u->getAvatarUrl(),
+                ];
+            }
+        }
+        
+
+
+        $resultado['results'] = array_unique($usuario_final, SORT_REGULAR);
+
+        return $resultado;
     }
 }
