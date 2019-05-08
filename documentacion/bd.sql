@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-05-2019 a las 03:04:59
+-- Tiempo de generación: 08-05-2019 a las 20:57:50
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -221,8 +221,7 @@ INSERT INTO `user_like_tag` (`tag_id`, `user_id`) VALUES
 (5, 121),
 (5, 128),
 (8, 128),
-(8, 129),
-(9, 128);
+(8, 129);
 
 --
 -- Índices para tablas volcadas
