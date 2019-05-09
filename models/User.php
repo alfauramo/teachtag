@@ -431,8 +431,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
                 echo "<div class='col col-xl-3 col-lg-6 col-md-6 col-sm-6 col-6'>
                     <div class='ui-block'>
                     <div class='friend-item'>
-                        <div class='friend-header-thumb'>
-                            <img src='".$f->getCabeceraUrl()."' alt='friend'>
+                        <div class='friend-header-thumb' style='height:150px;'>
+                            <img style='height:100%' src='".$f->getCabeceraUrl()."' alt='friend'>
                         </div>
                     
                         <div class='friend-item-content'>

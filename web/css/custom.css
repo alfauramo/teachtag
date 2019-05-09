@@ -242,8 +242,8 @@ p.more {
 
   /* line 212, ../../sass/custom.scss */
   #friends_pro {
-    width: 100px !important;
-    height: 100px !important;
+    width: 80px !important;
+    height: 80px !important;
   }
 }
 @media (max-width: 768px) {
