@@ -197,8 +197,9 @@ class FotoController extends BaseController
 
         if ($file) {
             $fileName = $file;
-            $fileName = mb_ereg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $fileName);
+            $fileName = mb_ereg_replace("([^\w\s\d\-_~, ;\[\]\(\).])", ' ', $fileName);
             $fileName = mb_ereg_replace("([\.]{2,})", '', $fileName);
+            $fileName = str_replace(' ', '', $fileName);
             $filePath = $directory . $fileName;
             //comprobación de que la foto existe
             if (file_exists($filePath)) {
