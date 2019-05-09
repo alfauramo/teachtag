@@ -79,14 +79,9 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                         [
                             'class' => 'yii\grid\ActionColumn',
-                            'template' => '{update} {delete}',
+                            'template' => '{delete}',
                             'buttons' => 
                             [
-                                'update' => function ($url, $model) {
-                                    return Html::a('<span class="fa fa-edit"></span>', $url, [
-                                                'title' => Yii::t('app', 'lead-update'),
-                                    ]);
-                                },
                                 'delete' => function ($url, $model) {
                                     return Html::a('<span class="fa fa-trash"></span>', $url, [
                                                 'title' => Yii::t('app', 'lead-delete'),

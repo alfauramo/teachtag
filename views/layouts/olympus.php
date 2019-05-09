@@ -67,36 +67,14 @@ if(Yii::$app->user->isGuest){
             <img src="/theme/img/logo.png" alt="TeachTag">
         </div>',['user/index'],['class' => 'logo']) ?>
 
-    <div class="header-content-wrapper">
-
-        <div class="row" style='margin-left: 15%; margin-top:1%;'>
-            <ul class="left-menu">
-                <li>
-                    <?= Html::a('Usuarios', ['user/index'], ['id' => 'menu_admin'])?>
-                </li>
-            </ul>
-            <ul class="left-menu">
-                <li>
-                    <?= Html::a('Centros', ['center/index'], ['id' => 'menu_admin'])?>
-                </li>
-            </ul>
-            <ul class="left-menu">
-                <li>
-                    <?= Html::a('Fotografías', ['foto/index'], ['id' => 'menu_admin'])?>
-                </li>
-            </ul>
-            <ul class="left-menu">
-                <li>
-                    <?= Html::a('Tags', ['tag/index'], ['id' => 'menu_admin'])?>
-                </li>
-            </ul>
-            <ul class="left-menu">
-                <li>
-                    <?= Html::a('Cerrar sesión',['site/logout'],['id' => 'menu_admin', 'method' => 'post'])?>
-                </li>
-            </ul>
-        </div>
-    </div></header>
+    <nav id='menu_admin' class="navbar navbar-light bg-light form-inline">
+        <?= Html::a('Centros',['center/index'],['class' => 'btn btn-sm btn-purple']) ?>
+        <?= Html::a('Usuarios',['user/index'],['class' => 'btn btn-sm btn-breez']) ?>
+        <?= Html::a('Tags', ['tag/index'], ['class' => 'btn btn-sm btn-grey'])?>
+        <?= Html::a('Fotos', ['foto/index'], ['class' => 'btn btn-sm btn-grey-lighter '])?>
+        <?= Html::a('Salir', ['site/logout'], ['class' => 'btn btn-sm btn-primary'])?>
+    </nav>
+</header>
 <!-- ... end Header logout-->
 <?php
 } else{

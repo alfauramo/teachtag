@@ -6,6 +6,7 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\Center */
 /* @var $form yii\widgets\ActiveForm */
+$url = Url::to(['tag/create', 'id' => $model->id]);
 ?>
 
 <div class="ui-block">
@@ -14,7 +15,7 @@ use yii\widgets\ActiveForm;
 	</div>
 	<div class="ui-block-content">				
 		<!-- Personal Information Form  -->
-    	<?php $form = ActiveForm::begin(['action' => ['tag/create']]); ?>
+    	<?php $form = ActiveForm::begin(['action' => $url]); ?>
 		<div class="row">
 			<div class="col-6">
     			<?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>

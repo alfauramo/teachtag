@@ -610,7 +610,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 
         foreach ($users as $u) {
             if($u->id !== Yii::$app->user->identity->id){
-                $nombre = "<div class='author-page author vcard inline-items more'>
+                $nombre = "<div class='author vcard inline-items more'>
                     <div class='author-thumb'>
                         <img id='ava_per'alt='author' src='" . $u->getAvatarUrl(). "' class='avatar'>
                     </div> ";

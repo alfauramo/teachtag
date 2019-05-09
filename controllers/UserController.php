@@ -46,6 +46,7 @@ class UserController extends BaseController
                     ],
                     [
                         'allow' => true,
+                        'actions' => ['update', 'delete'],
                         'matchCallback' => function ($rule, $action) {
                            return $this->isAdminUser();
                        }
@@ -233,25 +234,27 @@ class UserController extends BaseController
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $model->birthday = $_POST['user-birthday'];
-            if($model->save()){
-                Yii::$app->session->setFlash('success', "Perfil modificado correctamente.");
-            } else {
-                    Yii::$app->session->setFlash('error', "Perfil NO modificado.");
-            }
 
-            if(isset($_GET['name'])){
-                return $this->redirect(['perfil']);
+        if($model->id == Yii::$app->user->id){
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                $model->birthday = $_POST['user-birthday'];
+                if($model->save()){
+                    Yii::$app->session->setFlash('success', "Perfil modificado correctamente.");
+                } else {
+                        Yii::$app->session->setFlash('error', "Perfil NO modificado.");
+                }
+
+                if(isset($_GET['name'])){
+                    return $this->redirect(['perfil']);
+                }
+                return $this->redirect(['index', 'id' => $model->id]);
             }
-            return $this->redirect(['index', 'id' => $model->id]);
-            
 
             return $this->render('update', [
                 'model' => $model,
             ]);
-
         }
+        
 
         return Yii::$app->response->redirect(['site/index']);
         
