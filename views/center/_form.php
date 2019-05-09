@@ -15,7 +15,7 @@ $url = Url::to(['tag/create', 'id' => $model->id]);
 	</div>
 	<div class="ui-block-content">				
 		<!-- Personal Information Form  -->
-    	<?php $form = ActiveForm::begin(['action' => $url]); ?>
+    	<?php $form = ActiveForm::begin(['action' => "http://teachtag.loc/tag/create"]); ?>
 		<div class="row">
 			<div class="col-6">
     			<?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>

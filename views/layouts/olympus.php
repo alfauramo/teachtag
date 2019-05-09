@@ -334,7 +334,7 @@ if(Yii::$app->user->isGuest){
     <?php
     $tag = new Tag();
     
-    echo $this->render('/tag/_form', [
+    echo $this->render('//tag/_form', [
         'model' => $tag,
     ]);
     ?>

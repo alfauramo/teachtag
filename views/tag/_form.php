@@ -7,6 +7,12 @@ use app\models\Tag;
 /* @var $this yii\web\View */
 /* @var $model app\models\Tag */
 /* @var $form yii\widgets\ActiveForm */
+$action = [];
+if($model->isNewRecord){
+	$action = ['action' => ['tag/create'],'options' => ['method' => 'post']];
+}else{
+	$action = ['action' => ['tag/update', 'id' => $model->id],'options' => ['method' => 'post']];
+}
 ?>
 
 <div class="ui-block">
@@ -16,7 +22,7 @@ use app\models\Tag;
 	<div class="ui-block-content">				
 		<!-- Personal Information Form  -->
     	<?php
-    	$form = ActiveForm::begin(); ?>
+    	$form = ActiveForm::begin($action); ?>
 		<div class="row">
 			<div class="col-12">
     			<?= $form->field($model, 'texto')->textarea(['rows' => 6]) ?>
