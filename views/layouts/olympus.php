@@ -338,9 +338,6 @@ if(Yii::$app->user->isGuest){
     ]);
     ?>
 </div>
-<a class="back-to-top" href="#">
-    <img src="/theme/svg-icons/back-to-top.svg" alt="arrow" class="back-icon">
-</a>
 <div class="header-spacer"></div>
 <?php $this->endBody() ?>
 </body>

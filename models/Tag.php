@@ -144,8 +144,7 @@ class Tag extends \yii\db\ActiveRecord
         return $this->save();
     }
 
-    public function dibujar($id){
-
+    public function dibujar($id){  
         if($this->creator_id != $id){
             $user_c = User::findOne($id);
         }
@@ -158,7 +157,7 @@ class Tag extends \yii\db\ActiveRecord
             <div class='post__author author vcard inline-items'>
                 <img src='"; 
                 if($user->img_perfil === null) 
-                    echo './img/perfil.png'; 
+                    echo '/img/perfil.png'; 
                 else 
                     echo $user->img_perfil; 
                 echo "' alt='author'>
@@ -166,12 +165,7 @@ class Tag extends \yii\db\ActiveRecord
                 <div class='author-date'>";
                 echo Html::a($user->name,['user/perfil','id' => $this->creator_id],['class' => 'h6 post__author-name fn']);
 
-                echo "<div class='post__date'>
-                        <time class='published' datetime='";
-                            echo $this->fecha . "'>
-                            19 hours ago
-                        </time>
-                    </div>
+                echo "
             </div>";
 
             if(isset($user_c))

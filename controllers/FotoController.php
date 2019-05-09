@@ -18,6 +18,7 @@ use yii\web\Response;
 use app\models\User;
 use yii\helpers\Url;
 
+
 /**
  * fotoController implements the CRUD actions for foto model.
  */
@@ -31,17 +32,18 @@ class FotoController extends BaseController
     public function behaviors()
     {
         return [
+            
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => \yii\filters\AccessControl::className(),
                 'rules' => [
                     [
                         'allow' => true,
                         'roles' => ['@'],
                     ],
+                    [
+                        'allow' => false,
+                    ],
                 ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
             ],
         ];
     }
@@ -186,60 +188,44 @@ class FotoController extends BaseController
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
-    public function actionUpload($id = false)
-    {
+    public function actionUpload() {
+
         $model = new Foto();
-        $file = UploadedFile::getInstance($model, 'ruta');
-        $directory = '/img/'.Yii::$app->user->id.'/galeria/';
-        
-        if (!is_dir($directory))
+
+
+        $imageFile = UploadedFile::getInstance($model, 'ruta');
+
+        $directory = Yii::getAlias('./img/') . Yii::$app->user->id . DIRECTORY_SEPARATOR . "galeria" . DIRECTORY_SEPARATOR;
+
+        if (!is_dir($directory)) {
             FileHelper::createDirectory($directory);
+        }
 
-        if ($file) {
-            $fileName = $file;
-            $fileName = mb_ereg_replace("([^\w\s\d\-_~, ;\[\]\(\).])", ' ', $fileName);
-            $fileName = mb_ereg_replace("([\.]{2,})", '', $fileName);
-            $fileName = str_replace(' ', '', $fileName);
+        if ($imageFile) {
+            $uid = uniqid(time(), true);
+            $fileName = $uid . '.' . $imageFile->extension;
             $filePath = $directory . $fileName;
-            //comprobación de que la foto existe
-            if (file_exists($filePath)) {
-                $fileInfo = pathinfo($filePath);
-                do {
-                    $newFilePath = $fileInfo['dirname'] . '/' . $fileInfo['filename'] . '-' . Yii::$app->security->generateRandomString(6) . '.' . $fileInfo['extension'];
-                } while(file_exists($newFilePath));
-                $filePath = $newFilePath;
-                $newFileInfo = pathinfo($newFilePath);
-                $fileName = $newFileInfo['basename'];
-            }
-
-
-            if ($file->saveAs($filePath)) {
-                $fileModel = new Foto();
-                $fileModel->ruta = $fileName;
-                $fileModel->user_id = Yii::$app->user->id;
-                $fileModel->fecha = date("Y-m-d H:i:s");
-
-                if (!$fileModel->save())
-                    var_dump($fileModel->getErrors());
-
-                $url = Url::toRoute(['foto/delete','id'=>$fileModel->id,'output'=>'JSON'], true);
-
+            if ($imageFile->saveAs($filePath)) {
+                $filePath = substr($filePath, 1);
+                $model->ruta = $fileName;
+                $model->user_id = Yii::$app->user->id;
+                $model->fecha = date("Y-m-d H:i:s");
+            if ($model->save())
                 return Json::encode([
-                    'files' => [
-                        [
-                            'name' => $fileModel->ruta,
-                            //'size' => $fileModel->getFileSize(),
-                            'cancel' => "",
-                            'deleteUrl' => $url,
-                            'deleteType' => 'POST',
-                        ],
-                    ],
+                    'name' => $fileName,
+                    'size' => $imageFile->size,
+                    'url' => $filePath,
+                    'thumbnailUrl' => $filePath,
+                    'deleteUrl' => 'image-delete?name=' . $fileName,
+                    'deleteType' => 'POST',
                 ]);
-
+            else
+                var_dump($model->getErrors());
             }
         }
 
         return '';
     }
+
 
 }

@@ -33,7 +33,7 @@ class UserController extends BaseController
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['perfil', 'registro', 'create'],
+                        'actions' => ['perfil', 'registro', 'create', 'timeline'],
                         'matchCallback' => function ($rule, $action) {
                            return Yii::$app->user->isGuest;
                        }
@@ -108,6 +108,17 @@ class UserController extends BaseController
         }
 
         return Yii::$app->response->redirect(['site/index']);
+    }
+
+    public function actionTimeline()
+    {
+
+        $model = User::findOne(Yii::$app->user->id);
+        $centro = Center::findOne($model->centerCode);
+        return $this->render('timeline', [
+            'model' => $model,
+            'centro' => $centro
+        ]);
     }
 
     public function actionVerAmigos($id = false)
@@ -240,8 +251,6 @@ class UserController extends BaseController
                 $model->birthday = $_POST['user-birthday'];
                 if($model->save()){
                     Yii::$app->session->setFlash('success', "Perfil modificado correctamente.");
-                } else {
-                        Yii::$app->session->setFlash('error', "Perfil NO modificado.");
                 }
 
                 if(isset($_GET['name'])){

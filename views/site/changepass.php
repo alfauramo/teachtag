@@ -9,6 +9,7 @@ use yii\bootstrap\ActiveForm;
 
 $this->title = 'TeachTag - Cambio de contraseña';
 ?>
+<div class="header-spacer"></div>
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card-group">

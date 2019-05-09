@@ -377,16 +377,32 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         }
     }
 
-    public function imprimir($id = false, $cant = false){
+    public function imprimir($id = false){
         if($id == false)
             $id = Yii::$app->user->id;
-        if($cant == false)
-            $cant = 5;
         $model = User::findOne($id);
         $tags = $model->tags;
         $tags = array_reverse($tags);
         foreach($tags as $t){
             $t->dibujar($id);
+        }
+    }
+
+    public function imprimirTimeline(){
+        
+        $id = Yii::$app->user->id;
+        $model = User::findOne($id);
+        $usuarios = $model->friends;
+        $usuarios[] = Yii::$app->user->id;
+        foreach($usuarios as $u){
+            $user = User::findOne($u);
+            $tags = $user->tags;
+            $tags = array_reverse($tags);
+            foreach($tags as $t){
+                if($t->creator_id === $user->id){
+                    $t->dibujar($user->id);
+                }
+            }
         }
     }
 
@@ -461,7 +477,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
                                                 <div class='title'>Amigos</div>",['user/ver-amigos', 'id' => $f->id], ['id' => 'amistades'])
                                         ."
                                             <a href='#' class='friend-count-item'>
-                                                <div class='h6'>200</div>
+                                                <div class='h6'>".count($f->fotos)."</div>
                                                 <div class='title'>Fotos</div>
                                             </a>
                                         </div>

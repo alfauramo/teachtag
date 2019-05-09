@@ -219,12 +219,6 @@ if(Yii::$app->user->isGuest || (Yii::$app->user->id != $id && !in_array(Yii::$ap
 
 				<?php $model->imprimir($id); ?>
 			</div>
-
-			<a id="load-more-button" href="#" class="btn btn-control btn-more" data-load-link="items-to-load.html" data-container="newsfeed-items-grid">
-				<svg class="olymp-three-dots-icon">
-					<use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
-				</svg>
-			</a>
 		</div>
 
 		<!-- ... end Main Content -->
