@@ -131,12 +131,12 @@ var CRUMINA = {};
             var start = moment().subtract(29, 'days');
 
             date_select_field.daterangepicker({
-                startDate: start,
+                startDate: '-18y',
                 autoUpdateInput: false,
                 singleDatePicker: true,
                 showDropdowns: true,
                 locale: {
-                    format: 'DD/MM/YYYY'
+                    format: 'dd-mm-YYY'
                 }
             });
             date_select_field.on('focus', function () {

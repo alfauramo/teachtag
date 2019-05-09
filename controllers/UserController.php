@@ -157,7 +157,7 @@ class UserController extends BaseController
         
         //Validación mediante ajax
         if($model->load(Yii::$app->request->post()) && Yii::$app->request->isAjax){
-
+            $model->birthday = $_POST['user-birthday'];
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
         }
@@ -167,6 +167,7 @@ class UserController extends BaseController
         //También previene por si el usuario tiene desactivado javascript y la
         //validación mediante ajax no puede ser llevada a cabo
         if ($model->load(Yii::$app->request->post())){
+            $model->birthday = $_POST['user-birthday'];
             $model->privado = User::PUBLICO;
             $model->rol = User::ROL_USUARIO;
             $model->birthday = Yii::$app->formatter->asDate($model->birthday, 'yyyy-MM-dd');
@@ -232,21 +233,19 @@ class UserController extends BaseController
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
-        if(Yii::$app->controller->isAdminUser()){
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            
-                if($model->save()){
-                    Yii::$app->session->setFlash('success', "Perfil modificado correctamente.");
-                } else {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $model->birthday = $_POST['user-birthday'];
+            if($model->save()){
+                Yii::$app->session->setFlash('success', "Perfil modificado correctamente.");
+            } else {
                     Yii::$app->session->setFlash('error', "Perfil NO modificado.");
-                }
-
-                if(isset($_GET['name'])){
-                    return $this->redirect(['perfil']);
-                }
-                return $this->redirect(['index', 'id' => $model->id]);
             }
+
+            if(isset($_GET['name'])){
+                return $this->redirect(['perfil']);
+            }
+            return $this->redirect(['index', 'id' => $model->id]);
+            
 
             return $this->render('update', [
                 'model' => $model,

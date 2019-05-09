@@ -60,27 +60,13 @@ use kartik\select2\Select2;
 		                	]
 		            	])->label("Usuario") ?>
 					</fieldset>
-					<?= $form->field($model, 'birthday')->widget(DatePicker::classname(), 
-					[
-						'attribute' => 'birthday',
-						'type' => DatePicker::TYPE_COMPONENT_PREPEND,
-						'value' => 'dd-mm-AAAA',
-						'pluginOptions' => [
-							'format' => 'dd-mm-yyyy',
-							'class' => 'form-group date-time-picker label-floating is-focused',
-						],
-						'options' => [
-							'weekStart' => 1,
-							'todayHighlight' => true,
-							'autoComplete' => false,
-							'showClear' => true,
-							'pickerPosition' => 'left',
-						],
-						'layout' => "{remove}{input}<span class='input-group-addon'>
-							<svg class='olymp-month-calendar-icon icon'><use xlink:href='/theme/svg-icons/sprites/icons.svg#olymp-month-calendar-icon'></use></svg>
-						</span>"
-					])->label(false); 
-					?>
+					<div class="form-group">
+						<label class="control-label">Cumpleaños</label>
+						<input NAME="user-birthday" type="date" value="$model->birthday">
+						<span class="input-group-addon">
+							<svg class="olymp-month-calendar-icon icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-month-calendar-icon"></use></svg>
+						</span>
+					</div>
 				</div>
 					
 				<div class="col col-lg-4 col-md-4 col-sm-12 col-12" >

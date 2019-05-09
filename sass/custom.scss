@@ -1,68 +1,81 @@
+/*Con este código modificamos los mensajes de error del registro de usuario - GENERAL */
 .error-registro{
 	color: #a94442;
 	margin-top: 5px;
 	margin-bottom: 10px;
 }
 
+/*Desactivamos una imagen que aparece en el buscador. -GENERAL */
 .kv-plugin-loading.loading-busquedaform-busqueda{
 	display: none;
 }
-.datepicker {
-	left: 26px !important;
+
+/*Modificamos el margin-left de la barra de opciones en configuración porque sino se muestra muy a la derecha - MÓVIL */
+.profile-settings-responsive {
+	margin-left: -13px !important
 }
+/*
 
 #buscador {
 	display:block !important;
 }
 
-.datepicker.dropdown-menu {
-	width: 50% !important;
-}
-
+/*Modificamos la apariencia de los avatares del buscador - GENERAL */
 #ava_per{
 	width: 36px !important;
 	height: 36px !important;
 }
 
+
+/*MODIFICA EL TAMAÑO DE LA CABECERA DE LOS PERFILES - MÓVIL*/
 #cabecera_perfil {
-	width: 1238px !important;
-	height: 375px !important;
-}
+		height: 225px !important;
+	}
+
+/*Modifica el color de algunos botones, que se encuentran simulados en un div - GENERAL */
 .profile-menu li > div{
 	color:white !important;
 	
 }
 
+/*Modifica el color de los enlaces de administración cuando tenemos el ratón encima -GENERAL*/
 #menu_admin:hover {
 	color: white !important;
 }
 
+/*Modifica el tamaño de las imágenes recientes subidas por el usuario (columna de la derecha en perfil) - GENERAL */
 #slider {
 	width: 75.73px !important;
 	height: 75.73px !important;
 }
 
+/*Modifica el tamaño de las imágenes de la galería - GENERAL */
 #galeria {
 	width: 300px !important;
 	height: 300px !important;
 }
 
+/*Modifica los colores de la tabla cuando de Subir foto - GENERAL */
 .table-striped tbody tr:nth-of-type(2n+1) {
     background-color: rgba(255, 223, 223, 0.36);
 }
-
+/* --- Subir foto --- */
+/*Modifica los botones de Subir foto, le damos el color blanco a la letra - GENERAL */
 #init, #cancel, #delete{
 	color: #fff !important;
 }
 
+/*Modifico el fondo del botón de iniciar subida - GENERAL*/
 #init{
 	background: #9bcb2f !important;
 }
 
+/*Modifico el color de fondo del botón de cancelar - GENERAL*/
 #cancel {
 	background: #1e0707c9 !important;
 }
 
+/* Modifico el color de fondo del botón Eliminar - GENERAL*/
 #delete {
 	background: red;
 }
@@ -71,10 +84,7 @@
 	opacity: 1 !important;
 }
 
-#friends_pro{
-	width: 100px !important;
-	height: 100px !important;
-}
+
 
 #fila {
 	margin-left: 18% !important;
@@ -101,6 +111,7 @@
 	width: 34px;
 }
 
+/*Modificación de los colores de los botones del perfil - GENERAL */
 .profile-menu li a.btn {
 
 	color: white !important;
@@ -109,36 +120,33 @@
 	}
 }
 
-#svg_cupcake {
-	width: 26px;
-	height: 20px;
-}
-
+/*Modifica la posición de los logos de la cabecera general - GENERAL */
 #shite-header.fixed-logo {
 	position: fixed;
 	z-index: 22;
 	width: 70px;
 }
 
+/*Modifica el color y el tamaño/posición de los logos - GENERAL*/
 .fixed-logo .logo {
 	height: 70px;
 	background-color: #ff5e3a;
 	padding: 15px;
 }
 
-#btn_logout {
-	display: none;
-}
-
+/*Modifico el tamaño del more, que aparece en los tags de perfil y timeline - GENERAL*/
 p.more{
 	font-size: 100% !important;
 }
 
+/*Modifico el tamaño de la foto de perfil de los tags - GENERAL*/
 #foto_perfil{
 	width: 120px;
 	height: 120px;
 }
 
+
+/*Modifico el color de los botones de compartir y like - GENERAL*/
 #liked,#compartido.post-add-icon, span#compartido{
 	color:  #ff5e3a !important;
 	fill:  #ff5e3a !important;
@@ -152,59 +160,71 @@ p.more{
 	margin-left: 30%;
 }
 
+/*Modifico los botones de like y compartido cuando la función está hecha, porque no se diferenciaba - GENERAL */
 .post-control-button #compartido_but, .post-control-button #liked_but {
 	background: #ff5e3a !important;
 }
 
+/*Modifico el contenedor de las amistades - GENERAL*/
 .friend-item-content {
     padding: 0 25px 0px 25px;
 }
+/*Modifico el tamaño de las imágenes de los perfiles de las amistades- MÓVIL */
 
-@media (max-width: 768px) { 
-	#cabecera_perfil {
-		height: 225px !important;
-	}
-
-	#friends_pro{
-		margin-top: 10% !important;
-	}
+#friends_pro {
+	margin-top: 20% !important;
+	width: 60px !important;
+	height: 60px !important;
 }
 
-
-@media (min-width: 768px) { 
-	.header .page-title {
-    	display: block !important;
-	}
-}
-
-@media (min-width: 1200px) {
-	.profile-menu #btn_logout {
-    	display: block !important;
-	}
-}
-
+/*------------- BREAKPOINTS -----------------*/
 @media (min-width: 576px) {
 	#friends_pro {
-	    width: 75px !important;
+		width: 75px !important;
 		height: 75px !important;
 	}
 }
 
 @media (max-width: 576px) {
+
 	.friend-avatar .author-thumb {
 	    width: 98px;
 	}
-	#friends_pro {
-		margin-top: 20% !important;
-	    width: 60px !important;
-		height: 60px !important;
-
-	}
+	
 
 	.friend-count {
-
 	    margin-bottom: 0px !important;
-
 	}
 }
 
+@media (min-width: 768px) { 
+	/*Muestro el Header a partir de la versión tablet. El que creó la plantilla lo modificó para que no fuese así - TABLET / ESCRITORIO */
+	.header .page-title {
+    	display: block !important;
+	}
+
+	/*Modifica el tamaño de las cabeceras de los perfiles a partir del tamaño tablet - TABLET / ESCRITORIO */
+	#cabecera_perfil {
+		width: 1238px !important;
+		height: 375px !important;
+	}
+
+	#friends_pro{
+		width: 100px !important;
+		height: 100px !important;
+	}
+}
+
+@media (max-width: 768px) { 
+	/*Modifico la plantilla de los amigos, con un margin top superior para que no choque el uno y el otro en la versión móvil - MÓVIL */
+	#friends_pro{
+		margin-top: 10% !important;
+	}
+}
+
+@media (min-width: 1200px) {
+	/*Permito que se muestre el botón de logout - ESCRITORIO*/
+	.profile-menu #btn_logout {
+    	display: block !important;
+	}
+}

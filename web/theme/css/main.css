@@ -4952,7 +4952,8 @@ fieldset[disabled] .checkbox, fieldset[disabled] .checkbox input[type=checkbox],
 @media (max-width: 768px) {
   .profile-settings-responsive {
     visibility: visible;
-    opacity: 1; }
+    opacity: 1; 
+    margin-left: -13px ;}
   .responsive-display-none {
     display: none; } }
 

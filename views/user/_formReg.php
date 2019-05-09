@@ -89,22 +89,13 @@ use kartik\date\DatePicker;
         <hr>
         <br/>
         <div class='col-sm-12 col-md-12'>
-            
-            <?= $form->field($model, 'birthday')->widget(DatePicker::classname(), [
-                    'attribute' => 'birthday',
-                    'type' => DatePicker::TYPE_COMPONENT_APPEND,
-                    'options' => [
-                        'autocomplete' => 'off',
-                        'id' => 'user-birthday',
-                    ],
-                    'pluginOptions' => [
-                        'autoclose'=>true,
-                        'id' => 'user-birthday',
-                        'format' => 'dd-mm-yyyy',
-                        'endDate' => '-18y'
-                    ],
-                ])->label("Fecha de nacimiento"); 
-            ?>
+            <div class="form-group">
+                <label class="control-label">Fecha de nacimiento</label>
+                <input NAME="user-birthday" type="date">
+                <span class="input-group-addon">
+                    <svg class="olymp-month-calendar-icon icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-month-calendar-icon"></use></svg>
+                </span>
+            </div>
         </div>
         <br/>
         <hr>

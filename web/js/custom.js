@@ -18,6 +18,7 @@ $(document).ready(function(){
 		event.preventDefault();
 		$('#talue').toggle();
 	})
+
 });
 
 var x = 0;
