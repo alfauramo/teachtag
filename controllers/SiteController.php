@@ -84,6 +84,10 @@ class SiteController extends BaseController
      */
     public function actionLogin()
     {
+        \Yii::$app->view->registerMetaTag([
+            'name' => 'TeachTag',
+            'content' => 'Inicia sesión en la primera red social de profesores de España. Siéntete libre de seguir enseñando y volver a aprender.'
+        ]);
         $this->layout = 'main';
 
         if (!Yii::$app->user->isGuest) {
@@ -118,6 +122,10 @@ class SiteController extends BaseController
      */
     public function actionComprobarCorreo()
     {
+        \Yii::$app->view->registerMetaTag([
+            'name' => 'TeachTag',
+            'content' => 'Timeline de la red social del profesorado en España. Diferentes formas de aprender, diferentes formas de enseñar.'
+        ]);
         $this->layout = "main";
 
         $model = new ComprobarCorreoForm();
@@ -129,7 +137,10 @@ class SiteController extends BaseController
 
     public function actionVerificarCorreo()
     {
-
+        \Yii::$app->view->registerMetaTag([
+            'name' => 'TeachTag',
+            'content' => 'Timeline de la red social del profesorado en España. Diferentes formas de aprender, diferentes formas de enseñar.'
+        ]);
         $this->layout = "main";
         $correo = new ComprobarCorreoForm();
         $correo->load(Yii::$app->request->post());
@@ -159,7 +170,10 @@ class SiteController extends BaseController
     }
 
     public function actionConfirmarRecuperacion($id, $token){
-
+        \Yii::$app->view->registerMetaTag([
+            'name' => 'TeachTag',
+            'content' => 'Timeline de la red social del profesorado en España. Diferentes formas de aprender, diferentes formas de enseñar.'
+        ]);
         $this->layout = "main";
 
         $model = User::find()->where(['id' => $id])->one();
@@ -180,7 +194,10 @@ class SiteController extends BaseController
     }
 
     public function actionChangePassword($email) {
-
+        \Yii::$app->view->registerMetaTag([
+            'name' => 'TeachTag',
+            'content' => 'Timeline de la red social del profesorado en España. Diferentes formas de aprender, diferentes formas de enseñar.'
+        ]);
         $this->layout = "main";
         $cPModel = new ChangePasswordForm();
         $cPModel->load(Yii::$app->request->post());
@@ -198,7 +215,10 @@ class SiteController extends BaseController
     }
 
     public function actionFaqs() {
-
+        \Yii::$app->view->registerMetaTag([
+            'name' => 'TeachTag',
+            'content' => 'Timeline de la red social del profesorado en España. Diferentes formas de aprender, diferentes formas de enseñar.'
+        ]);
         $this->layout = "main";
 
         return $this->render('faqs');

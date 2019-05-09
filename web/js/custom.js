@@ -19,6 +19,27 @@ $(document).ready(function(){
 		$('#talue').toggle();
 	})
 
+	//Aquí hago uso del slider//
+        $('.js-zoom-gallery').each(function () {
+            $(this).magnificPopup({
+                delegate: 'a',
+                type: 'image',
+                gallery: {
+                    enabled: true
+                },
+                removalDelay: 500, //delay removal by X to allow out-animation
+                callbacks: {
+                    beforeOpen: function () {
+                        // just a hack that adds mfp-anim class to markup
+                        this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
+                        this.st.mainClass = 'mfp-zoom-in';
+                    }
+                },
+                closeOnContentClick: true,
+                midClick: true
+            });
+        });
+
 });
 
 var x = 0;

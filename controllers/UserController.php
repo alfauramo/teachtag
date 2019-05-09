@@ -87,6 +87,10 @@ class UserController extends BaseController
 
     public function actionPerfil($id = false)
     {
+        \Yii::$app->view->registerMetaTag([
+            'name' => 'TeachTag',
+            'content' => 'Perfil del usuario de la red social del profesorado en España. La primera red social que comunica a todos los profesores.'
+        ]);
 
         if($id !== false){
             $model = User::findOne($id);
@@ -112,7 +116,10 @@ class UserController extends BaseController
 
     public function actionTimeline()
     {
-
+        \Yii::$app->view->registerMetaTag([
+            'name' => 'TeachTag',
+            'content' => 'Timeline de la red social del profesorado en España. Diferentes formas de aprender, diferentes formas de enseñar.'
+        ]);
         $model = User::findOne(Yii::$app->user->id);
         $centro = Center::findOne($model->centerCode);
         return $this->render('timeline', [
@@ -123,6 +130,10 @@ class UserController extends BaseController
 
     public function actionVerAmigos($id = false)
     {
+        \Yii::$app->view->registerMetaTag([
+            'name' => 'TeachTag',
+            'content' => 'Amigos. Donde te podrás relacionar con otros maestros.'
+        ]);
 
         if($id !== false){
             $model = User::findOne($id);
@@ -311,6 +322,10 @@ class UserController extends BaseController
      */
     public function actionRegistro(){
 
+        \Yii::$app->view->registerMetaTag([
+            'name' => 'TeachTag',
+            'content' => 'Registro en la mejor red social de España dedicada al profesorado. Los profesores también queremos aprender. Únete a la primera red social.'
+        ]);
         $model = new User();
 
         if(Yii::$app->user->isGuest){
@@ -415,7 +430,10 @@ class UserController extends BaseController
     }
 
     public function actionConfiguracion(){
-
+        \Yii::$app->view->registerMetaTag([
+            'name' => 'TeachTag',
+            'content' => 'Personaliza tus datos y comunícate con  toda la red del profesorado.'
+        ]);
         if(Yii::$app->controller->isNormalUser()){
             $model = User::findOne(Yii::$app->user->id);
 
@@ -432,6 +450,10 @@ class UserController extends BaseController
     }
 
     public function actionChangePassword() {
+        \Yii::$app->view->registerMetaTag([
+            'name' => 'TeachTag',
+            'content' => 'Registro en la primera social network de España. Dedicada exclusivamente a profesores.'
+        ]);
         $changePasswordModelForm = new ChangePasswordForm();
         $changePasswordModelForm->load(Yii::$app->request->post());
         $model = $this->findModel(Yii::$app->user->id);
