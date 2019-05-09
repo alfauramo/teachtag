@@ -228,3 +228,10 @@ p.more{
     	display: block !important;
 	}
 }
+
+@media (max-width: 1200px) {
+	#friends_pro{
+		width: 80px !important;
+		height: 80px !important;
+	}
+}

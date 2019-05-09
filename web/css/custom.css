@@ -260,3 +260,10 @@ p.more {
     display: block !important;
   }
 }
+@media (max-width: 1200px) {
+  /* line 233, ../../sass/custom.scss */
+  #friends_pro {
+    width: 80px !important;
+    height: 80px !important;
+  }
+}
