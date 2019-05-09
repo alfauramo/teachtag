@@ -15,7 +15,8 @@ use app\models\Tag;
 	</div>
 	<div class="ui-block-content">				
 		<!-- Personal Information Form  -->
-    	<?php $form = ActiveForm::begin(['action' => ['tag/create']]); ?>
+    	<?php
+    	$form = ActiveForm::begin(); ?>
 		<div class="row">
 			<div class="col-12">
     			<?= $form->field($model, 'texto')->textarea(['rows' => 6]) ?>
@@ -24,6 +25,8 @@ use app\models\Tag;
     		<div class='col-6'>
     			<?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
     		</div>
+    		<?php if(!$model->isNewRecord){
+    		?>
     		<div class="col col-lg-6 col-md-6 col-sm-12 col-12">
 			    <?= $form->field($model, 'pdf')
 			        ->widget(Select2::classname(), [
@@ -31,10 +34,14 @@ use app\models\Tag;
 			            'data' => Tag::$pdf,
 			            'pluginOptions' => 
 			            [
-							'allowClear' => true                ],
-			        	]
+							'allowClear' => true                
+						],
+			        ]
 			    	)->label(false);?>
 			</div>
+			<?php
+			}
+			?>
 		</div>
 
     <?php ActiveForm::end(); ?>

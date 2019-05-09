@@ -302,13 +302,6 @@ if(Yii::$app->user->isGuest){
                     </div>
                 </a>
             </li>
-
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#search" role="tab">
-                    <svg class="olymp-magnifying-glass-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-magnifying-glass-icon"></use></svg>
-                    <svg class="olymp-close-icon"><use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
-                </a>
-            </li>
         </ul>
     </div>
 

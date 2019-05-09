@@ -201,7 +201,7 @@ class UserController extends BaseController
                     $subject = "Confirmar registro";
                     $body = "<h3>Bienvenido a Teachtag, $model->username</h3>";
                     $body .= "Por favor, haz clic en el siguiente enlace para confirmar tu cuenta. :) ";
-                    $body .= "<a href='" . Url::base(true) . Url::to(['user/confirm', 'id' => $id, 'authkey' => $authKey]) . "'>Confirmar</a>";
+                    $body .= "<a href='" . Url::base(true) . Url::to(['user/confirm', 'id' => $id, 'authKey' => $authKey]) . "'>Confirmar</a>";
 
 
                     //Enviamos el correo

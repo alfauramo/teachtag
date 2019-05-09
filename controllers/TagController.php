@@ -35,7 +35,7 @@ class TagController extends BaseController
                     ],
                     [
                         'allow' => true,
-                        'actions' => ['create', 'update', 'delete'],
+                        'actions' => ['create', 'update', 'delete', 'descargar'],
                         'matchCallback' => function ($rule, $action) {
                            return $this->isNormalUser();
                        }
@@ -76,7 +76,7 @@ class TagController extends BaseController
     {
         $model = new Tag();
         if ($model->load(Yii::$app->request->post())){
-
+            $model->pdf = Tag::NO_DESCARGABLE;
             $model->editableUsers[] = Yii::$app->user->identity->id;
             $fecha = new DateTime('now');
             
@@ -107,8 +107,11 @@ class TagController extends BaseController
         $model = $this->findModel($id);
 
         if(Yii::$app->controller->isAdminUser() || $model->creator_id == Yii::$app->user->id){
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                Yii::$app->session->setFlash('success', "Tag modificado satisfactoriamente");
+            if ($model->load(Yii::$app->request->post())) {
+
+                if($model->save()){
+                    Yii::$app->session->setFlash('success', "Tag modificado satisfactoriamente");
+                }
                 return $this->goBack();
             }
             
@@ -161,8 +164,8 @@ class TagController extends BaseController
 
     public function actionDescargar($id){
         $model = Tag::findOne($id);
-        
-        if($model->pdf == Tag::DESCARGABLE){
+
+        if($model->pdf === Tag::DESCARGABLE){
             Yii::$app->response->format = \yii\web\Response::FORMAT_RAW;
             
             $pdf = new Pdf([
