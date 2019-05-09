@@ -15,8 +15,6 @@ use yii\web\JsExpression;
     $url = Url::to(['user/buscar']);
     echo $form->field($user, 'busqueda')->widget(Select2::classname(), 
         [
-            'bsVersion' => '4.x / 3.x',
-            'name' => 'form-group with-button is-empty',
             'options' => ['placeholder' => 'Buscar amigos...'],
             'pluginOptions' => 
             [    

@@ -123,7 +123,6 @@ if(Yii::$app->user->isGuest){
                         <span class="left-menu-title">Cerrar menú</span>
                     </a>
                 </li>
-                
             </ul>
 
             <div class="ui-block-title ui-block-title-small">
@@ -282,7 +281,7 @@ if(Yii::$app->user->isGuest){
             </li>
         </ul>
     </div>
-
+    
     <!-- Tab panes -->
     <div class="tab-content tab-content-responsive">
 
