@@ -28,6 +28,7 @@ class TagController extends BaseController
                 'class' => \yii\filters\AccessControl::className(),
                 'rules' => [
                     [
+                        'actions' => ['index', 'update', 'delete'],
                         'allow' => true,
                         'matchCallback' => function ($rule, $action) {
                            return $this->isAdminUser();
@@ -115,7 +116,7 @@ class TagController extends BaseController
                 return $this->goBack();
             }
             
-            if($model->creator_id == Yii::$app->user->id){
+            if(Yii::$app->controller->isAdminUser() || $model->creator_id == Yii::$app->user->id){
                 return $this->render('update', [
                     'model' => $model,
                 ]);

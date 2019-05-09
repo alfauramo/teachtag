@@ -2,11 +2,10 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $model app\models\Center */
 /* @var $form yii\widgets\ActiveForm */
-$url = Url::to(['tag/create', 'id' => $model->id]);
 ?>
 
 <div class="ui-block">
@@ -15,7 +14,7 @@ $url = Url::to(['tag/create', 'id' => $model->id]);
 	</div>
 	<div class="ui-block-content">				
 		<!-- Personal Information Form  -->
-    	<?php $form = ActiveForm::begin(['action' => "http://teachtag.loc/tag/create"]); ?>
+    	<?php $form = ActiveForm::begin(); ?>
 		<div class="row">
 			<div class="col-6">
     			<?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>

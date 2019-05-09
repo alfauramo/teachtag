@@ -86,7 +86,7 @@ class CenterController extends BaseController
             $model = new Center();
 
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['index']);
             }
 
             return $this->render('create', [
@@ -110,7 +110,7 @@ class CenterController extends BaseController
             $model = $this->findModel($id);
 
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['index']);
             }
 
             return $this->render('update', [
