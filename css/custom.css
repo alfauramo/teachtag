@@ -1,0 +1,269 @@
+@charset "UTF-8";
+/*Con este c├│digo modificamos los mensajes de error del registro de usuario - GENERAL */
+/* line 2, ../../sass/custom.scss */
+.error-registro {
+  color: #a94442;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+/*Desactivamos una imagen que aparece en el buscador. -GENERAL */
+/* line 9, ../../sass/custom.scss */
+.kv-plugin-loading.loading-busquedaform-busqueda {
+  display: none;
+}
+
+/*Modificamos el margin-left de la barra de opciones en configuraci├│n porque sino se muestra muy a la derecha - M├ôVIL */
+/* line 14, ../../sass/custom.scss */
+.profile-settings-responsive {
+  margin-left: -13px !important;
+}
+
+/*
+
+#buscador {
+	display:block !important;
+}
+
+/*Modificamos la apariencia de los avatares del buscador - GENERAL */
+/* line 24, ../../sass/custom.scss */
+#ava_per {
+  width: 36px !important;
+  height: 36px !important;
+}
+
+/*MODIFICA EL TAMA├æO DE LA CABECERA DE LOS PERFILES - M├ôVIL*/
+/* line 31, ../../sass/custom.scss */
+#cabecera_perfil {
+  height: 225px !important;
+}
+
+/*Modifica el color de algunos botones, que se encuentran simulados en un div - GENERAL */
+/* line 36, ../../sass/custom.scss */
+.profile-menu li > div {
+  color: white !important;
+}
+
+/*Modifica el color de los enlaces de administraci├│n cuando tenemos el rat├│n encima -GENERAL*/
+/* line 42, ../../sass/custom.scss */
+#menu_admin:hover {
+  color: white !important;
+}
+
+/*Modifica el tama├▒o de las im├ígenes recientes subidas por el usuario (columna de la derecha en perfil) - GENERAL */
+/* line 47, ../../sass/custom.scss */
+#slider {
+  width: 75.73px !important;
+  height: 75.73px !important;
+}
+
+/*Modifica el tama├▒o de las im├ígenes de la galer├¡a - GENERAL */
+/* line 53, ../../sass/custom.scss */
+#galeria {
+  width: 300px !important;
+  height: 300px !important;
+}
+
+/*Modifica los colores de la tabla cuando de Subir foto - GENERAL */
+/* line 59, ../../sass/custom.scss */
+.table-striped tbody tr:nth-of-type(2n+1) {
+  background-color: rgba(255, 223, 223, 0.36);
+}
+
+/* --- Subir foto --- */
+/*Modifica los botones de Subir foto, le damos el color blanco a la letra - GENERAL */
+/* line 64, ../../sass/custom.scss */
+#init, #cancel, #delete {
+  color: #fff !important;
+}
+
+/*Modifico el fondo del bot├│n de iniciar subida - GENERAL*/
+/* line 69, ../../sass/custom.scss */
+#init {
+  background: #9bcb2f !important;
+}
+
+/*Modifico el color de fondo del bot├│n de cancelar - GENERAL*/
+/* line 74, ../../sass/custom.scss */
+#cancel {
+  background: #1e0707c9 !important;
+}
+
+/* Modifico el color de fondo del bot├│n Eliminar - GENERAL*/
+/* line 79, ../../sass/custom.scss */
+#delete {
+  background: red;
+}
+
+/* line 83, ../../sass/custom.scss */
+.fade {
+  opacity: 1 !important;
+}
+
+/* line 89, ../../sass/custom.scss */
+#fila {
+  margin-left: 18% !important;
+}
+
+/* line 93, ../../sass/custom.scss */
+#amistades {
+  margin-right: 35%;
+}
+
+/* line 97, ../../sass/custom.scss */
+#listado_amigos {
+  width: 35px !important;
+  height: 35px !important;
+}
+
+/* line 102, ../../sass/custom.scss */
+#aceptar.accept-request {
+  background-color: #47f026 !important;
+}
+
+/* line 106, ../../sass/custom.scss */
+#rechazar.accept-request {
+  background-color: #de5c39 !important;
+}
+
+/* line 110, ../../sass/custom.scss */
+#img_pet {
+  width: 34px;
+}
+
+/*Modificaci├│n de los colores de los botones del perfil - GENERAL */
+/* line 115, ../../sass/custom.scss */
+.profile-menu li a.btn {
+  color: white !important;
+}
+/* line 118, ../../sass/custom.scss */
+.profile-menu li a.btn:hover {
+  color: #515365 !important;
+}
+
+/*Modifica la posici├│n de los logos de la cabecera general - GENERAL */
+/* line 124, ../../sass/custom.scss */
+#shite-header.fixed-logo {
+  position: fixed;
+  z-index: 22;
+  width: 70px;
+}
+
+/*Modifica el color y el tama├▒o/posici├│n de los logos - GENERAL*/
+/* line 131, ../../sass/custom.scss */
+.fixed-logo .logo {
+  height: 70px;
+  background-color: #ff5e3a;
+  padding: 15px;
+}
+
+/*Modifico el tama├▒o del more, que aparece en los tags de perfil y timeline - GENERAL*/
+/* line 138, ../../sass/custom.scss */
+p.more {
+  font-size: 100% !important;
+}
+
+/*Modifico el tama├▒o de la foto de perfil de los tags - GENERAL*/
+/* line 143, ../../sass/custom.scss */
+#foto_perfil {
+  width: 120px;
+  height: 120px;
+}
+
+/*Modifico el color de los botones de compartir y like - GENERAL*/
+/* line 150, ../../sass/custom.scss */
+#liked, #compartido.post-add-icon, span#compartido {
+  color: #ff5e3a !important;
+  fill: #ff5e3a !important;
+}
+/* line 153, ../../sass/custom.scss */
+#liked:hover, #compartido.post-add-icon:hover, span#compartido:hover {
+  fill: #c2c5d9 !important;
+  color: #c2c5d9 !important;
+}
+
+/* line 159, ../../sass/custom.scss */
+.buttons {
+  margin-left: 30%;
+}
+
+/*Modifico los botones de like y compartido cuando la funci├│n est├í hecha, porque no se diferenciaba - GENERAL */
+/* line 164, ../../sass/custom.scss */
+.post-control-button #compartido_but, .post-control-button #liked_but {
+  background: #ff5e3a !important;
+}
+
+/*Modifico el contenedor de las amistades - GENERAL*/
+/* line 169, ../../sass/custom.scss */
+.friend-item-content {
+  padding: 0 25px 0px 25px;
+}
+
+/*Modifico el tama├▒o de las im├ígenes de los perfiles de las amistades- M├ôVIL */
+/* line 174, ../../sass/custom.scss */
+#friends_pro {
+  margin-top: 20% !important;
+  width: 60px !important;
+  height: 60px !important;
+}
+
+/*------------- BREAKPOINTS -----------------*/
+@media (min-width: 576px) {
+  /* line 182, ../../sass/custom.scss */
+  #friends_pro {
+    width: 75px !important;
+    height: 75px !important;
+  }
+}
+@media (max-width: 576px) {
+  /* line 190, ../../sass/custom.scss */
+  .friend-avatar .author-thumb {
+    width: 98px;
+  }
+
+  /* line 195, ../../sass/custom.scss */
+  .friend-count {
+    margin-bottom: 0px !important;
+  }
+}
+@media (min-width: 768px) {
+  /*Muestro el Header a partir de la versi├│n tablet. El que cre├│ la plantilla lo modific├│ para que no fuese as├¡ - TABLET / ESCRITORIO */
+  /* line 202, ../../sass/custom.scss */
+  .header .page-title {
+    display: block !important;
+  }
+
+  /*Modifica el tama├▒o de las cabeceras de los perfiles a partir del tama├▒o tablet - TABLET / ESCRITORIO */
+  /* line 207, ../../sass/custom.scss */
+  #cabecera_perfil {
+    width: 1238px !important;
+    height: 375px !important;
+  }
+
+  /* line 212, ../../sass/custom.scss */
+  #friends_pro {
+    width: 80px !important;
+    height: 80px !important;
+  }
+}
+@media (max-width: 768px) {
+  /*Modifico la plantilla de los amigos, con un margin top superior para que no choque el uno y el otro en la versi├│n m├│vil - M├ôVIL */
+  /* line 220, ../../sass/custom.scss */
+  #friends_pro {
+    margin-top: 10% !important;
+  }
+}
+@media (min-width: 1200px) {
+  /*Permito que se muestre el bot├│n de logout - ESCRITORIO*/
+  /* line 227, ../../sass/custom.scss */
+  .profile-menu #btn_logout {
+    display: block !important;
+  }
+}
+@media (max-width: 1200px) {
+  /* line 233, ../../sass/custom.scss */
+  #friends_pro {
+    width: 80px !important;
+    height: 80px !important;
+  }
+}

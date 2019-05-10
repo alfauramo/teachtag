@@ -1,0 +1,15 @@
+User-Agent: *
+Disallow: /vendor/
+Disallow: /web/img/
+Disallow: /web/theme/
+Disallow: /web/css/
+Disallow: /web/js/
+Disallow: /web/tag/
+Disallow: /tag/
+Disallow: /web/center/
+Disallow: /center/
+Disallow: /web/fotos/
+Disallow: /fotos/
+Disallow: /config/
+Disallow: /assets/
+Disallow: /documentacion/
